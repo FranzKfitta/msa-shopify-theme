@@ -1,7 +1,7 @@
 <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-elegant border-l border-gray-200 transform translate-x-full transition-transform duration-300 ease-in-out z-50" aria-hidden="true">
   <div class="flex flex-col h-full">
     <!-- Header -->
-    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-200 bg-white">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-200 bg-white flex-shrink-0">
       <div class="flex items-center gap-3">
         <h2 class="font-serif text-2xl font-bold text-black">CART</h2>
         {%- if cart.item_count > 0 -%}
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Cart Items -->
-    <div class="flex-1 overflow-y-auto" id="cart-drawer-items">
+    <div class="flex-1 overflow-y-auto min-h-0" id="cart-drawer-items">
       {%- if cart.item_count > 0 -%}
         {%- for item in cart.items -%}
           <div class="flex gap-4 px-6 py-5 border-b border-gray-200" data-cart-item-key="{{ item.key }}">
@@ -32,9 +32,9 @@
               {%- endif -%}
               <p class="font-medium text-sm mb-3 text-black">{{ item.line_price | money }}</p>
               <div class="flex items-center gap-2">
-                <button type="button" class="cart-item-decrease cart-btn-quantity w-6 h-6 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}">-</button>
-                <span class="cart-item-quantity text-sm font-medium min-w-[20px] text-center text-black">{{ item.quantity }}</span>
-                <button type="button" class="cart-item-increase cart-btn-quantity w-6 h-6 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}">+</button>
+                <button type="button" class="cart-item-decrease cart-btn-quantity h-8 w-8 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}">-</button>
+                <span class="cart-item-quantity text-sm font-medium min-w-[32px] text-center text-black">{{ item.quantity }}</span>
+                <button type="button" class="cart-item-increase cart-btn-quantity h-8 w-8 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}">+</button>
               </div>
             </div>
             <button type="button" class="cart-item-remove cart-btn-remove text-gray-600 flex-shrink-0 self-start mt-1" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}" aria-label="Remove item">
@@ -49,7 +49,7 @@
           <h3 class="text-xl font-bold text-black mb-4">YOUR CART IS EMPTY</h3>
           <p class="text-sm text-gray-600 mb-1">Have an account?</p>
           <p class="text-sm text-gray-600 mb-6">to check out faster.</p>
-          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="cart-btn-primary inline-block bg-black text-white text-center py-3 px-6 font-medium">
+          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="cart-btn-primary inline-block bg-black text-white text-center py-3 px-6 font-medium h-11">
             Continue shopping
           </a>
         </div>
@@ -58,9 +58,9 @@
 
     <!-- Footer -->
     {%- if cart.item_count > 0 -%}
-    <div class="border-t border-gray-200 bg-white">
+    <div class="border-t border-gray-200 bg-white flex-shrink-0">
       <!-- Discount Section -->
-      <div class="px-6 py-5 border-b border-gray-200">
+      <div class="px-6 py-4 border-b border-gray-200">
         <button type="button" id="discount-toggle" class="cart-discount-toggle flex items-center justify-between w-full text-left">
           <span class="text-sm font-medium text-black">Discount</span>
           <svg class="cart-discount-icon h-4 w-4 text-black" id="discount-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,8 +69,8 @@
         </button>
         <div id="discount-form" class="hidden mt-4">
           <form id="cart-discount-form" class="flex gap-2">
-            <input type="text" id="discount-code" name="discount" placeholder="Enter discount code" class="cart-input-modern flex-1 px-3 py-2 border border-gray-300 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black" required>
-            <button type="submit" class="cart-btn-apply px-4 py-2 bg-black text-white text-sm font-medium">Apply</button>
+            <input type="text" id="discount-code" name="discount" placeholder="Enter discount code" class="cart-input-modern flex-1 px-3 py-2 h-9 border border-gray-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black" required>
+            <button type="submit" class="cart-btn-apply px-4 py-2 h-9 bg-black text-white text-sm font-medium">Apply</button>
           </form>
           <div id="discount-message" class="mt-2 text-xs"></div>
           <p class="mt-2 text-xs text-gray-600">Discount codes are applied at checkout</p>
@@ -78,24 +78,24 @@
       </div>
 
       <!-- Total Section -->
-      <div class="px-6 py-5">
+      <div class="px-6 py-4">
         <div class="flex justify-between items-center mb-2">
           <span class="text-sm font-medium text-black">Estimated total</span>
           <span class="font-bold text-lg text-black" id="cart-total">{{ cart.total_price | money }} {{ cart.currency.iso_code }}</span>
         </div>
-        <p class="text-xs text-gray-600 mb-6">Duties and taxes included. Shipping is calculated at checkout.</p>
+        <p class="text-xs text-gray-600 mb-5">Duties and taxes included. Shipping is calculated at checkout.</p>
 
         <!-- Action Buttons -->
-        <div class="space-y-3">
-          <a href="{{ routes.cart_url }}" class="cart-btn-primary block w-full bg-black text-white text-center py-3 px-4 font-medium">
+        <div class="space-y-2">
+          <a href="{{ routes.cart_url }}" class="cart-btn-primary block w-full bg-black text-white text-center py-3 px-4 font-medium h-11">
             Check out
           </a>
-          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="cart-btn-secondary block w-full bg-gray-200 text-black text-center py-3 px-4 font-medium">
-            shop
+          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="cart-btn-secondary block w-full bg-white text-black text-center py-3 px-4 font-medium h-11">
+            Continue shopping
           </a>
           {%- comment -%} PayPal button - redirects to checkout with PayPal option {%- endcomment -%}
           {%- if shop.enabled_payment_types contains 'paypal' or shop.enabled_payment_types.size > 0 -%}
-            <a href="{{ routes.cart_url }}?checkout=express&gateway=paypal" class="cart-btn-secondary block w-full bg-[#FFC439] text-black text-center py-3 px-4 font-medium flex items-center justify-center gap-2">
+            <a href="{{ routes.cart_url }}?checkout=express&gateway=paypal" class="cart-btn-secondary block w-full bg-[#FFC439] text-black text-center py-3 px-4 font-medium h-11 flex items-center justify-center gap-2">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.13 6.797-8.61 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.19zm4.172-11.583H13.7c.63 0 1.235.103 1.823.309 1.17.406 2.023 1.08 2.653 2.31.315.615.482 1.258.495 1.9.01.52.01.99.01 1.38 0 .3-.002.58-.01.81-.003.18-.005.33-.005.45 0 .12.002.22.005.3.003.08.005.15.005.21 0 .06-.002.1-.005.12 0 .02-.002.03-.005.03h-2.88c-.524 0-.968-.382-1.05-.9l-1.12-7.19-1.12-7.19c-.082-.518.526-.9 1.05-.9h2.19c.524 0 .968.382 1.05.9l.84 5.39z"/>
               </svg>
