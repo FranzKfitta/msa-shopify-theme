@@ -1,0 +1,125 @@
+{% comment %}
+  Lookbook page template for seasonal fashion showcases
+{% endcomment %}
+
+<div class="lookbook-page">
+  <!-- Hero Section -->
+  {%- section 'lookbook-hero' -%}
+
+  <!-- Main Content -->
+  <main class="main-content" id="lookbook-grid">
+    <!-- Page Header (if needed) -->
+    {%- unless page.title contains "FW25" -%}
+    <header class="page-header bg-gradient-to-b from-background to-secondary/10 py-16 md:py-24">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-foreground tracking-wide">
+            {{ page.title | default: "Lookbook" }}
+          </h1>
+          {%- if page.content != blank -%}
+            <div class="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              {{ page.content }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </header>
+    {%- endunless -%}
+
+    <!-- Lookbook Section -->
+    {%- section 'lookbook' -%}
+  </main>
+
+  <!-- Additional Content Area -->
+  {%- if page.content contains "<!--additional-content-->" -%}
+    <section class="additional-content py-16 md:py-24 bg-background">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto prose prose-lg">
+          {{ page.content | split: "<!--additional-content-->" | last }}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+
+<style>
+  /* Lookbook page specific styles */
+  .lookbook-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.3) 100%);
+  }
+
+  .page-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, hsl(var(--soft-pink) / 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page-header > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Enhanced typography */
+  .page-header h1 {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary) / 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 12px hsl(var(--foreground) / 0.1);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced lookbook item animations */
+  .lookbook-item {
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lookbook-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px hsl(var(--foreground) / 0.15);
+  }
+
+  /* Loading animation for images */
+  .lookbook-item img {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 1rem;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+  }
+</style>

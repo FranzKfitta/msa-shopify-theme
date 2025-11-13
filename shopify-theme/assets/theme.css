@@ -456,6 +456,103 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px hsl(var(--foreground) / 0.1);
+}
+
+/* Lookbook specific styles */
+.lookbook-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .lookbook-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lookbook-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.lookbook-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lookbook-item:hover .lookbook-overlay {
+  opacity: 1;
+}
+
+.prose {
+  color: hsl(var(--foreground));
+  max-width: none;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  font-family: 'Playfair Display', serif;
+  color: hsl(var(--foreground));
+}
+
+.prose p {
+  line-height: 1.7;
+  color: hsl(var(--muted-foreground));
+}
+
+.prose a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-decoration-color: hsl(var(--accent));
+  text-underline-offset: 4px;
+}
+
+.prose a:hover {
+  color: hsl(var(--accent));
+}
+
+/* Gradient utilities */
+.bg-gradient-elegant {
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.5) 100%);
+}
+
+.bg-gradient-soft {
+  background: linear-gradient(180deg, hsl(var(--soft-pink) / 0.1) 0%, transparent 100%);
+}
+
+/* Text truncation utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Backdrop blur utilities */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
 .btn:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;

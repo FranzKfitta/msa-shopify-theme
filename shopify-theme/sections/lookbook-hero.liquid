@@ -1,0 +1,78 @@
+{% comment %}
+  Lookbook Hero Section
+{% endcomment %}
+
+<div class="lookbook-hero relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-soft-pink/20 via-background to-secondary/30"></div>
+  
+  <!-- Main Content -->
+  <div class="relative z-10 text-center px-4 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto">
+      <!-- Season Label -->
+      <div class="mb-8">
+        <span class="inline-block px-6 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tracking-wider uppercase">
+          FW25 Collection
+        </span>
+      </div>
+      
+      <!-- Main Title -->
+      <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-bold text-foreground mb-8 leading-tight">
+        Fall Winter
+        <span class="block text-soft-pink drop-shadow-lg">2025</span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="font-script text-3xl md:text-4xl lg:text-5xl text-muted-foreground mb-12 font-semibold">
+        Timeless Elegance Redefined
+      </p>
+      
+      <!-- Decorative Line -->
+      <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-12"></div>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#lookbook-grid" class="btn btn-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant">
+          Explore Collection
+        </a>
+        <a href="{{ routes.collections_url }}" class="btn btn-lg btn-outline">
+          Shop All
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating Elements -->
+  <div class="absolute top-20 left-10 w-20 h-20 bg-soft-pink/20 rounded-full blur-xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-32 h-32 bg-secondary/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+  <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-accent/20 rounded-full blur-lg animate-pulse delay-500"></div>
+</div>
+
+<style>
+  .lookbook-hero {
+    background: radial-gradient(ellipse at center, hsl(var(--soft-pink) / 0.05) 0%, transparent 50%);
+  }
+  
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .delay-1000 {
+    animation-delay: 1000ms;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 4s ease-in-out infinite;
+  }
+</style>
