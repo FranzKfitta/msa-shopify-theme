@@ -7,12 +7,9 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
   { 
     ignores: [
-      "dist",
       "dist/**",
       "dist-ssr/**", 
-      "shopify-theme",
       "shopify-theme/**",
-      "**/shopify-theme/**",
       "node_modules/**"
     ] 
   },

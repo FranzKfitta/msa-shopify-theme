@@ -92,12 +92,14 @@
 
     if (cart.item_count === 0) {
       cartDrawerItems.innerHTML = `
-        <div class="px-6 py-12 text-center">
-          <h3 class="text-xl font-bold text-black mb-4">YOUR CART IS EMPTY</h3>
-          <p class="text-sm text-gray-600 mb-1">Have an account?</p>
-          <p class="text-sm text-gray-600 mb-6">to check out faster.</p>
-          <a href="${window.routes.all_products_collection_url || '/collections/all'}" class="cart-btn-primary inline-block bg-black text-white text-center py-3 px-6 font-medium">
-            Continue shopping
+        <div class="px-8 py-16 text-center">
+          <svg class="w-16 h-16 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <h3 class="text-2xl font-light text-black mb-3">Your cart is empty</h3>
+          <p class="text-sm text-gray-500 mb-8">Discover our beautiful collection</p>
+          <a href="${window.routes.all_products_collection_url || '/collections/all'}" class="cart-btn-primary inline-block bg-black text-white text-center py-3 px-8 font-normal hover:bg-gray-900 transition-colors rounded-md">
+            Start shopping
           </a>
         </div>
       `;
@@ -107,23 +109,23 @@
     let html = '';
     cart.items.forEach(item => {
       html += `
-        <div class="flex gap-4 px-6 py-5 border-b border-gray-200" data-cart-item-key="${item.key}">
-          <div class="w-20 h-20 flex-shrink-0 overflow-hidden">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" style="max-width: 80px; max-height: 80px; width: 100%; height: 100%;">
+        <div class="flex gap-6 px-8 py-6 border-b border-gray-100 hover:bg-gray-50 transition-colors cart-item-fade-in" data-cart-item-key="${item.key}">
+          <div class="w-28 h-28 flex-shrink-0 overflow-hidden rounded-md">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" style="max-width: 112px; max-height: 112px; width: 100%; height: 100%;">
           </div>
           <div class="flex-1 min-w-0">
-            <h3 class="font-normal text-sm mb-1 text-black leading-tight">${item.product_title}</h3>
-            ${item.variant_title !== 'Default Title' ? `<p class="text-xs text-gray-600 mb-2">${item.variant_title}</p>` : ''}
-            <p class="font-medium text-sm mb-3 text-black">${formatMoney(item.line_price)}</p>
+            <h3 class="font-light text-base mb-1 text-black leading-tight">${item.product_title}</h3>
+            ${item.variant_title !== 'Default Title' ? `<p class="text-xs text-gray-500 mb-2">${item.variant_title}</p>` : ''}
+            <p class="font-medium text-base mb-4 text-black">${formatMoney(item.line_price)}</p>
             <div class="flex items-center gap-2">
-              <button type="button" class="cart-item-decrease cart-btn-quantity w-6 h-6 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="${item.key}" data-variant-id="${item.variant_id}">-</button>
-              <span class="cart-item-quantity text-sm font-medium min-w-[20px] text-center text-black">${item.quantity}</span>
-              <button type="button" class="cart-item-increase cart-btn-quantity w-6 h-6 flex items-center justify-center border border-gray-300 bg-white text-black text-sm" data-item-key="${item.key}" data-variant-id="${item.variant_id}">+</button>
+              <button type="button" class="cart-item-decrease cart-btn-quantity h-10 w-10 flex items-center justify-center border border-gray-200 bg-white text-black text-sm rounded-md hover:bg-gray-50 transition-colors" data-item-key="${item.key}" data-variant-id="${item.variant_id}">−</button>
+              <span class="cart-item-quantity text-base font-medium min-w-[40px] text-center text-black">${item.quantity}</span>
+              <button type="button" class="cart-item-increase cart-btn-quantity h-10 w-10 flex items-center justify-center border border-gray-200 bg-white text-black text-sm rounded-md hover:bg-gray-50 transition-colors" data-item-key="${item.key}" data-variant-id="${item.variant_id}">+</button>
             </div>
           </div>
-          <button type="button" class="cart-item-remove cart-btn-remove text-gray-600 flex-shrink-0 self-start mt-1" data-item-key="${item.key}" data-variant-id="${item.variant_id}" aria-label="Remove item">
+          <button type="button" class="cart-item-remove cart-btn-remove text-gray-400 hover:text-gray-600 flex-shrink-0 self-start mt-1 p-2 rounded-md hover:bg-gray-100 transition-colors" data-item-key="${item.key}" data-variant-id="${item.variant_id}" aria-label="Remove item">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </button>
         </div>
@@ -149,7 +151,7 @@
         const variantId = this.dataset.variantId;
         const quantityElement = this.previousElementSibling;
         const currentQuantity = parseInt(quantityElement.textContent);
-        updateCartItem(variantId, currentQuantity + 1);
+        updateCartItem(variantId, currentQuantity + 1, this);
       });
     });
 
@@ -159,7 +161,7 @@
         const quantityElement = this.nextElementSibling;
         const currentQuantity = parseInt(quantityElement.textContent);
         if (currentQuantity > 1) {
-          updateCartItem(variantId, currentQuantity - 1);
+          updateCartItem(variantId, currentQuantity - 1, this);
         }
       });
     });
@@ -167,13 +169,20 @@
     document.querySelectorAll('.cart-item-remove').forEach(button => {
       button.addEventListener('click', function() {
         const variantId = this.dataset.variantId;
-        updateCartItem(variantId, 0);
+        updateCartItem(variantId, 0, this);
       });
     });
   }
 
   // Update Cart Item
-  function updateCartItem(variantId, quantity) {
+  function updateCartItem(variantId, quantity, buttonElement) {
+    // Add loading state
+    if (buttonElement) {
+      buttonElement.disabled = true;
+      buttonElement.style.opacity = '0.5';
+      buttonElement.style.pointerEvents = 'none';
+    }
+
     const formData = {
       id: variantId,
       quantity: quantity
@@ -193,11 +202,33 @@
       return response.json();
     })
     .then(() => {
+      // Add smooth transition
+      if (quantity === 0) {
+        // Fade out item before removing
+        const cartItem = document.querySelector(`[data-cart-item-key]`);
+        if (cartItem) {
+          cartItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          cartItem.style.opacity = '0';
+          cartItem.style.transform = 'translateX(20px)';
+          setTimeout(() => {
+            updateCartCount();
+          }, 300);
+          return;
+        }
+      }
       updateCartCount();
     })
     .catch(error => {
       console.error('Error updating cart:', error);
-      alert(window.cartStrings.error);
+      alert(window.cartStrings?.error || 'Error updating cart');
+    })
+    .finally(() => {
+      // Remove loading state
+      if (buttonElement) {
+        buttonElement.disabled = false;
+        buttonElement.style.opacity = '';
+        buttonElement.style.pointerEvents = '';
+      }
     });
   }
 
