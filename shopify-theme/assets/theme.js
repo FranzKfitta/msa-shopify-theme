@@ -179,14 +179,19 @@
       quantity: quantity
     };
 
-    fetch(window.routes.cart_change_url, {
+    fetch('/cart/change.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData)
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .then(() => {
       updateCartCount();
     })
@@ -210,22 +215,26 @@
         addButton.textContent = 'Adding...';
       }
 
-      fetch(window.routes.cart_add_url, {
+      fetch('/cart/add.js', {
         method: 'POST',
         body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          alert(data.description || window.cartStrings.error);
-        } else {
-          updateCartCount();
-          openCartDrawer();
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => {
+            throw new Error(err.description || 'Failed to add to cart');
+          });
         }
+        return response.json();
+      })
+      .then(data => {
+        // Successfully added to cart
+        updateCartCount();
+        openCartDrawer();
       })
       .catch(error => {
         console.error('Error adding to cart:', error);
-        alert(window.cartStrings.error);
+        alert(error.message || window.cartStrings.error);
       })
       .finally(() => {
         if (addButton) {
