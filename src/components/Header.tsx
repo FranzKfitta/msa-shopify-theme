@@ -1,8 +1,11 @@
 import { Search, User, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
+  const { openCart, itemCount } = useCart();
+  
   const navItems = [
     { label: "NEWS", href: "/" },
     { label: "SHOP", href: "/collections" },
@@ -45,8 +48,13 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="h-10 w-10">
               <User className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="h-10 w-10">
+            <Button variant="ghost" size="icon" className="h-10 w-10 relative" onClick={openCart}>
               <ShoppingBag className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
+                  {itemCount}
+                </span>
+              )}
             </Button>
           </div>
         </div>
