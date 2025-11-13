@@ -6,15 +6,20 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Minus, Plus } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const { addItem } = useCart();
+  const { toast } = useToast();
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
 
   const product = {
     name: "Silk Blouse",
-    price: "€295",
+    price: 295,
+    priceDisplay: "€295",
     description: "A timeless silk blouse crafted with attention to every detail. Made from the finest mulberry silk, this piece embodies elegance and sophistication.",
     images: [
       "/placeholder.svg",
@@ -29,6 +34,22 @@ const ProductDetail = () => {
       "Made in Italy",
       "Model is wearing size S"
     ]
+  };
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) {
+      addItem({
+        id: `${id}-${selectedSize}`,
+        title: product.name,
+        variant: `Size ${selectedSize}`,
+        price: product.price,
+        image: product.images[0],
+      });
+    }
+    toast({
+      title: "Added to cart",
+      description: `${quantity} × ${product.name} (Size ${selectedSize})`,
+    });
   };
 
   return (
@@ -53,7 +74,7 @@ const ProductDetail = () => {
           {/* Product Info */}
           <div className="md:sticky md:top-24 md:h-fit">
             <h1 className="font-serif text-3xl md:text-4xl mb-4">{product.name}</h1>
-            <p className="text-2xl mb-8">{product.price}</p>
+            <p className="text-2xl mb-8">{product.priceDisplay}</p>
             
             <p className="text-muted-foreground mb-8 leading-relaxed">
               {product.description}
@@ -102,7 +123,9 @@ const ProductDetail = () => {
             </div>
 
             {/* Add to Bag */}
-            <Button className="w-full mb-8 h-12">Add to Bag</Button>
+            <Button className="w-full mb-8 h-12" onClick={handleAddToCart}>
+              Add to Bag
+            </Button>
 
             <Separator className="mb-8" />
 

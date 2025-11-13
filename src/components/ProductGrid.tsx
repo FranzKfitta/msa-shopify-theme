@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -7,32 +8,50 @@ import product4 from "@/assets/product-4.jpg";
 
 const products = [
   {
-    id: 1,
+    id: "1",
     name: "Elegant Blazer",
-    price: "€285",
+    price: 285,
+    priceDisplay: "€285",
     image: product1,
   },
   {
-    id: 2,
+    id: "2",
     name: "Silk Blouse",
-    price: "€195",
+    price: 195,
+    priceDisplay: "€195",
     image: product2,
   },
   {
-    id: 3,
+    id: "3",
     name: "Tailored Trousers",
-    price: "€240",
+    price: 240,
+    priceDisplay: "€240",
     image: product3,
   },
   {
-    id: 4,
+    id: "4",
     name: "Cashmere Sweater",
-    price: "€320",
+    price: 320,
+    priceDisplay: "€320",
     image: product4,
   },
 ];
 
 const ProductGrid = () => {
+  const { addItem } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent, product: typeof products[0]) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      id: product.id,
+      title: product.name,
+      variant: "Default",
+      price: product.price,
+      image: product.image,
+    });
+  };
+
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto">
@@ -60,15 +79,16 @@ const ProductGrid = () => {
                   <Button 
                     size="sm" 
                     className="bg-white text-foreground hover:bg-white/90 shadow-lg"
+                    onClick={(e) => handleAddToCart(e, product)}
                   >
-                    Quick View
+                    Add to Cart
                   </Button>
                 </div>
               </div>
 
               <div className="text-center space-y-1">
                 <h3 className="font-serif text-lg font-medium">{product.name}</h3>
-                <p className="text-muted-foreground font-medium">{product.price}</p>
+                <p className="text-muted-foreground font-medium">{product.priceDisplay}</p>
               </div>
             </Link>
           ))}
