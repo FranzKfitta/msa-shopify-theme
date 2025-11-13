@@ -15,8 +15,10 @@
   function openCartDrawer() {
     if (cartDrawer && cartDrawerOverlay) {
       cartDrawer.classList.remove('translate-x-full');
+      cartDrawer.classList.add('cart-drawer-open');
       cartDrawer.setAttribute('aria-hidden', 'false');
       cartDrawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      cartDrawerOverlay.classList.add('cart-overlay-open');
       cartDrawerOverlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
@@ -25,8 +27,10 @@
   function closeCartDrawer() {
     if (cartDrawer && cartDrawerOverlay) {
       cartDrawer.classList.add('translate-x-full');
+      cartDrawer.classList.remove('cart-drawer-open');
       cartDrawer.setAttribute('aria-hidden', 'true');
       cartDrawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+      cartDrawerOverlay.classList.remove('cart-overlay-open');
       cartDrawerOverlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
