@@ -1,0 +1,144 @@
+{% schema %}
+{
+  "name": "Image Banner Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading 1",
+      "default": "Collaboration"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link 1"
+    },
+    {
+      "type": "header",
+      "content": "Block 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Heading 2",
+      "default": "New arrivals"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link 2"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Banner Grid"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="w-full" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="container">
+    <div class="flex flex-col md:flex-row gap-4">
+      <!-- Block 1 -->
+      <div class="flex-1 relative group overflow-hidden cursor-pointer">
+        <a href="{{ section.settings.link_1 | default: '#' }}" class="block w-full h-full">
+          <div class="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden">
+            {%- if section.settings.image_1 != blank -%}
+              <img
+                src="{{ section.settings.image_1 | image_url: width: 800 }}"
+                alt="{{ section.settings.heading_1 }}"
+                class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="{{ section.settings.image_1.width }}"
+                height="{{ section.settings.image_1.height }}"
+              >
+            {%- else -%}
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-400 text-sm">Image 1</span>
+              </div>
+            {%- endif -%}
+            
+            <!-- Overlay for better text visibility -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <!-- Heading -->
+            <div class="absolute bottom-8 left-8 right-8 text-white">
+              <h3 class="font-serif text-2xl md:text-3xl font-light leading-tight drop-shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 opacity-90 group-hover:opacity-100">
+                {{ section.settings.heading_1 }}
+              </h3>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="flex-1 relative group overflow-hidden cursor-pointer">
+        <a href="{{ section.settings.link_2 | default: '#' }}" class="block w-full h-full">
+          <div class="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden">
+            {%- if section.settings.image_2 != blank -%}
+              <img
+                src="{{ section.settings.image_2 | image_url: width: 800 }}"
+                alt="{{ section.settings.heading_2 }}"
+                class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="{{ section.settings.image_2.width }}"
+                height="{{ section.settings.image_2.height }}"
+              >
+            {%- else -%}
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-400 text-sm">Image 2</span>
+              </div>
+            {%- endif -%}
+            
+            <!-- Overlay for better text visibility -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <!-- Heading -->
+            <div class="absolute bottom-8 left-8 right-8 text-white">
+              <h3 class="font-serif text-2xl md:text-3xl font-light leading-tight drop-shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 opacity-90 group-hover:opacity-100">
+                {{ section.settings.heading_2 }}
+              </h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
