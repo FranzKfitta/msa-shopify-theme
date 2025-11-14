@@ -64,47 +64,45 @@
     </div>
 
     <!-- Footer -->
-    {%- if cart.item_count > 0 -%}
-    <div class="border-t border-border bg-white flex-shrink-0">
+    <div id="cart-drawer-footer" class="border-t border-border bg-white flex-shrink-0{% if cart.item_count == 0 %} hidden{% endif %}">
       <!-- Discount Section -->
-      <div class="px-6 py-4 border-b border-border">
-        <button type="button" id="discount-toggle" class="flex items-center justify-between w-full text-left">
-          <span class="text-sm font-medium text-foreground">Discount</span>
-          <svg class="cart-discount-icon h-4 w-4 text-foreground" id="discount-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <div class="px-6 py-3 border-b border-border">
+        <button type="button" id="discount-toggle" class="cart-discount-toggle">
+          <span class="cart-discount-label">Discount</span>
+          <svg class="cart-discount-icon" id="discount-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
         </button>
         <div id="discount-form" class="hidden mt-4">
-          <form id="cart-discount-form" class="flex gap-2">
-            <input type="text" id="discount-code" name="discount" placeholder="Enter discount code" class="cart-input-modern flex-1 px-3 py-2 h-9 border border-input bg-white text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-ring" required>
-            <button type="submit" class="cart-btn-sm h-9">Apply</button>
+          <form id="cart-discount-form" class="cart-discount-form-row">
+            <input type="text" id="discount-code" name="discount" placeholder="Discount code" class="cart-discount-input" required>
+            <button type="submit" class="cart-discount-apply">Apply</button>
           </form>
-          <p class="mt-2 text-xs text-muted-foreground">Discount codes are applied at checkout</p>
         </div>
       </div>
 
       <!-- Total Section -->
-      <div class="px-6 py-4">
+      <div class="px-6 py-5">
         <div class="flex justify-between items-center mb-2">
           <span class="text-sm font-medium text-foreground">Estimated total</span>
-          <span class="font-bold text-lg text-foreground" id="cart-total">{{ cart.total_price | money }} {{ cart.currency.iso_code }}</span>
+          <span class="font-bold text-lg tracking-tight text-foreground" id="cart-total">{{ cart.total_price | money }} {{ cart.currency.iso_code }}</span>
         </div>
         <p class="text-xs text-muted-foreground mb-5">Duties and taxes included. Shipping is calculated at checkout.</p>
 
         <!-- Action Buttons -->
         <div class="space-y-2">
-          <a href="{{ routes.cart_url }}" class="cart-btn-default block w-full h-11">
+          <a href="{{ routes.cart_url }}" class="cart-checkout-primary">
             Check out
           </a>
-          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="cart-btn-outline block w-full h-11" onclick="closeCartDrawer(); return false;">
-            Continue shopping
+          <a href="{{ routes.cart_url }}" class="cart-checkout-shop">
+            shop
           </a>
-          {%- comment -%} PayPal button - redirects to checkout with PayPal option {%- endcomment -%}
-          {%- comment -%} PayPal button can be added here if needed {%- endcomment -%}
+          <a href="{{ routes.cart_url }}" class="cart-checkout-paypal">
+            PayPal
+          </a>
         </div>
       </div>
     </div>
-    {%- endif -%}
   </div>
 </div>
 

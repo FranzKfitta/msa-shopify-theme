@@ -82,6 +82,7 @@
   function updateCartDrawer(cart) {
     const cartDrawerItems = document.getElementById('cart-drawer-items');
     const cartTotal = document.getElementById('cart-total');
+    const cartDrawerFooter = document.getElementById('cart-drawer-footer');
     if (!cartDrawerItems) return;
 
     // Update cart total
@@ -100,6 +101,9 @@
           </a>
         </div>
       `;
+      if (cartDrawerFooter) {
+        cartDrawerFooter.classList.add('hidden');
+      }
       return;
     }
 
@@ -138,6 +142,11 @@
     });
 
     cartDrawerItems.innerHTML = html;
+
+    if (cartDrawerFooter) {
+      cartDrawerFooter.classList.remove('hidden');
+    }
+
     attachCartItemListeners();
   }
 
@@ -383,6 +392,12 @@
     document.addEventListener('DOMContentLoaded', updateCartCount);
   } else {
     updateCartCount();
+  }
+
+  // Expose cart count updater globally so other scripts (e.g. collection quick-add)
+  // can trigger a unified cart refresh and drawer update
+  if (typeof window !== 'undefined') {
+    window.updateCartCount = updateCartCount;
   }
 
   // Add rotate utility class for SVG
