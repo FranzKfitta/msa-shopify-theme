@@ -281,6 +281,15 @@
 
       // Add class so CSS can apply fixed positioning and top anchoring
       header.classList.add('sticky');
+
+      // Expose header height to CSS so pages can offset content below the fixed header
+      const headerHeight = header.offsetHeight || 0;
+      if (headerHeight > 0) {
+        document.documentElement.style.setProperty('--header-offset', headerHeight + 'px');
+      }
+      document.body.classList.add('has-fixed-header');
+    } else {
+      document.body.classList.remove('has-fixed-header');
     }
     
     // Only add scroll transparency if enabled

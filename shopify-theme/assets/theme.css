@@ -1123,6 +1123,11 @@ header#main-header[data-sticky="true"].sticky {
   right: 0 !important;
 }
 
+/* When a fixed header is active, offset main content so it doesn't hide under the navbar */
+body.has-fixed-header main {
+  padding-top: var(--header-offset, 80px);
+}
+
 header#main-header.scrolled {
   background-color: hsl(var(--background) / 0.85) !important;
 }
