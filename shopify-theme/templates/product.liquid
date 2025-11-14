@@ -2,13 +2,13 @@
   The product template
 {% endcomment %}
 
-<main class="container mx-auto px-4 py-8 md:py-16">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-7xl mx-auto">
+<main class="product-page">
+  <div class="product-layout">
     <!-- Product Images -->
-    <div class="space-y-4">
+    <div class="product-gallery">
       {%- if product.images.size > 0 -%}
         {%- for image in product.images -%}
-          <div class="aspect-[3/4] overflow-hidden">
+          <div class="product-media aspect-[3/4] overflow-hidden">
             <img
               src="{{ image | image_url: width: 800 }}"
               alt="{{ image.alt | escape }}"
@@ -27,9 +27,9 @@
     </div>
 
     <!-- Product Info -->
-    <div class="md:sticky md:top-24 md:h-fit">
-      <h1 class="font-serif text-3xl md:text-4xl mb-4">{{ product.title }}</h1>
-      <p class="text-2xl mb-8">
+    <div class="product-details">
+      <h1 class="product-title font-serif text-3xl md:text-4xl mb-4">{{ product.title }}</h1>
+      <p class="product-price-main text-2xl mb-8">
         {{ product.price | money }}
         {%- if product.compare_at_price > product.price -%}
           <span class="line-through text-muted-foreground ml-2">{{ product.compare_at_price | money }}</span>
@@ -101,4 +101,155 @@
     </div>
   </div>
 </main>
+<style>
+  .product-page {
+    width: 100%;
+    background-color: #ffffff;
+  }
 
+  .product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: flex-start;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .product-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: 4rem;
+    }
+  }
+
+  .product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .product-media {
+    background: #ffffff;
+  }
+
+  @media (min-width: 1024px) {
+    .product-details {
+      padding: 4rem 6vw 4rem 3vw;
+    }
+  }
+
+  .product-title {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .product-price-main {
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  (function() {
+    const details = document.querySelector('.product-details');
+    const layout = document.querySelector('.product-layout');
+    if (!details || !layout) return;
+
+    const mq = window.matchMedia('(min-width: 768px)');
+    let enabled = false;
+    let start = 0;
+    let end = 0;
+    let headerOffset = 0;
+    let detailsWidth = 0;
+    let detailsLeft = 0;
+
+    function getHeaderOffset() {
+      const rootStyles = window.getComputedStyle(document.documentElement);
+      const val = parseFloat(rootStyles.getPropertyValue('--header-offset'));
+      if (!isNaN(val) && val > 0) return val;
+      return 96; // fallback ~6rem
+    }
+
+    function resetDetails() {
+      details.style.position = '';
+      details.style.top = '';
+      details.style.bottom = '';
+      details.style.width = '';
+      details.style.transform = '';
+      details.style.left = '';
+    }
+
+    function onScroll() {
+      if (!enabled) return;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop <= start) {
+        // Before sticky zone
+        resetDetails();
+        details.style.position = 'relative';
+      } else if (scrollTop >= end) {
+        // After sticky zone - lock to bottom of layout
+        resetDetails();
+        details.style.position = 'absolute';
+        details.style.bottom = '0';
+        details.style.width = detailsWidth + 'px';
+        details.style.left = detailsLeft + 'px';
+      } else {
+        // Within sticky zone - fixed under the header
+        resetDetails();
+        details.style.position = 'fixed';
+        details.style.top = headerOffset + 'px';
+        details.style.width = detailsWidth + 'px';
+        details.style.left = detailsLeft + 'px';
+      }
+    }
+
+    function updateBounds() {
+      resetDetails();
+
+      if (!mq.matches) {
+        // Mobile: no sticky behavior
+        enabled = false;
+        window.removeEventListener('scroll', onScroll);
+        return;
+      }
+
+      headerOffset = getHeaderOffset();
+
+      const layoutRect = layout.getBoundingClientRect();
+      const detailsRect = details.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      const layoutTop = layoutRect.top + scrollTop;
+      const layoutBottom = layoutTop + layout.offsetHeight;
+
+      detailsWidth = detailsRect.width;
+      detailsLeft = detailsRect.left;
+
+      // Start sticky when top of details would pass under the header
+      start = layoutTop - headerOffset;
+
+      // End sticky when bottom of details would hit bottom of layout
+      end = layoutBottom - details.offsetHeight - headerOffset;
+
+      if (!enabled) {
+        window.addEventListener('scroll', onScroll);
+        enabled = true;
+      }
+
+      onScroll();
+    }
+
+    // Recalculate on load and when resizing
+    window.addEventListener('load', updateBounds);
+    window.addEventListener('resize', function() {
+      // Use a small timeout to allow layout to settle
+      window.setTimeout(updateBounds, 100);
+    });
+
+    // In case DOMContentLoaded fires after this script
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateBounds);
+    } else {
+      updateBounds();
+    }
+  })();
+</script>
