@@ -70,6 +70,16 @@
 <header id="main-header" class="{% if section.settings.sticky_header %}sticky{% endif %} top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border transition-all duration-300" data-sticky="{{ section.settings.sticky_header }}" data-transparent-scroll="{{ section.settings.transparent_on_scroll }}">
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
+      <!-- Mobile Menu Button -->
+      <button type="button" id="mobile-menu-toggle" class="lg:hidden btn btn-ghost btn-icon h-10 w-10" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="menu-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
       <!-- Logo -->
       <div class="flex-1">
         <a href="{{ routes.root_url }}" class="cursor-pointer hover:opacity-80 transition-opacity inline-block">
@@ -92,16 +102,6 @@
           {%- endif -%}
         </a>
       </div>
-
-      <!-- Mobile Menu Button -->
-      <button type="button" id="mobile-menu-toggle" class="lg:hidden btn btn-ghost btn-icon h-10 w-10" aria-label="Toggle menu" aria-expanded="false">
-        <svg id="menu-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
 
       <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center gap-6 flex-1 justify-center">
@@ -191,11 +191,18 @@
           <ul class="space-y-1">
             {%- for link in linklists[menu_handle].links -%}
               <li>
-                <a href="{{ link.url }}" class="block px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">
-                  {{ link.title | upcase }}
-                </a>
+                <div class="flex items-center justify-between">
+                  <a href="{{ link.url }}" class="block flex-1 px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">
+                    {{ link.title | upcase }}
+                  </a>
+                  {%- if link.links.size > 0 -%}
+                    <button type="button" class="mobile-submenu-toggle px-4 py-3 text-xs tracking-wide" aria-expanded="false" aria-label="Toggle submenu">
+                      +
+                    </button>
+                  {%- endif -%}
+                </div>
                 {%- if link.links.size > 0 -%}
-                  <ul class="pl-4 space-y-1">
+                  <ul class="pl-4 space-y-1 mobile-submenu hidden">
                     {%- for child_link in link.links -%}
                       <li>
                         <a href="{{ child_link.url }}" class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -212,11 +219,18 @@
           <ul class="space-y-1">
             {%- for link in linklists['main-menu'].links -%}
               <li>
-                <a href="{{ link.url }}" class="block px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">
-                  {{ link.title | upcase }}
-                </a>
+                <div class="flex items-center justify-between">
+                  <a href="{{ link.url }}" class="block flex-1 px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">
+                    {{ link.title | upcase }}
+                  </a>
+                  {%- if link.links.size > 0 -%}
+                    <button type="button" class="mobile-submenu-toggle px-4 py-3 text-xs tracking-wide" aria-expanded="false" aria-label="Toggle submenu">
+                      +
+                    </button>
+                  {%- endif -%}
+                </div>
                 {%- if link.links.size > 0 -%}
-                  <ul class="pl-4 space-y-1">
+                  <ul class="pl-4 space-y-1 mobile-submenu hidden">
                     {%- for child_link in link.links -%}
                       <li>
                         <a href="{{ child_link.url }}" class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -361,6 +375,29 @@
           menuToggle.setAttribute('aria-expanded', 'false');
         }
       }
+    });
+
+    // Collapsible mobile submenus
+    const submenuToggles = mobileMenu.querySelectorAll('.mobile-submenu-toggle');
+    submenuToggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const parentLi = this.closest('li');
+        if (!parentLi) return;
+        const submenu = parentLi.querySelector('.mobile-submenu');
+        if (!submenu) return;
+
+        const isOpen = !submenu.classList.contains('hidden');
+        if (isOpen) {
+          submenu.classList.add('hidden');
+          this.setAttribute('aria-expanded', 'false');
+          this.textContent = '+';
+        } else {
+          submenu.classList.remove('hidden');
+          this.setAttribute('aria-expanded', 'true');
+          this.textContent = '-';
+        }
+      });
     });
   })();
 </script>
