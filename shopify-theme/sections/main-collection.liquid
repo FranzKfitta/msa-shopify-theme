@@ -225,6 +225,29 @@
       <div class="collection-sort">
         <form method="get" action="{{ collection.url }}" class="sort-form" id="sort-form">
           <input type="hidden" name="sort_by" id="sort-by" value="{{ collection.sort_by | default: 'manual' }}">
+
+          {%- comment -%}
+            Preserve active filters when changing sort: for each active filter value,
+            include a hidden input with the same param name/value so the query
+            remains filtered after the sort option is changed.
+          {%- endcomment -%}
+          {%- for filter in collection.filters -%}
+            {%- case filter.type -%}
+              {%- when 'list' -%}
+                {%- for filter_value in filter.values -%}
+                  {%- if filter_value.active -%}
+                    <input type="hidden" name="{{ filter_value.param_name }}" value="{{ filter_value.value }}">
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- when 'price_range' -%}
+                {%- if filter.min_value.value -%}
+                  <input type="hidden" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}">
+                {%- endif -%}
+                {%- if filter.max_value.value and filter.max_value.value < filter.range_max -%}
+                  <input type="hidden" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}">
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
           <div class="sort-group-horizontal">
             <button type="button" class="sort-trigger-horizontal">
               <span class="sort-selected-text">
@@ -303,34 +326,39 @@
                     </div>
                   {%- endif -%}
                 </a>
-                {%- unless product.available -%}
+                {%- if product.available == false -%}
                   <div class="product-sold-out">Sold out</div>
-                {%- endunless -%}
-                <button
-                  type="button"
-                  class="product-quick-add"
-                  aria-label="Ajouter"
-                  data-variant-id="{{ product.first_available_variant.id }}"
-                >
-                  <span class="product-quick-add-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M6 6h15l-1.2 7.2a1.5 1.5 0 0 1-1.5 1.3H9.7a1.5 1.5 0 0 1-1.5-1.3L7 4.5A1.5 1.5 0 0 0 5.5 3H3" />
-                      <circle cx="10" cy="20" r="1.3" />
-                      <circle cx="17" cy="20" r="1.3" />
-                      <path d="M18.5 5v-2" />
-                      <path d="M17.5 4h2" />
-                    </svg>
-                  </span>
-                  <span class="product-quick-add-label">Ajouter</span>
-                </button>
+                {%- elsif product.compare_at_price_max > product.price -%}
+                  <div class="product-sale">Sale</div>
+                {%- endif -%}
+
+                {%- if product.available -%}
+                  <button
+                    type="button"
+                    class="product-quick-add"
+                    aria-label="Ajouter"
+                    data-variant-id="{{ product.first_available_variant.id }}"
+                  >
+                    <span class="product-quick-add-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 6h15l-1.2 7.2a1.5 1.5 0 0 1-1.5 1.3H9.7a1.5 1.5 0 0 1-1.5-1.3L7 4.5A1.5 1.5 0 0 0 5.5 3H3" />
+                        <circle cx="10" cy="20" r="1.3" />
+                        <circle cx="17" cy="20" r="1.3" />
+                        <path d="M18.5 5v-2" />
+                        <path d="M17.5 4h2" />
+                      </svg>
+                    </span>
+                    <span class="product-quick-add-label">Ajouter</span>
+                  </button>
+                {%- endif -%}
               </div>
               <div class="product-info">
                 <a href="{{ product.url }}" class="product-link">
                   <h3 class="product-name">{{ product.title }}</h3>
                   <p class="product-price">
                     {{ product.price | money }}
-                    {%- if product.compare_at_price > product.price -%}
-                      <span class="product-price-compare">{{ product.compare_at_price | money }}</span>
+                    {%- if product.compare_at_price_max > product.price -%}
+                      <span class="product-price-compare">{{ product.compare_at_price_max | money }}</span>
                     {%- endif -%}
                   </p>
                 </a>
@@ -353,6 +381,7 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    background-color: #ffffff;
   }
 
   /* Collection Header */
@@ -680,7 +709,7 @@
     width: 100%;
     padding-bottom: 150%;
     overflow: hidden;
-    background: hsl(var(--secondary));
+    background: #ffffff;
     margin-bottom: 1rem;
   }
 
@@ -849,12 +878,29 @@
     top: 0.5rem;
     right: 0.5rem;
     padding: 0.25rem 0.75rem;
-    background: transparent;
-    color: hsl(var(--foreground));
-    font-size: 0.875rem;
-    font-weight: 600;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    border-radius: 0.3rem;
+    z-index: 20;
+  }
+
+  .product-sale {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: #ffffff;
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0.3rem;
+    border: 1px solid #000000;
     z-index: 20;
   }
 
