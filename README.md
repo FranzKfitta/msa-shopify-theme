@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# The Pure - Shopify Theme
 
-## Project info
+This is a Shopify theme converted from a React/TypeScript/Vite application. The theme maintains the original design and functionality while using Shopify's native Liquid templating system.
 
-**URL**: https://lovable.dev/projects/7fd7e3d1-d252-4850-83f9-d519c650b337
+## Theme Structure
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/7fd7e3d1-d252-4850-83f9-d519c650b337) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+shopify-theme/
+├── assets/          # CSS, JavaScript, images, and other static files
+├── config/          # Theme configuration files
+├── layout/          # Theme layout templates
+├── locales/         # Translation files
+├── sections/        # Reusable theme sections
+├── snippets/        # Reusable code snippets
+└── templates/       # Page templates
 ```
 
-**Edit a file directly in GitHub**
+## Installation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Zip the `shopify-theme` folder
+2. Go to your Shopify admin panel
+3. Navigate to Online Store > Themes
+4. Click "Add theme" > "Upload zip file"
+5. Select your zip file and upload
 
-**Use GitHub Codespaces**
+## Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Full E-commerce Functionality**: Product pages, collections, cart, and checkout integration
+- **Responsive Design**: Mobile-first design that works on all devices
+- **Customizable**: Theme settings available in Shopify admin
+- **Performance Optimized**: Compiled CSS and optimized JavaScript
+- **SEO Friendly**: Proper meta tags and structured data
 
-## What technologies are used for this project?
+## Theme Sections
 
-This project is built with:
+- **Header**: Navigation menu with cart and account links
+- **Footer**: Links, newsletter signup, and social media
+- **Hero**: Customizable hero banner with image and text
+- **Featured Collection**: Display products from any collection
+- **Announcement Bar**: Top banner with customizable message
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Templates
 
-## How can I deploy this project?
+- **Index**: Homepage with hero and featured collection
+- **Collection**: Product listing with filters and sorting
+- **Product**: Product detail page with variant selection
+- **List Collections**: All collections listing page
+- **Page**: Custom pages (for lookbooks, etc.)
+- **404**: Error page
 
-Simply open [Lovable](https://lovable.dev/projects/7fd7e3d1-d252-4850-83f9-d519c650b337) and click on Share -> Publish.
+## Customization
 
-## Can I connect a custom domain to my Lovable project?
+All theme settings can be customized through the Shopify theme editor:
+- Colors and typography
+- Header and footer content
+- Announcement bar text
+- Collection selection for featured products
 
-Yes, you can!
+## JavaScript Functionality
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The theme includes vanilla JavaScript for:
+- Cart drawer/sidebar
+- Add to cart functionality
+- Variant selection
+- Quantity controls
+- Collection filters
+- Sort functionality
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Notes
+
+- All images should be uploaded to the Shopify theme assets folder
+- Product data comes from Shopify's product objects
+- Cart functionality uses Shopify's Cart API
+- The theme uses Shopify's native collection filters
+
