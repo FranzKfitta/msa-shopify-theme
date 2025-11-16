@@ -405,5 +405,35 @@
   style.textContent = '.rotate-180 { transform: rotate(180deg); }';
   document.head.appendChild(style);
 
+  // Mobile product gallery thumbnail behavior
+  function initProductGallery() {
+    const gallery = document.querySelector('.product-gallery');
+    if (!gallery) return;
+
+    const mainImage = gallery.querySelector('[data-main-image]');
+    const thumbs = gallery.querySelectorAll('.product-thumb');
+    if (!mainImage || thumbs.length === 0) return;
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        const newSrc = this.getAttribute('data-image-src');
+        const newAlt = this.getAttribute('data-image-alt') || mainImage.alt;
+        if (newSrc) {
+          mainImage.src = newSrc;
+        }
+        mainImage.alt = newAlt;
+
+        thumbs.forEach(t => t.classList.remove('is-active'));
+        this.classList.add('is-active');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProductGallery);
+  } else {
+    initProductGallery();
+  }
+
 })();
 

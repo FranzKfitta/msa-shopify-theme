@@ -7,18 +7,59 @@
     <!-- Product Images -->
     <div class="product-gallery">
       {%- if product.images.size > 0 -%}
-        {%- for image in product.images -%}
-          <div class="product-media aspect-[3/4] overflow-hidden">
+        <!-- Mobile gallery: main image + thumbnail carousel -->
+        <div class="product-gallery-mobile">
+          {%- assign first_image = product.images.first -%}
+          <div class="product-main-image aspect-[3/4] overflow-hidden">
             <img
-              src="{{ image | image_url: width: 800 }}"
-              alt="{{ image.alt | escape }}"
+              src="{{ first_image | image_url: width: 900 }}"
+              alt="{{ first_image.alt | escape }}"
               class="w-full h-full object-cover"
               loading="lazy"
-              width="{{ image.width }}"
-              height="{{ image.height }}"
+              width="{{ first_image.width }}"
+              height="{{ first_image.height }}"
+              data-main-image
             >
           </div>
-        {%- endfor -%}
+          <div class="product-thumbnails" aria-label="Product images">
+            {%- for image in product.images -%}
+              <button
+                type="button"
+                class="product-thumb{% if forloop.first %} is-active{% endif %}"
+                data-image-src="{{ image | image_url: width: 900 }}"
+                data-image-alt="{{ image.alt | escape }}"
+                aria-label="{{ image.alt | default: product.title | escape }}"
+              >
+                <div class="product-thumb-inner">
+                  <img
+                    src="{{ image | image_url: width: 240 }}"
+                    alt="{{ image.alt | escape }}"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    width="{{ image.width }}"
+                    height="{{ image.height }}"
+                  >
+                </div>
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Desktop gallery: stacked images -->
+        <div class="product-gallery-desktop">
+          {%- for image in product.images -%}
+            <div class="product-media aspect-[3/4] overflow-hidden">
+              <img
+                src="{{ image | image_url: width: 800 }}"
+                alt="{{ image.alt | escape }}"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            </div>
+          {%- endfor -%}
+        </div>
       {%- else -%}
         <div class="aspect-[3/4] overflow-hidden bg-secondary">
           {{ 'product-1.jpg' | asset_url | image_tag: loading: 'lazy', class: 'w-full h-full object-cover' }}
@@ -28,35 +69,37 @@
 
     <!-- Product Info -->
     <div class="product-details">
-      <h1 class="product-title font-serif text-3xl md:text-4xl mb-4">{{ product.title }}</h1>
-      <p class="product-price-main text-2xl mb-8">
+      <!-- Title & price -->
+      <h1 class="product-title font-serif text-3xl md:text-4xl mb-2">{{ product.title }}</h1>
+      <p class="product-price-main text-2xl mb-6">
         {{ product.price | money }}
         {%- if product.compare_at_price > product.price -%}
           <span class="line-through text-muted-foreground ml-2">{{ product.compare_at_price | money }}</span>
         {%- endif -%}
       </p>
-      
-      {%- if product.description != blank -%}
-        <p class="text-muted-foreground mb-8 leading-relaxed">
-          {{ product.description }}
-        </p>
-      {%- endif -%}
-
-      <div class="border-t border-border mb-8"></div>
 
       <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" id="product-form">
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="product-variant-id">
 
-        <!-- Variant Selection -->
+        <!-- Size / options row with size guide link -->
         {%- unless product.has_only_default_variant -%}
           {%- for option in product.options_with_values -%}
-            <div class="mb-8">
-              <p class="font-medium mb-4">{{ option.name }}</p>
+            <div class="mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <p class="font-medium">{{ option.name }}</p>
+                {%- if option.name == 'Taille' or option.name == 'Size' -%}
+                  {%- if product.metafields.custom.size_guide_url != blank -%}
+                    <a href="{{ product.metafields.custom.size_guide_url }}" class="text-xs tracking-wide underline text-muted-foreground hover:text-foreground" target="_blank" rel="noopener">
+                      {{ 'products.product.size_guide' | t: default: 'Guide des tailles' }}
+                    </a>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
               <div class="flex gap-2 flex-wrap">
                 {%- for value in option.values -%}
                   <button
                     type="button"
-                    class="variant-option w-12 h-12 border transition-colors {% if option.selected_value == value %}border-foreground bg-foreground text-background{% else %}border-border hover:border-foreground{% endif %}"
+                    class="variant-option min-w-[3rem] h-10 px-3 border text-sm transition-colors {% if option.selected_value == value %}border-foreground bg-foreground text-background{% else %}border-border hover:border-foreground{% endif %}"
                     data-option-name="{{ option.name }}"
                     data-option-value="{{ value }}"
                   >
@@ -68,36 +111,104 @@
           {%- endfor -%}
         {%- endunless -%}
 
-        <!-- Quantity -->
-        <div class="mb-8">
-          <p class="font-medium mb-4">{{ 'products.product.quantity' | t }}</p>
+        <!-- Quantity & Add-to-cart bar -->
+        <div class="mb-6">
+          <p class="font-medium mb-3">{{ 'products.product.quantity' | t }}</p>
           <div class="flex items-center gap-4">
-            <button type="button" class="quantity-decrease w-10 h-10 border border-border hover:border-foreground transition-colors flex items-center justify-center">-</button>
+            <button type="button" class="quantity-decrease cart-btn-quantity w-10 h-10 border border-border flex items-center justify-center">-</button>
             <input type="number" name="quantity" value="1" min="1" class="quantity-input w-12 text-center border-0" id="quantity">
-            <button type="button" class="quantity-increase w-10 h-10 border border-border hover:border-foreground transition-colors flex items-center justify-center">+</button>
+            <button type="button" class="quantity-increase cart-btn-quantity w-10 h-10 border border-border flex items-center justify-center">+</button>
           </div>
         </div>
 
-        <!-- Add to Bag -->
-        <button type="submit" class="btn btn-default w-full mb-8 h-12" id="add-to-cart-button">
+        <button type="submit" class="btn btn-default w-full h-12 mb-8" id="add-to-cart-button">
           {{ 'products.product.add_to_cart' | t }}
         </button>
       </form>
 
-      <div class="border-t border-border mb-8"></div>
+      <!-- Accordion sections -->
+      <div class="product-accordion space-y-1">
+        {%- assign has_description = product.description != blank -%}
+        {%- assign composition = product.metafields.custom.composition -%}
+        {%- assign care = product.metafields.custom.care_instructions -%}
+        {%- assign shipping = product.metafields.custom.shipping_info -%}
+        {%- assign made_in = product.metafields.custom.made_in -%}
 
-      <!-- Product Details -->
-      {%- if product.metafields.custom.product_details != blank -%}
-        <div>
-          <p class="font-medium mb-4">{{ 'products.product.details' | t }}</p>
-          <ul class="space-y-2 text-sm text-muted-foreground">
-            {%- assign details = product.metafields.custom.product_details | split: ',' -%}
-            {%- for detail in details -%}
-              <li>• {{ detail | strip }}</li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endif -%}
+        {%- if has_description -%}
+          <details class="product-accordion-item" open>
+            <summary class="product-accordion-summary">
+              <span class="product-accordion-label">
+                <span class="product-accordion-icon">i</span>
+                {{ 'products.product.description' | t: default: 'Description' }}
+              </span>
+              <span class="product-accordion-chevron">&#x25BC;</span>
+            </summary>
+            <div class="product-accordion-body">
+              {{ product.description }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if composition != blank -%}
+          <details class="product-accordion-item">
+            <summary class="product-accordion-summary">
+              <span class="product-accordion-label">
+                <span class="product-accordion-icon">%</span>
+                {{ 'products.product.composition' | t: default: 'Composition' }}
+              </span>
+              <span class="product-accordion-chevron">&#x25BC;</span>
+            </summary>
+            <div class="product-accordion-body">
+              {{ composition }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if care != blank -%}
+          <details class="product-accordion-item">
+            <summary class="product-accordion-summary">
+              <span class="product-accordion-label">
+                <span class="product-accordion-icon">*</span>
+                {{ 'products.product.care' | t: default: 'Care instructions' }}
+              </span>
+              <span class="product-accordion-chevron">&#x25BC;</span>
+            </summary>
+            <div class="product-accordion-body">
+              {{ care }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if shipping != blank -%}
+          <details class="product-accordion-item">
+            <summary class="product-accordion-summary">
+              <span class="product-accordion-label">
+                <span class="product-accordion-icon">&#x2708;</span>
+                {{ 'products.product.shipping' | t: default: 'Delivery & returns' }}
+              </span>
+              <span class="product-accordion-chevron">&#x25BC;</span>
+            </summary>
+            <div class="product-accordion-body">
+              {{ shipping }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if made_in != blank -%}
+          <details class="product-accordion-item">
+            <summary class="product-accordion-summary">
+              <span class="product-accordion-label">
+                <span class="product-accordion-icon">&#x25A0;</span>
+                {{ 'products.product.made_in' | t: default: 'Made in' }}
+              </span>
+              <span class="product-accordion-chevron">&#x25BC;</span>
+            </summary>
+            <div class="product-accordion-body">
+              {{ made_in }}
+            </div>
+          </details>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </main>
@@ -127,6 +238,64 @@
     gap: 0;
   }
 
+  .product-gallery-mobile {
+    display: block;
+  }
+
+  .product-gallery-desktop {
+    display: none;
+  }
+
+  .product-main-image {
+    background: #ffffff;
+  }
+
+  .product-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-bottom: 0.4rem;
+    overflow-x: auto;
+  }
+
+  .product-thumb {
+    border: 1px solid transparent;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  .product-thumb-inner {
+    width: 64px;
+    height: 96px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .product-thumb.is-active {
+    border-color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 640px) {
+    .product-thumb-inner {
+      width: 72px;
+      height: 108px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-gallery-mobile {
+      display: none;
+    }
+
+    .product-gallery-desktop {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
   .product-media {
     background: #ffffff;
   }
@@ -153,7 +322,7 @@
     const layout = document.querySelector('.product-layout');
     if (!details || !layout) return;
 
-    const mq = window.matchMedia('(min-width: 768px)');
+    const mq = window.matchMedia('(min-width: 1024px)');
     let enabled = false;
     let start = 0;
     let end = 0;
@@ -175,6 +344,8 @@
       details.style.width = '';
       details.style.transform = '';
       details.style.left = '';
+      details.style.maxHeight = '';
+      details.style.overflowY = '';
     }
 
     function onScroll() {
@@ -199,6 +370,17 @@
         details.style.top = headerOffset + 'px';
         details.style.width = detailsWidth + 'px';
         details.style.left = detailsLeft + 'px';
+
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const availableHeight = viewportHeight - headerOffset;
+
+        if (details.offsetHeight > availableHeight) {
+          details.style.maxHeight = availableHeight + 'px';
+          details.style.overflowY = 'auto';
+        } else {
+          details.style.maxHeight = '';
+          details.style.overflowY = '';
+        }
       }
     }
 
@@ -223,6 +405,9 @@
 
       detailsWidth = detailsRect.width;
       detailsLeft = detailsRect.left;
+
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const availableHeight = viewportHeight - headerOffset;
 
       // Start sticky when top of details would pass under the header
       start = layoutTop - headerOffset;

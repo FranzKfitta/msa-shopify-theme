@@ -1,0 +1,139 @@
+<section class="py-12 md:py-16">
+  <div class="container mx-auto px-4 md:px-8 space-y-12 md:space-y-16">
+    {% for block in section.blocks %}
+      {% liquid
+        assign image = block.settings.image
+        assign heading = block.settings.heading
+        assign body = block.settings.body
+        assign image_position = block.settings.image_position | default: 'left'
+
+        assign image_first = true
+        if image_position == 'right'
+          assign image_first = false
+        endif
+      %}
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center" {{ block.shopify_attributes }}>
+        {% if image_first %}
+          {%- comment -%} Image column left {%- endcomment -%}
+          <div>
+            {% if image != blank %}
+              <div class="overflow-hidden bg-secondary" style="aspect-ratio: 3 / 4;">
+                <img
+                  src="{{ image | image_url: width: 1200 }}"
+                  alt="{{ heading | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                >
+              </div>
+            {% else %}
+              <div class="overflow-hidden bg-secondary flex items-center justify-center" style="aspect-ratio: 3 / 4;">
+                {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover opacity-50' }}
+              </div>
+            {% endif %}
+          </div>
+
+          {%- comment -%} Text column right {%- endcomment -%}
+          <div class="md:pl-6">
+            {% if heading != blank %}
+              <h2 class="font-serif text-2xl md:text-3xl mb-4 md:mb-6 tracking-wide uppercase">
+                {{ heading }}
+              </h2>
+            {% endif %}
+            {% if body != blank %}
+              <div class="prose max-w-none text-sm md:text-base leading-relaxed">
+                {{ body }}
+              </div>
+            {% endif %}
+          </div>
+        {% else %}
+          {%- comment -%} Text column left {%- endcomment -%}
+          <div class="md:pr-6 order-2 md:order-1">
+            {% if heading != blank %}
+              <h2 class="font-serif text-2xl md:text-3xl mb-4 md:mb-6 tracking-wide uppercase">
+                {{ heading }}
+              </h2>
+            {% endif %}
+            {% if body != blank %}
+              <div class="prose max-w-none text-sm md:text-base leading-relaxed">
+                {{ body }}
+              </div>
+            {% endif %}
+          </div>
+
+          {%- comment -%} Image column right {%- endcomment -%}
+          <div class="order-1 md:order-2">
+            {% if image != blank %}
+              <div class="overflow-hidden bg-secondary" style="aspect-ratio: 3 / 4;">
+                <img
+                  src="{{ image | image_url: width: 1200 }}"
+                  alt="{{ heading | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                >
+              </div>
+            {% else %}
+              <div class="overflow-hidden bg-secondary flex items-center justify-center" style="aspect-ratio: 3 / 4;">
+                {{ 'image' | placeholder_svg_tag: 'w-full h-full object-cover opacity-50' }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto split",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "split",
+      "name": "Split block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Manifesto block title"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Text content",
+          "default": "<p>Write your manifesto text here. You can add paragraphs, line breaks and emphasis.</p>"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Image on the left, text on the right"
+            },
+            {
+              "value": "right",
+              "label": "Image on the right, text on the left"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Manifesto split",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

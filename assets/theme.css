@@ -621,6 +621,92 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+/* Product page controls - keep aligned with brand buttons */
+.product-details .variant-option,
+.product-details .quantity-decrease,
+.product-details .quantity-increase {
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.product-details .variant-option {
+  border: 1px solid hsl(var(--border));
+  background-color: transparent;
+  color: hsl(var(--foreground));
+}
+
+/* Ensure selected size has good contrast */
+.product-details .variant-option.bg-foreground {
+  background-color: hsl(var(--foreground));
+  color: #ffffff;
+}
+
+.product-details .quantity-input {
+  font-size: 0.875rem;
+}
+
+.product-accordion-item {
+  border-top: 1px solid hsl(var(--border));
+}
+
+.product-accordion-item:last-of-type {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.product-accordion-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.9rem 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.product-accordion-body {
+  padding: 0 0 1.25rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.product-accordion-body p {
+  margin-bottom: 0.5rem;
+}
+
+.product-accordion-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product-accordion-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+.product-accordion-chevron {
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.product-accordion-item[open] .product-accordion-chevron {
+  transform: rotate(180deg);
+}
+
 /* Modern Cart Drawer Button Styles - shadcn/ui inspired */
 .cart-btn-icon {
   border-radius: 0.375rem;
