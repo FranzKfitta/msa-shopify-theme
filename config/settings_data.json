@@ -62,10 +62,12 @@
       "image-banner-grid": {
         "type": "image-banner-grid",
         "settings": {
-          "heading_1": "Collaboration",
-          "link_1": "",
-          "heading_2": "New arrivals",
-          "link_2": "",
+          "image_1": "shopify://shop_images/msa10_23_02.png",
+          "heading_1": "",
+          "link_1": "shopify://collections/chemises-et-tops",
+          "image_2": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png",
+          "heading_2": "",
+          "link_2": "shopify://pages/lookbook",
           "padding_top": 40,
           "padding_bottom": 40
         }
