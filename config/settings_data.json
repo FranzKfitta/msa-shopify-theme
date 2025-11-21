@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_type": "image",
+          "logo_text": "",
+          "logo_image": "shopify://shop_images/logo_sans_fond_2.png",
+          "logo_max_width": 140,
+          "menu": "main-menu-1",
+          "sticky_header": true,
+          "transparent_on_scroll": true
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "media_type": "image",
+          "hero_video": "",
+          "heading": "ELEGANT",
+          "subheading": "Collection",
+          "button_text": "DISCOVER MORE",
+          "button_link": ""
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "heading": "FALL WINTER 25",
+          "use_placeholders": false,
+          "collection": "",
+          "products_to_show": 8,
+          "placeholder_name_1": "Product Name",
+          "placeholder_price_1": "$99.00",
+          "placeholder_name_2": "Product Name",
+          "placeholder_price_2": "$99.00",
+          "placeholder_name_3": "Product Name",
+          "placeholder_price_3": "$99.00",
+          "placeholder_name_4": "Product Name",
+          "placeholder_price_4": "$99.00",
+          "placeholder_name_5": "Product Name",
+          "placeholder_price_5": "$99.00",
+          "placeholder_name_6": "Product Name",
+          "placeholder_price_6": "$99.00",
+          "placeholder_name_7": "Product Name",
+          "placeholder_price_7": "$99.00",
+          "placeholder_name_8": "Product Name",
+          "placeholder_price_8": "$99.00"
+        }
+      },
+      "image-banner-grid": {
+        "type": "image-banner-grid",
+        "settings": {
+          "heading_1": "Collaboration",
+          "link_1": "",
+          "heading_2": "New arrivals",
+          "link_2": "",
+          "padding_top": 40,
+          "padding_bottom": 40
+        }
+      },
+      "home-collection-row": {
+        "type": "home-collection-row",
+        "settings": {
+          "heading": "Shop by category",
+          "use_placeholders": false,
+          "collection_1": "",
+          "title_1": "Coats and Jackets",
+          "collection_2": "",
+          "title_2": "Tops and Shirts",
+          "collection_3": "",
+          "title_3": "T-shirts"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "brand_text": "The Pure",
+          "description": "Timeless elegance and refined luxury for the modern woman."
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
