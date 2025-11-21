@@ -63,6 +63,43 @@
       "max": 100,
       "step": 4,
       "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Heading Style"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size (px)",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "heading_1_color",
+      "label": "Heading 1 color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_2_color",
+      "label": "Heading 2 color",
+      "default": "#ffffff"
     }
   ],
   "presets": [
@@ -111,7 +148,10 @@
             <!-- Heading -->
             {%- if section.settings.heading_1 != blank -%}
               <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <h2 class="text-2xl font-light text-black image-banner-heading">
+                <h2
+                  class="image-banner-heading"
+                  style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_1_color | default: '#ffffff' }};"
+                >
                   {{ section.settings.heading_1 }}
                 </h2>
               </div>
@@ -156,7 +196,10 @@
             <!-- Heading -->
             {%- if section.settings.heading_2 != blank -%}
               <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <h2 class="text-2xl font-light text-black image-banner-heading">
+                <h2
+                  class="image-banner-heading"
+                  style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_2_color | default: '#ffffff' }};"
+                >
                   {{ section.settings.heading_2 }}
                 </h2>
               </div>

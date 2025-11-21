@@ -1667,18 +1667,9 @@ img {
 
 /* Image Banner Grid Section */
 .image-banner-heading {
-  font-size: 24px;
-  font-weight: 300;
-  font-family: 'Inter', sans-serif;
-  color: #000000;
+  font-family: 'Dancing Script', cursive;
   margin: 0;
   line-height: 1.2;
-}
-
-@media (max-width: 768px) {
-  .image-banner-heading {
-    font-size: 20px;
-  }
 }
 
 /* Cart Drawer Responsive */
