@@ -77,10 +77,10 @@
         "settings": {
           "heading": "Shop by category",
           "use_placeholders": false,
-          "collection_1": "",
-          "title_1": "Coats and Jackets",
-          "collection_2": "",
-          "title_2": "Tops and Shirts",
+          "collection_1": "robes-tuniques",
+          "title_1": "ROBES & TUNIQUES",
+          "collection_2": "vestes-et-manteaux-the-pure",
+          "title_2": "VESTES & MANTEAUX",
           "collection_3": "",
           "title_3": "T-shirts"
         }
