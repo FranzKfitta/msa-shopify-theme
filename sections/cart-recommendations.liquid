@@ -1,0 +1,80 @@
+{% schema %}
+{
+  "name": "Cart Recommendations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart Recommendations"
+    }
+  ]
+}
+{% endschema %}
+
+{%- if cart.items.size > 0 -%}
+  <div class="cart-recommendations-container container mx-auto px-4 py-16" 
+       data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ cart.items.first.product_id }}&limit={{ section.settings.products_to_show }}">
+    <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground mb-10 text-center uppercase tracking-widest">{{ section.settings.heading }}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+      <!-- Products will be loaded here via JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const container = document.querySelector('.cart-recommendations-container');
+      if (!container) return;
+
+      const url = container.dataset.url;
+      if (!url) return;
+
+      fetch(url)
+        .then(response => response.text())
+        .then(text => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const recommendations = html.querySelector('.cart-recommendations-container');
+          
+          if (recommendations) {
+            const productsGrid = recommendations.querySelector('.grid');
+            const currentGrid = container.querySelector('.grid');
+            if (productsGrid && currentGrid && productsGrid.children.length > 0) {
+              currentGrid.innerHTML = productsGrid.innerHTML;
+            } else {
+              // No recommendations found, hide the section
+              container.style.display = 'none';
+            }
+          }
+        })
+        .catch(e => {
+          console.error('Error fetching recommendations:', e);
+          container.style.display = 'none';
+        });
+    })();
+  </script>
+{%- else -%}
+  {%- comment -%} Show featured products if cart is empty {%- endcomment -%}
+  <div class="container mx-auto px-4 py-16">
+    <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground mb-10 text-center uppercase tracking-widest">{{ section.settings.heading }}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+      {%- for product in collections.all.products limit: section.settings.products_to_show -%}
+        {% render 'product-card', card_product: product %}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
