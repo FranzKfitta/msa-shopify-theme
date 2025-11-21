@@ -62,16 +62,47 @@
       "label": "Enable transparency on scroll",
       "default": true,
       "info": "Header becomes more transparent when scrolling"
+    },
+    {
+      "type": "color",
+      "id": "nav_background_color",
+      "label": "Navbar background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_text_color",
+      "label": "Navbar text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_icon_color",
+      "label": "Navbar icon color",
+      "default": "#000000"
     }
   ]
 }
 {% endschema %}
 
-<header id="main-header" class="{% if section.settings.sticky_header %}sticky{% endif %} top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border transition-all duration-300" data-sticky="{{ section.settings.sticky_header }}" data-transparent-scroll="{{ section.settings.transparent_on_scroll }}">
+<header
+  id="main-header"
+  class="{% if section.settings.sticky_header %}sticky{% endif %} top-0 z-50 border-b border-border transition-all duration-300"
+  data-sticky="{{ section.settings.sticky_header }}"
+  data-transparent-scroll="{{ section.settings.transparent_on_scroll }}"
+  style="background-color: {{ section.settings.nav_background_color | default: '#ffffff' }}; color: {{ section.settings.nav_text_color | default: '#000000' }};"
+>
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <!-- Mobile Menu Button -->
-      <button type="button" id="mobile-menu-toggle" class="lg:hidden btn btn-ghost btn-icon h-10 w-10" aria-label="Toggle menu" aria-expanded="false">
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="lg:hidden btn btn-ghost btn-icon h-10 w-10"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+      >
         <svg id="menu-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -164,17 +195,33 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-2 flex-1 justify-end">
-        <button type="button" class="btn btn-ghost btn-icon h-10 w-10" aria-label="Search">
+        <button
+          type="button"
+          class="btn btn-ghost btn-icon h-10 w-10"
+          aria-label="Search"
+          style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+        >
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </button>
-        <a href="{{ routes.account_login_url }}" class="btn btn-ghost btn-icon h-10 w-10" aria-label="Account">
+        <a
+          href="{{ routes.account_login_url }}"
+          class="btn btn-ghost btn-icon h-10 w-10"
+          aria-label="Account"
+          style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+        >
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </a>
-        <button type="button" class="btn btn-ghost btn-icon h-10 w-10 relative" id="cart-icon-bubble" aria-label="Cart">
+        <button
+          type="button"
+          class="btn btn-ghost btn-icon h-10 w-10 relative"
+          id="cart-icon-bubble"
+          aria-label="Cart"
+          style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+        >
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
@@ -184,7 +231,11 @@
     </div>
 
     <!-- Mobile Menu -->
-    <nav id="mobile-menu" class="lg:hidden hidden border-t border-border bg-background">
+    <nav
+      id="mobile-menu"
+      class="lg:hidden hidden border-t border-border"
+      style="background-color: {{ section.settings.nav_background_color | default: '#ffffff' }}; color: {{ section.settings.nav_text_color | default: '#000000' }};"
+    >
       <div class="container mx-auto px-4 py-4">
         {%- assign menu_handle = section.settings.menu -%}
         {%- if menu_handle != blank and linklists[menu_handle] != blank and linklists[menu_handle].links.size > 0 -%}

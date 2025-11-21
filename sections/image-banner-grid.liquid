@@ -100,6 +100,40 @@
       "id": "heading_2_color",
       "label": "Heading 2 color",
       "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "heading_1_position",
+      "label": "Heading 1 position",
+      "default": "center_center",
+      "options": [
+        { "value": "top_left", "label": "Top left" },
+        { "value": "top_center", "label": "Top center" },
+        { "value": "top_right", "label": "Top right" },
+        { "value": "middle_left", "label": "Middle left" },
+        { "value": "center_center", "label": "Middle center" },
+        { "value": "middle_right", "label": "Middle right" },
+        { "value": "bottom_left", "label": "Bottom left" },
+        { "value": "bottom_center", "label": "Bottom center" },
+        { "value": "bottom_right", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_2_position",
+      "label": "Heading 2 position",
+      "default": "center_center",
+      "options": [
+        { "value": "top_left", "label": "Top left" },
+        { "value": "top_center", "label": "Top center" },
+        { "value": "top_right", "label": "Top right" },
+        { "value": "middle_left", "label": "Middle left" },
+        { "value": "center_center", "label": "Middle center" },
+        { "value": "middle_right", "label": "Middle right" },
+        { "value": "bottom_left", "label": "Bottom left" },
+        { "value": "bottom_center", "label": "Bottom center" },
+        { "value": "bottom_right", "label": "Bottom right" }
+      ]
     }
   ],
   "presets": [
@@ -147,7 +181,40 @@
             
             <!-- Heading -->
             {%- if section.settings.heading_1 != blank -%}
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {%- liquid
+                assign h1_position = section.settings.heading_1_position | default: 'center_center'
+
+                case h1_position
+                  when 'top_left'
+                    assign h1_items = 'items-start'
+                    assign h1_justify = 'justify-start'
+                  when 'top_center'
+                    assign h1_items = 'items-start'
+                    assign h1_justify = 'justify-center'
+                  when 'top_right'
+                    assign h1_items = 'items-start'
+                    assign h1_justify = 'justify-end'
+                  when 'middle_left'
+                    assign h1_items = 'items-center'
+                    assign h1_justify = 'justify-start'
+                  when 'center_center'
+                    assign h1_items = 'items-center'
+                    assign h1_justify = 'justify-center'
+                  when 'middle_right'
+                    assign h1_items = 'items-center'
+                    assign h1_justify = 'justify-end'
+                  when 'bottom_left'
+                    assign h1_items = 'items-end'
+                    assign h1_justify = 'justify-start'
+                  when 'bottom_center'
+                    assign h1_items = 'items-end'
+                    assign h1_justify = 'justify-center'
+                  when 'bottom_right'
+                    assign h1_items = 'items-end'
+                    assign h1_justify = 'justify-end'
+                endcase
+              -%}
+              <div class="absolute inset-0 flex pointer-events-none {{ h1_items }} {{ h1_justify }}">
                 <h2
                   class="image-banner-heading"
                   style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_1_color | default: '#ffffff' }};"
@@ -195,7 +262,40 @@
             
             <!-- Heading -->
             {%- if section.settings.heading_2 != blank -%}
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {%- liquid
+                assign h2_position = section.settings.heading_2_position | default: 'center_center'
+
+                case h2_position
+                  when 'top_left'
+                    assign h2_items = 'items-start'
+                    assign h2_justify = 'justify-start'
+                  when 'top_center'
+                    assign h2_items = 'items-start'
+                    assign h2_justify = 'justify-center'
+                  when 'top_right'
+                    assign h2_items = 'items-start'
+                    assign h2_justify = 'justify-end'
+                  when 'middle_left'
+                    assign h2_items = 'items-center'
+                    assign h2_justify = 'justify-start'
+                  when 'center_center'
+                    assign h2_items = 'items-center'
+                    assign h2_justify = 'justify-center'
+                  when 'middle_right'
+                    assign h2_items = 'items-center'
+                    assign h2_justify = 'justify-end'
+                  when 'bottom_left'
+                    assign h2_items = 'items-end'
+                    assign h2_justify = 'justify-start'
+                  when 'bottom_center'
+                    assign h2_items = 'items-end'
+                    assign h2_justify = 'justify-center'
+                  when 'bottom_right'
+                    assign h2_items = 'items-end'
+                    assign h2_justify = 'justify-end'
+                endcase
+              -%}
+              <div class="absolute inset-0 flex pointer-events-none {{ h2_items }} {{ h2_justify }}">
                 <h2
                   class="image-banner-heading"
                   style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_2_color | default: '#ffffff' }};"

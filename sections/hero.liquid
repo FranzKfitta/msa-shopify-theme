@@ -58,6 +58,18 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#f9e1ea"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#ffffff"
     }
   ],
   "presets": [
@@ -154,12 +166,20 @@
 
   <div class="relative h-full flex flex-col items-center justify-center text-center px-4">
     <div class="max-w-4xl mx-auto space-y-8">
-      <h2 class="font-serif text-7xl md:text-8xl lg:text-9xl font-bold text-softPink drop-shadow-lg leading-tight">
+      <h2
+        class="font-serif text-7xl md:text-8xl lg:text-9xl font-bold text-softPink drop-shadow-lg leading-tight"
+        style="color: {{ section.settings.heading_color | default: '#f9e1ea' }};"
+      >
         {{ section.settings.heading }}
       </h2>
-      <p class="font-script text-5xl md:text-6xl lg:text-7xl text-white drop-shadow-lg font-semibold">
-        {{ section.settings.subheading }}
-      </p>
+      {%- if section.settings.subheading != blank -%}
+        <p
+          class="font-script text-4xl md:text-5xl text-white tracking-wide"
+          style="color: {{ section.settings.subheading_color | default: '#ffffff' }};"
+        >
+          {{ section.settings.subheading }}
+        </p>
+      {%- endif -%}
       <div class="w-32 h-0.5 bg-white mx-auto"></div>
       <a href="{{ section.settings.button_link | default: routes.collections_url }}" class="btn btn-lg bg-white text-foreground hover:bg-white/90 px-8 py-6 text-base font-medium tracking-wider transition-all hover:scale-105 shadow-elegant inline-block">
         {{ section.settings.button_text }}
