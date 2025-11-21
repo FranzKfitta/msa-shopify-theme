@@ -26,9 +26,10 @@
         "type": "hero",
         "settings": {
           "media_type": "image",
+          "hero_image": "shopify://shop_images/msa-banner.png",
           "hero_video": "",
-          "heading": "ELEGANT",
-          "subheading": "Collection",
+          "heading": "The Pure",
+          "subheading": "SS26",
           "button_text": "DISCOVER MORE",
           "button_link": ""
         }
@@ -36,9 +37,9 @@
       "featured-collection": {
         "type": "featured-collection",
         "settings": {
-          "heading": "FALL WINTER 25",
+          "heading": "FEATURED COLLECTION",
           "use_placeholders": false,
-          "collection": "",
+          "collection": "chemises-et-tops",
           "products_to_show": 8,
           "placeholder_name_1": "Product Name",
           "placeholder_price_1": "$99.00",
