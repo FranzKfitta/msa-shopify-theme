@@ -19,7 +19,10 @@
           "logo_max_width": 140,
           "menu": "main-menu-1",
           "sticky_header": true,
-          "transparent_on_scroll": true
+          "transparent_on_scroll": true,
+          "nav_background_color": "#ffffff",
+          "nav_text_color": "#000000",
+          "nav_icon_color": "#000000"
         }
       },
       "hero": {
@@ -31,7 +34,9 @@
           "heading": "The Pure",
           "subheading": "SS26",
           "button_text": "DISCOVER MORE",
-          "button_link": ""
+          "button_link": "",
+          "heading_color": "#f9e1ea",
+          "subheading_color": "#ffffff"
         }
       },
       "featured-collection": {
@@ -63,13 +68,19 @@
         "type": "image-banner-grid",
         "settings": {
           "image_1": "shopify://shop_images/msa10_23_02.png",
-          "heading_1": "",
+          "heading_1": "Collaborations",
           "link_1": "shopify://collections/chemises-et-tops",
           "image_2": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png",
-          "heading_2": "",
+          "heading_2": "Lookbook",
           "link_2": "shopify://pages/lookbook",
           "padding_top": 40,
-          "padding_bottom": 40
+          "padding_bottom": 40,
+          "heading_font_size": 64,
+          "heading_font_weight": "700",
+          "heading_1_color": "#ffffff",
+          "heading_2_color": "#ffffff",
+          "heading_1_position": "bottom_right",
+          "heading_2_position": "bottom_right"
         }
       },
       "home-collection-row": {
