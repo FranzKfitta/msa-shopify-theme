@@ -99,6 +99,18 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "menu_TR4UB6": {
+            "type": "menu",
+            "settings": {
+              "menu_label": "Brand",
+              "menu_links": "footer-1"
+            }
+          }
+        },
+        "block_order": [
+          "menu_TR4UB6"
+        ],
         "settings": {
           "brand_text": "MSA",
           "description": ""
