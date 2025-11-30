@@ -182,7 +182,9 @@
           },
           "gallery_image_PmQPn7": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/SONIA_STRIPES.png"
+            }
           },
           "gallery_image_dwLtFw": {
             "type": "gallery_image",
