@@ -208,6 +208,23 @@
         "settings": {
           "image_count": 4
         }
+      },
+      "manifesto-split": {
+        "type": "manifesto-split",
+        "blocks": {
+          "split_MndWrQ": {
+            "type": "split",
+            "settings": {
+              "heading": "\"La seule manière de résister au mondial, c’est la singularité.\"- Jean Baudrillard",
+              "body": "<p>Dans un monde qui produit des vêtements comme il produit de l’oubli — rapide, sans mémoire, sans attachement — M/SA propose un nom manifeste.</p><p>Une promesse d’élégance consciente, de lumière dans le réel. M/SA, c’est l’acronyme de :<br/><strong>Makers of Sustainable Aesthetics.<br/>Material. Soul.<br/>Awareness. Modernity.<br/>Sunshine. Authenticity.</strong></p>",
+              "image_position": "left"
+            }
+          }
+        },
+        "block_order": [
+          "split_MndWrQ"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": []
