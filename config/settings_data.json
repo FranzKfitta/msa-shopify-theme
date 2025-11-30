@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "footer_description": "",
     "sections": {
       "header": {
         "type": "header",
@@ -99,8 +100,8 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "brand_text": "The Pure",
-          "description": "Timeless elegance and refined luxury for the modern woman."
+          "brand_text": "MSA",
+          "description": ""
         }
       }
     },
