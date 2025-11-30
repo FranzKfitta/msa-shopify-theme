@@ -46,7 +46,7 @@
         "settings": {
           "heading": "FEATURED COLLECTION",
           "use_placeholders": false,
-          "collection": "chemises-et-tops",
+          "collection": "nouveautes",
           "products_to_show": 8,
           "placeholder_name_1": "Product Name",
           "placeholder_price_1": "$99.00",
@@ -256,6 +256,10 @@
           "split_cBi3yt",
           "split_GHcMx3"
         ],
+        "settings": {}
+      },
+      "main-collection": {
+        "type": "main-collection",
         "settings": {}
       }
     },
