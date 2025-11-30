@@ -73,6 +73,12 @@
         "default": "The Pure"
       },
       {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Upload a square image to use as the browser tab icon."
+      },
+      {
         "type": "link_list",
         "id": "main_menu",
         "label": "Main menu",
