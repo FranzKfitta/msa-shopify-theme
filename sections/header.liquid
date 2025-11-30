@@ -306,6 +306,8 @@
       </div>
     </nav>
   </div>
+</nav>
+</div>
 </header>
 
 {%- render 'cart-drawer' -%}
@@ -315,6 +317,7 @@
     const header = document.getElementById('main-header');
     if (!header) return;
     
+    const announcementBar = document.querySelector('.announcement-bar');
     const isSticky = header.getAttribute('data-sticky') === 'true';
     const transparentOnScroll = header.getAttribute('data-transparent-scroll') === 'true';
     
@@ -347,14 +350,21 @@
       // Add class so CSS can apply fixed positioning and top anchoring
       header.classList.add('sticky');
 
-      // Expose header height to CSS so pages can offset content below the fixed header
+      // Expose header and announcement bar heights to CSS so pages can offset content correctly
       const headerHeight = header.offsetHeight || 0;
+      const announcementHeight = announcementBar ? (announcementBar.offsetHeight || 0) : 0;
+
+      // Position the fixed header directly below the announcement bar (if present)
+      document.documentElement.style.setProperty('--header-top', announcementHeight + 'px');
+
       if (headerHeight > 0) {
-        document.documentElement.style.setProperty('--header-offset', headerHeight + 'px');
+        const totalOffset = headerHeight + announcementHeight;
+        document.documentElement.style.setProperty('--header-offset', totalOffset + 'px');
       }
       document.body.classList.add('has-fixed-header');
     } else {
       document.body.classList.remove('has-fixed-header');
+      document.documentElement.style.setProperty('--header-top', '0px');
     }
     
     // Only add scroll transparency if enabled

@@ -306,6 +306,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Position Utilities */
 .relative { position: relative; }
+.announcement-bar {
+  position: relative;
+  z-index: 1;
+}
 .absolute { position: absolute; }
 .fixed { position: fixed; }
 .sticky { position: sticky !important; }
@@ -1198,20 +1202,20 @@ header#main-header[data-sticky="false"] {
   position: relative;
 }
 
-/* Force fixed header when sticky is enabled - more reliable than CSS sticky in complex layouts */
+/* Use sticky positioning for the main header when enabled */
 header#main-header[data-sticky="true"],
 header#main-header.sticky,
 header#main-header[data-sticky="true"].sticky {
-  position: fixed !important;
-  top: 0 !important;
-  z-index: 50 !important;
-  left: 0 !important;
-  right: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  left: 0;
+  right: 0;
 }
 
-/* When a fixed header is active, offset main content so it doesn't hide under the navbar */
+/* Do not add extra padding to main; header and announcement bar stack naturally */
 body.has-fixed-header main {
-  padding-top: var(--header-offset, 80px);
+  padding-top: 0;
 }
 
 header#main-header.scrolled {
