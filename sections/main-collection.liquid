@@ -331,7 +331,7 @@
                     </div>
                   {%- endif -%}
                 </a>
-                {%- if product.available == false -%}
+                {%- if product.available == false and settings.show_sold_out_badge -%}
                   <div class="product-sold-out">Sold out</div>
                 {%- elsif product.compare_at_price_max > product.price -%}
                   <div class="product-sale">Sale</div>
