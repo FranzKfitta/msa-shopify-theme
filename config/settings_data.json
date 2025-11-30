@@ -215,14 +215,45 @@
           "split_MndWrQ": {
             "type": "split",
             "settings": {
+              "image": "shopify://shop_images/visite-showroom-collection-the-pure-474484.jpg",
               "heading": "\"La seule manière de résister au mondial, c’est la singularité.\"- Jean Baudrillard",
               "body": "<p>Dans un monde qui produit des vêtements comme il produit de l’oubli — rapide, sans mémoire, sans attachement — M/SA propose un nom manifeste.</p><p>Une promesse d’élégance consciente, de lumière dans le réel. M/SA, c’est l’acronyme de :<br/><strong>Makers of Sustainable Aesthetics.<br/>Material. Soul. Awareness. <br/>Modernity. Sunshine. Authenticity.</strong></p>",
               "image_position": "left"
             }
+          },
+          "split_QhU8eY": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/Sakina-645x430.jpg",
+              "heading": "Le nom de la collection : The Pure.",
+              "body": "<p>Ni pureté morale. Ni perfection lisse.</p><p>Mais une pureté vivante, lucide, en mouvement — un refus des normes figées.</p><p>La collection est composée de pièces créées à partir de tissus dormants et de vêtements invendus anonymisés, offerts par des marques partenaires soucieuses d’inventer une solution réellement impactante.</p><p>Chez M/SA, la réparation est collective : c’est un travail de couture, mais aussi un travail de lien.</p><p>Les vêtements sont fabriqués par des salariés en insertion. Leur savoir-faire est notre singularité. Leur dignité, notre luxe.</p><p>Mais ce n’est pas qu’une affaire d’éthique…</p>",
+              "image_position": "right"
+            }
+          },
+          "split_cBi3yt": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png",
+              "heading": "Un luxe solidaire, conjugué au genderfluid désirable.",
+              "body": "<p><em>Nous aimons  aimer : M/SA, c’est oser dire : “J’aime ça.”</em></p><p>Aimer un tissu, un produit  qui a vécu. Comme le vin, sa mémoire vive se bonifie à chaque saison, à chaque nouveau cru. C’est une Appellation d’Origine Créative…  qui devient un hommage. Il a déjà été, touché,  créé, interprété — par un autre. Il ne recommence pas à zéro. Il continue.</p><p>Un vêtement libre et incarné par une mode qui libère les corps et les parcours. </p><p>L’inclusivité est non pas un mot-clé, mais une matière première.</p><p>Nos collections peuvent proposer par exemple 200 vestes numérotées dans un même tissu, et ensuite suivies par des variations légères en couleur, en poids, ou tombé. La vraie beauté naît de sa différence, comme les variations d’un sol au fil des crus, la météo, source de la créativité chez les vignerons.</p><p>Un féminisme insulaire et rayonnant, une île : une force souple, fière, intelligente, créatrice.</p>",
+              "image_position": "left"
+            }
+          },
+          "split_GHcMx3": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/sonia-stripes-7682713.png",
+              "heading": "Un vêtement qui vous révèle.",
+              "body": "<p>Chez M/SA, le vêtement est une extension de soi, faite d’accidents assumés.</p><p>Il est miroir, révélateur. Ce que je porte me regarde, m’engage, m’empêche de disparaître dans la masse.</p><p>M/SA c’est la transformation de soi par le beau, grâce à un outfit qui ne vous consomme pas, mais vous révèle.</p><p><em>« Cette collection, c’est un peu de ma grand-mère Coco, Madeleine Vionnet, Patti Smith, Blondie, Nico, Bjork, Louise Bourgeois, Annette Messager, Diana Ross, Lauryn Hill, Françoise Sagan, Anaïs Nin et d’Angela Davis. Je voulais une dégaine rock, hip-hop, une liberté certaine dans un nouvel outfit. Le hip-hop qu'on écoutait rue du musée avec des danseurs qui allaient participer à la formation du groupe IAM. Toutes en jogging Sergio Tacchini ou la bande punk rock en veste homme au style parfois New wave. C'est cette femme-là que je recherche, avec cette hybridation sophistiquée-cool. »</em></p>",
+              "image_position": "right"
+            }
           }
         },
         "block_order": [
-          "split_MndWrQ"
+          "split_MndWrQ",
+          "split_QhU8eY",
+          "split_cBi3yt",
+          "split_GHcMx3"
         ],
         "settings": {}
       }
