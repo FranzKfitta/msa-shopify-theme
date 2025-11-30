@@ -44,7 +44,7 @@
       "featured-collection": {
         "type": "featured-collection",
         "settings": {
-          "heading": "FEATURED COLLECTION",
+          "heading": "NOUVEAUTÉS",
           "use_placeholders": false,
           "collection": "nouveautes",
           "products_to_show": 8,
