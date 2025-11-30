@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "favicon": "shopify://shop_images/logo_sans_fond_2.png",
     "footer_description": "",
     "sections": {
       "header": {
