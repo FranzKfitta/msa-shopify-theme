@@ -33,6 +33,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Custom Agharti font -->
+    <style>
+      @font-face {
+        font-family: 'agharti-family';
+        src: url({{ 'fonts/agharti-family/Family Deliverables/Agharti Variable/AghartiVF.woff2' | asset_url }}) format('woff2'),
+             url({{ 'fonts/agharti-family/Family Deliverables/Agharti Variable/AghartiVF.woff' | asset_url }}) format('woff');
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+
     <!-- Theme CSS -->
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
