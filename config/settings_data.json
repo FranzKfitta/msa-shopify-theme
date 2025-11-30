@@ -139,6 +139,73 @@
           "brand_text": "MSA",
           "description": ""
         }
+      },
+      "lookbook-split-hero": {
+        "type": "lookbook-split-hero",
+        "settings": {
+          "image_left": "shopify://shop_images/ssthepure_lookbook.png",
+          "image_right": "shopify://shop_images/RENATA_CUIR_EVASEE.png"
+        }
+      },
+      "lookbook-gallery": {
+        "type": "lookbook-gallery",
+        "blocks": {
+          "gallery_image_CxwVHp": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/VALENTINA_TIGA_FLEURS_MULET_PARIS.png"
+            }
+          },
+          "gallery_image_MF64bM": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/msa10_23_02.png"
+            }
+          },
+          "gallery_image_fWEkzm": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/JODA-VODA.png"
+            }
+          },
+          "gallery_image_9feypw": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/CEDRIC_MONDRIAN.png"
+            }
+          },
+          "gallery_image_YeDwHi": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png"
+            }
+          },
+          "gallery_image_PmQPn7": {
+            "type": "gallery_image",
+            "settings": {}
+          },
+          "gallery_image_dwLtFw": {
+            "type": "gallery_image",
+            "settings": {}
+          },
+          "gallery_image_wUDQBi": {
+            "type": "gallery_image",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "gallery_image_CxwVHp",
+          "gallery_image_MF64bM",
+          "gallery_image_fWEkzm",
+          "gallery_image_9feypw",
+          "gallery_image_YeDwHi",
+          "gallery_image_PmQPn7",
+          "gallery_image_dwLtFw",
+          "gallery_image_wUDQBi"
+        ],
+        "settings": {
+          "image_count": 4
+        }
       }
     },
     "content_for_index": []
