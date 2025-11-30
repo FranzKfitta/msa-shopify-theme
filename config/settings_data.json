@@ -100,6 +100,27 @@
       "footer": {
         "type": "footer",
         "blocks": {
+          "social_U4hKje": {
+            "type": "social",
+            "settings": {
+              "social_platform": "instagram",
+              "social_url": "https://www.instagram.com/sakinamsa/"
+            }
+          },
+          "social_JbAkcY": {
+            "type": "social",
+            "settings": {
+              "social_platform": "facebook",
+              "social_url": "https://www.facebook.com/sakinamsaparis"
+            }
+          },
+          "social_pWC9eT": {
+            "type": "social",
+            "settings": {
+              "social_platform": "linkedin",
+              "social_url": "https://fr.linkedin.com/company/m-sa"
+            }
+          },
           "menu_TR4UB6": {
             "type": "menu",
             "settings": {
@@ -109,6 +130,9 @@
           }
         },
         "block_order": [
+          "social_U4hKje",
+          "social_JbAkcY",
+          "social_pWC9eT",
           "menu_TR4UB6"
         ],
         "settings": {
