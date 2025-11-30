@@ -287,9 +287,14 @@
   <div class="collection-container">
     <div class="collection-products">
 
+      {% paginate collection.products by 24 %}
       <!-- Products Grid -->
       {%- if collection.products_count > 0 -%}
-        <div class="products-grid">
+        <div
+          class="products-grid"
+          data-infinite-scroll-grid="true"
+          data-next-page-url="{% if paginate.next %}{{ paginate.next.url | escape }}{% endif %}"
+        >
           {%- for product in collection.products -%}
             <div class="collection-product-card" data-product-id="{{ product.id }}">
               <div class="product-image-wrapper">
@@ -366,11 +371,31 @@
             </div>
           {%- endfor -%}
         </div>
+
+        <!-- Infinite scroll loader & noscript fallback -->
+        <div class="collection-infinite-loader" data-infinite-scroll-loader="true">
+          <span>Loading more products...</span>
+        </div>
+
+        <noscript class="collection-pagination-fallback">
+          {%- if paginate.pages > 1 -%}
+            <div class="collection-pagination">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}">Previous</a>
+              {%- endif -%}
+              <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}">Next</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </noscript>
       {%- else -%}
         <div class="collection-empty">
           <p>No products found in this collection.</p>
         </div>
       {%- endif -%}
+      {% endpaginate %}
     </div>
   </div>
 </main>
@@ -952,6 +977,14 @@
     color: hsl(var(--muted-foreground));
   }
 
+  /* Infinite Scroll Loader */
+  .collection-infinite-loader {
+    text-align: center;
+    padding: 2rem 0;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+  }
+
   /* Responsive */
   @media (max-width: 1024px) {
     .collection-container {
@@ -1103,6 +1136,118 @@
     }
   })();
 
+  // Collection infinite scroll
+  (function() {
+    const grid = document.querySelector('[data-infinite-scroll-grid="true"]');
+    if (!grid) return;
+
+    const loader = document.querySelector('[data-infinite-scroll-loader="true"]');
+    let nextPageUrl = grid.getAttribute('data-next-page-url');
+    if (!nextPageUrl) {
+      if (loader) loader.style.display = 'none';
+      return;
+    }
+
+    let isLoading = false;
+
+    function initCarouselsForCards(cards) {
+      if (!cards || !cards.length) return;
+      cards.forEach(card => {
+        const images = card.querySelectorAll('.product-image');
+        const prevBtn = card.querySelector('.product-carousel-prev');
+        const nextBtn = card.querySelector('.product-carousel-next');
+
+        if (images.length <= 1 || !prevBtn || !nextBtn) return;
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+          images.forEach((img, i) => {
+            if (i === index) {
+              img.classList.remove('product-image-hidden');
+              img.classList.add('product-image-active');
+            } else {
+              img.classList.remove('product-image-active');
+              img.classList.add('product-image-hidden');
+            }
+          });
+          currentIndex = index;
+        }
+
+        prevBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const newIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
+          showImage(newIndex);
+        });
+
+        nextBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const newIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+          showImage(newIndex);
+        });
+
+        card.addEventListener('mouseleave', function() {
+          showImage(0);
+        });
+      });
+    }
+
+    async function loadNextPage() {
+      if (!nextPageUrl || isLoading) return;
+      isLoading = true;
+      if (loader) loader.style.display = 'block';
+
+      try {
+        const res = await fetch(nextPageUrl, { credentials: 'same-origin' });
+        if (!res.ok) throw new Error('Failed to load next page');
+        const html = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newGrid = doc.querySelector('[data-infinite-scroll-grid="true"]');
+
+        if (!newGrid) {
+          nextPageUrl = '';
+          grid.setAttribute('data-next-page-url', '');
+          if (loader) loader.style.display = 'none';
+          return;
+        }
+
+        const newCards = newGrid.querySelectorAll('.collection-product-card');
+        newCards.forEach(card => {
+          grid.appendChild(card);
+        });
+
+        const newNext = newGrid.getAttribute('data-next-page-url') || '';
+        nextPageUrl = newNext;
+        grid.setAttribute('data-next-page-url', newNext);
+
+        if (!nextPageUrl && loader) loader.style.display = 'none';
+
+        // Initialize carousels for newly added cards
+        initCarouselsForCards(newCards);
+      } catch (e) {
+        console.error('Infinite scroll load failed', e);
+        if (loader) loader.style.display = 'none';
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    function handleScroll() {
+      if (!nextPageUrl || isLoading) return;
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const threshold = document.body.offsetHeight - 600;
+      if (scrollPosition >= threshold) {
+        loadNextPage();
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+  })();
+
   // Product Image Carousel
   (function() {
     const productCards = document.querySelectorAll('.collection-product-card');
@@ -1143,7 +1288,6 @@
         showImage(newIndex);
       });
 
-      // Reset to first image when mouse leaves
       card.addEventListener('mouseleave', function() {
         showImage(0);
       });

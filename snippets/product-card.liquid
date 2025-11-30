@@ -35,14 +35,14 @@
           <span class="text-xs uppercase tracking-widest">No image</span>
         </div>
       {%- endif -%}
+
+      {%- comment -%} Sold Out Badge {%- endcomment -%}
+      {%- if is_sold_out -%}
+        <div class="absolute top-2 right-2 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-white bg-black rounded-sm z-20">
+          Sold Out
+        </div>
+      {%- endif -%}
     </a>
-    
-    {%- comment -%} Sold Out Badge {%- endcomment -%}
-    {%- if is_sold_out -%}
-      <div class="absolute top-2 right-2 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-white bg-black z-20">
-        Sold Out
-      </div>
-    {%- endif -%}
   </div>
 
   <a href="{{ product.url }}" class="block">
