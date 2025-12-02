@@ -324,7 +324,7 @@
         </div>
         
         {%- comment -%} Navigation Arrows {%- endcomment -%}
-        {%- if placeholder_count > 4 -%}
+        {%- if placeholder_count > 1 -%}
           {%- comment -%} Left Arrow (Previous) {%- endcomment -%}
           <button
             type="button"
@@ -367,7 +367,7 @@
         
         {%- comment -%} Navigation Arrows {%- endcomment -%}
         {%- assign total_products = collection.products_count | default: 0 -%}
-        {%- if total_products > 4 -%}
+        {%- if total_products > 1 -%}
           {%- comment -%} Left Arrow (Previous) {%- endcomment -%}
           <button
             type="button"
