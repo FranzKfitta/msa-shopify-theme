@@ -1,0 +1,161 @@
+{% comment %}
+  Section: How pre-orders work
+  Use this section on a dedicated page template to explain the pre-order process.
+{% endcomment %}
+
+<section class="preorder-info" data-preorder-section>
+  <div class="preorder-info-inner">
+    <header class="preorder-info-header">
+      <h1 class="preorder-title">HOW DOES PRE-ORDERING WORK?</h1>
+      {% if section.settings.intro_text != blank %}
+        <p class="preorder-intro">{{ section.settings.intro_text }}</p>
+      {% endif %}
+    </header>
+
+    <div class="preorder-layout">
+      <div class="preorder-steps" data-preorder-carousel>
+        {% if section.blocks.size > 1 %}
+          <div class="preorder-step-header">
+            <div class="preorder-step-dots" data-preorder-dots>
+              {% for block in section.blocks %}
+                <button type="button" class="preorder-step-dot{% if forloop.first %} is-active{% endif %}" data-step-dot data-step-index="{{ forloop.index0 }}" aria-label="Go to step {{ forloop.index }}">
+                  {{ forloop.index }}
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="preorder-steps-track">
+          {% for block in section.blocks %}
+            <article class="preorder-step{% if forloop.first %} is-active{% endif %}" data-preorder-step data-step-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <div class="preorder-step-inner">
+                <div class="preorder-step-image">
+                  {% if block.settings.image != blank %}
+                    <div class="preorder-step-image-inner">
+                      {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover' }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="preorder-step-panel">
+                  <div class="preorder-step-number-pill">{{ forloop.index }}</div>
+                  <div class="preorder-step-panel-content">
+                    {% if block.settings.title != blank %}
+                      <h3 class="preorder-step-title">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                      <div class="preorder-step-text">{{ block.settings.text }}</div>
+                    {% endif %}
+                    {% if block.settings.link_label != blank and block.settings.link_url != blank %}
+                      <a href="{{ block.settings.link_url }}" class="preorder-step-link">
+                        {{ block.settings.link_label }}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        {% if section.blocks.size > 1 %}
+          <div class="preorder-step-controls">
+            <button type="button" class="preorder-step-nav preorder-step-prev" data-preorder-prev aria-label="Previous step">
+              11
+            </button>
+            <button type="button" class="preorder-step-nav preorder-step-next" data-preorder-next aria-label="Next step">
+              77
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How pre-orders work",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "We produce each pre-order especially for you, in limited runs, to slow fashion down and focus on quality."
+    },
+    {
+      "type": "text",
+      "id": "why_title",
+      "label": "'Why pre-order' heading",
+      "default": "Why pre-order?"
+    },
+    {
+      "type": "richtext",
+      "id": "why_text",
+      "label": "'Why pre-order' text",
+      "default": "<p>Pre-ordering allows us to create pieces only when they are truly desired, instead of overproducing and holding unnecessary stock.</p>"
+    },
+    {
+      "type": "text",
+      "id": "benefits_title",
+      "label": "Benefits heading",
+      "default": "What it makes possible"
+    },
+    {
+      "type": "richtext",
+      "id": "benefits_text",
+      "label": "Benefits text",
+      "default": "<ul><li>Reduces overproduction and leftover stock.</li><li>Helps us choose better materials and work with small, expert workshops.</li><li>Supports a slower rhythm where each piece is made with care just for you.</li></ul>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "preorder_step",
+      "name": "Pre-order step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step title",
+          "default": "You place your pre-order"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Step text",
+          "default": "<p>You choose your piece and size during a limited pre-order window.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Discover the next step"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "How pre-orders work",
+      "category": "Text",
+      "blocks": [
+        { "type": "preorder_step" },
+        { "type": "preorder_step" },
+        { "type": "preorder_step" },
+        { "type": "preorder_step" }
+      ]
+    }
+  ]
+}
+{% endschema %}
