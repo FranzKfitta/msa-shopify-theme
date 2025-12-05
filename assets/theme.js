@@ -274,11 +274,11 @@
 
       // Update visual state
       document.querySelectorAll(`[data-option-name="${optionName}"]`).forEach(btn => {
-        btn.classList.remove('border-foreground', 'bg-foreground', 'text-background');
-        btn.classList.add('border-border');
+        btn.classList.remove('is-selected');
+        btn.classList.add('is-unselected');
       });
-      this.classList.add('border-foreground', 'bg-foreground', 'text-background');
-      this.classList.remove('border-border');
+      this.classList.add('is-selected');
+      this.classList.remove('is-unselected');
 
       // Update variant selection (simplified - in production, you'd need to match all options)
       if (variantIdInput && productFormData) {
@@ -433,6 +433,181 @@
     document.addEventListener('DOMContentLoaded', initProductGallery);
   } else {
     initProductGallery();
+  }
+
+  // Sticky product details on desktop
+  function initProductSticky() {
+    const layout = document.querySelector('.product-layout');
+    const details = document.querySelector('.product-details');
+    if (!layout || !details) return;
+
+    const MIN_WIDTH = 1024;
+    let layoutTop = 0;
+    let layoutBottom = 0;
+    let headerOffset = 0;
+    let detailsWidth = 0;
+    let detailsLeft = 0;
+
+    function getHeaderOffset() {
+      let offset = 0;
+      const announcement = document.querySelector('.announcement-bar');
+      const header = document.getElementById('main-header');
+      if (announcement) offset += announcement.offsetHeight || 0;
+      if (header) offset += header.offsetHeight || 0;
+      return offset;
+    }
+
+    function resetStyles() {
+      details.style.position = '';
+      details.style.top = '';
+      details.style.bottom = '';
+      details.style.width = '';
+      details.style.left = '';
+      details.style.height = '';
+    }
+
+    function onScroll() {
+      if (window.innerWidth < MIN_WIDTH) {
+        resetStyles();
+        return;
+      }
+
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const start = layoutTop - headerOffset;
+      const end = layoutBottom - details.offsetHeight - headerOffset;
+
+      if (scrollY <= start) {
+        resetStyles();
+        details.style.position = 'relative';
+      } else if (scrollY >= end) {
+        resetStyles();
+        details.style.position = 'absolute';
+        details.style.bottom = '0';
+        details.style.width = detailsWidth + 'px';
+      } else {
+        resetStyles();
+
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const fixedHeight = viewportHeight - headerOffset;
+
+        details.style.position = 'fixed';
+        details.style.top = headerOffset + 'px';
+        details.style.width = detailsWidth + 'px';
+        details.style.left = detailsLeft + 'px';
+
+        if (fixedHeight > 0) {
+          details.style.height = fixedHeight + 'px';
+          details.style.overflowY = 'auto';
+        }
+      }
+    }
+
+    function recalcBounds() {
+      resetStyles();
+
+      if (window.innerWidth < MIN_WIDTH) {
+        return;
+      }
+
+      headerOffset = getHeaderOffset();
+
+      const layoutRect = layout.getBoundingClientRect();
+      const detailsRect = details.getBoundingClientRect();
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      layoutTop = layoutRect.top + scrollY;
+      layoutBottom = layoutTop + layout.offsetHeight;
+      detailsWidth = detailsRect.width;
+      detailsLeft = detailsRect.left;
+
+      onScroll();
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', function() {
+      window.setTimeout(recalcBounds, 100);
+    });
+
+    recalcBounds();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProductSticky);
+  } else {
+    initProductSticky();
+  }
+
+  // Pre-order steps carousel on the dedicated page
+  function initPreorderCarousel() {
+    const section = document.querySelector('[data-preorder-section]');
+    if (!section) return;
+
+    const carousel = section.querySelector('[data-preorder-carousel]');
+    if (!carousel) return;
+
+    const steps = Array.from(carousel.querySelectorAll('[data-preorder-step]'));
+    if (!steps.length) return;
+
+    const prevBtn = carousel.querySelector('[data-preorder-prev]');
+    const nextBtn = carousel.querySelector('[data-preorder-next]');
+    const dotsContainer = carousel.querySelector('[data-preorder-dots]');
+    const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('[data-step-dot]')) : [];
+
+    let currentIndex = 0;
+
+    function showStep(index) {
+      const maxIndex = steps.length - 1;
+      if (index < 0) index = maxIndex;
+      if (index > maxIndex) index = 0;
+      currentIndex = index;
+
+      steps.forEach((step, i) => {
+        if (i === currentIndex) {
+          step.classList.add('is-active');
+        } else {
+          step.classList.remove('is-active');
+        }
+      });
+
+      if (dots.length) {
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
+        });
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        showStep(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        showStep(currentIndex + 1);
+      });
+    }
+
+    if (dots.length) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          const index = parseInt(this.getAttribute('data-step-index'), 10) || 0;
+          showStep(index);
+        });
+      });
+    }
+
+    showStep(0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPreorderCarousel);
+  } else {
+    initPreorderCarousel();
   }
 
 })();
