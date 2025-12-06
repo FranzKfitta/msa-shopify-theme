@@ -37,7 +37,7 @@
                     </div>
                   {% endif %}
                 </div>
-                <div class="preorder-step-panel">
+                <div class="preorder-step-panel"{% if block.settings.panel_bg_color != blank %} style="background-color: {{ block.settings.panel_bg_color }};"{% endif %}>
                   <div class="preorder-step-number-pill">{{ forloop.index }}</div>
                   <div class="preorder-step-panel-content">
                     {% if block.settings.title != blank %}
@@ -61,10 +61,10 @@
         {% if section.blocks.size > 1 %}
           <div class="preorder-step-controls">
             <button type="button" class="preorder-step-nav preorder-step-prev" data-preorder-prev aria-label="Previous step">
-              11
+              &#8592;
             </button>
             <button type="button" class="preorder-step-nav preorder-step-next" data-preorder-next aria-label="Next step">
-              77
+              &#8594;
             </button>
           </div>
         {% endif %}
@@ -117,6 +117,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Step image"
+        },
+        {
+          "type": "color",
+          "id": "panel_bg_color",
+          "label": "Panel background color",
+          "default": "#e5f3f7"
         },
         {
           "type": "text",

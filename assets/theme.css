@@ -902,19 +902,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Full "How pre-orders work" page section */
 .preorder-info {
-  padding: 4rem 5vw;
+  padding: 4rem 0;
   background-color: #ffffff;
 }
 
 @media (min-width: 1024px) {
   .preorder-info {
-    padding: 5rem 8vw;
+    padding: 5rem 0;
   }
 }
 
 .preorder-info-inner {
-  max-width: 1040px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
+  padding: 0 5vw;
 }
 
 .preorder-info-header {
@@ -944,7 +945,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1.5rem;
   border: 1px solid hsl(var(--border));
   padding: 1.75rem 1.5rem 2.5rem;
-  background-color: #faf9f7;
 }
 
 @media (min-width: 768px) {
@@ -955,8 +955,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .preorder-step-header {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .preorder-steps-track {
@@ -1077,21 +1077,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .preorder-step-dots {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.75rem;
 }
 
 .preorder-step-dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 9999px;
   border: 1px solid hsl(var(--border));
-  background-color: transparent;
+  background-color: #ffffff;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: hsl(var(--muted-foreground));
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .preorder-step-dot.is-active {
   background-color: #111111;
   border-color: #111111;
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 /* Small teaser block on product page linking to full pre-order info page */

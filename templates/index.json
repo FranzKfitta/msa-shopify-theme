@@ -1,0 +1,32 @@
+{
+  "name": "Home page",
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {}
+    },
+    "image_banner_grid": {
+      "type": "image-banner-grid",
+      "settings": {}
+    },
+    "home_collection_row": {
+      "type": "home-collection-row",
+      "settings": {}
+    },
+    "preorder": {
+      "type": "preorder-info",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collection",
+    "image_banner_grid",
+    "home_collection_row",
+    "preorder"
+  ]
+}
