@@ -7,7 +7,7 @@
   <div class="preorder-info-inner">
     <header class="preorder-info-header">
       <h1 class="preorder-title">HOW DOES PRE-ORDERING WORK?</h1>
-      {% if section.settings.intro_text != blank %}
+      {% if section.settings.show_intro and section.settings.intro_text != blank %}
         <p class="preorder-intro">{{ section.settings.intro_text }}</p>
       {% endif %}
     </header>
@@ -77,6 +77,12 @@
 {
   "name": "How pre-orders work",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_intro",
+      "label": "Show intro subheading",
+      "default": true
+    },
     {
       "type": "textarea",
       "id": "intro_text",

@@ -36,10 +36,14 @@
         </div>
       {%- endif -%}
 
-      {%- comment -%} Sold Out Badge {%- endcomment -%}
+      {%- comment -%} Status Badge (Sold Out / Pre-order) {%- endcomment -%}
       {%- if is_sold_out and settings.show_sold_out_badge -%}
         <div class="absolute top-2 right-2 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-white bg-black rounded-sm z-20">
           Sold Out
+        </div>
+      {%- elsif settings.show_preorder_badge and product.available -%}
+        <div class="absolute top-2 right-2 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-white rounded-sm z-20" style="background-color: {{ settings.preorder_badge_color | default: '#000000' }};">
+          Pre-order
         </div>
       {%- endif -%}
     </a>

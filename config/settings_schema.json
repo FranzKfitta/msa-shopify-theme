@@ -121,6 +121,18 @@
         "id": "show_sold_out_badge",
         "label": "Show 'Sold out' badge on products",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_preorder_badge",
+        "label": "Show 'Pre-order' badge on products",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "preorder_badge_color",
+        "label": "Pre-order badge color",
+        "default": "#000000"
       }
     ]
   },
