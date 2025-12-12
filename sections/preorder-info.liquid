@@ -38,9 +38,16 @@
                   {% endif %}
                 </div>
                 {% assign panel_size = block.settings.panel_size | default: 'medium' %}
+                {% assign panel_styles = '' %}
+                {% if block.settings.text_color != blank %}
+                  {% assign panel_styles = panel_styles | append: 'color: ' | append: block.settings.text_color | append: ';' %}
+                {% endif %}
+                {% if block.settings.font_size_px %}
+                  {% assign panel_styles = panel_styles | append: 'font-size: ' | append: block.settings.font_size_px | append: 'px;' %}
+                {% endif %}
                 <div class="preorder-step-panel preorder-step-panel--{{ panel_size }}"{% if block.settings.panel_bg_color != blank %} style="background-color: {{ block.settings.panel_bg_color }};"{% endif %}>
                   <div class="preorder-step-number-pill">{{ forloop.index }}</div>
-                  <div class="preorder-step-panel-content preorder-step-panel-content--{{ panel_size }}"{% if block.settings.text_color != blank %} style="color: {{ block.settings.text_color }};"{% endif %}>
+                  <div class="preorder-step-panel-content preorder-step-panel-content--{{ panel_size }}"{% if panel_styles != '' %} style="{{ panel_styles }}"{% endif %}>
                     {% if block.settings.title != blank %}
                       <h3 class="preorder-step-title">{{ block.settings.title }}</h3>
                     {% endif %}
@@ -162,6 +169,16 @@
               "label": "Large"
             }
           ]
+        },
+        {
+          "type": "range",
+          "id": "font_size_px",
+          "label": "Body font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 15
         },
         {
           "type": "text",
