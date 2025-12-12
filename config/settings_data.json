@@ -239,7 +239,27 @@
           },
           "gallery_image_P4Wxqh": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/joan-2941997.jpg"
+            }
+          },
+          "gallery_image_6ddj3C": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/rasta-chevron-shaped-cut-2185498.png"
+            }
+          },
+          "gallery_image_93KhK7": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/rona-pink-5828857.png"
+            }
+          },
+          "gallery_image_HefDkk": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/rona-chiromani-9693576.png"
+            }
           }
         },
         "block_order": [
@@ -257,7 +277,10 @@
           "gallery_image_nLd7HN",
           "gallery_image_TUicyK",
           "gallery_image_mm4thc",
-          "gallery_image_P4Wxqh"
+          "gallery_image_P4Wxqh",
+          "gallery_image_6ddj3C",
+          "gallery_image_93KhK7",
+          "gallery_image_HefDkk"
         ],
         "settings": {
           "image_count": 4
