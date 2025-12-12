@@ -423,11 +423,21 @@
               "body": "<p>Nous n’avons jamais cru au luxe triste.<br/>Nous lui préférons le luxe solidaire, celui qui fait du bien au vêtement et encore plus à la personne qui le réalise.<br/>Chaque couture est un lien.<br/>Chaque finition est un pas vers la réinsertion, un apprentissage retrouvé, un salaire qui redonne son autonomie à quelqu’un.<br/>À l’intérieur de nos vêtements, il y a des kilomètres de fil, certes, mais surtout des kilomètres de dignité recousue.<br/><br/>On dit parfois que nos pièces ont “une âme”.<br/>C’est incorrect : elles en ont plusieurs.<br/>Celles des couturières et couturiers en insertion, qui arrivent chaque matin avec la gravité joyeuse de ceux qui savent que leur travail n’est pas seulement du travail, mais une rédemption.<br/>Et les âmes, lorsqu’elles se rassemblent autour d’une même table de coupe, produisent des miracles : un manteau qui tient debout tout seul, une veste qui vous regarde avant de vous choisir, un pantalon qui porte en lui une minuscule victoire humaine.<br/><br/>Chez M/SA, nous n’avons jamais voulu sauver le monde.<br/>Nous faisons quelque chose de plus humble et de plus essentiel :<br/>nous le recousons, morceau par morceau, vêtement après vêtement, personne après personne.<br/><br/>C’est notre manière d’être utiles.<br/>C’est notre manière d’être belles et beaux.<br/>C’est notre manière, aussi, de dire que le luxe n’est jamais aussi pur que lorsqu’il est profondément solidaire.</p>",
               "image_position": "right"
             }
+          },
+          "split_eGezYE": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/atelier1.png",
+              "heading": "Ce que signifie M/SA",
+              "body": "<p>(une identité, une vision, une insurrection douce)<br/><br/>M/SA est plus qu’un nom.<br/>C’est un acronyme qui tient dans un souffle et qui contient pourtant un monde entier :<br/>Makers of Sustainable Aesthetics — celles et ceux qui fabriquent une esthétique durable.<br/>Mais c’est aussi l’initiale d’une femme : Sakina M’Sa, sa fondatrice, pionnière de la mode durable en France, qui a eu l’audace d’énoncer très tôt ce que d’autres découvrent aujourd’hui :<br/>que le beau n’a de valeur que s’il élève.<br/><br/>Sakina M’Sa n’a pas construit une marque, mais une conviction :<br/>que la mode pouvait devenir une forme de résistance poétique,<br/>une économie réparatrice,<br/>un acte politique profondément humain.</p>",
+              "image_position": "right"
+            }
           }
         },
         "block_order": [
           "split_FAcfD6",
-          "split_pMPh8g"
+          "split_pMPh8g",
+          "split_eGezYE"
         ],
         "settings": {}
       }
