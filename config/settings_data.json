@@ -402,6 +402,34 @@
           "benefits_title": "What it makes possible",
           "benefits_text": "<ul><li>Reduces overproduction and leftover stock.</li><li>Helps us choose better materials and work with small, expert workshops.</li><li>Supports a slower rhythm where each piece is made with care just for you.</li></ul>"
         }
+      },
+      "atelier-fabrication-split": {
+        "type": "atelier-fabrication-split",
+        "blocks": {
+          "split_FAcfD6": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/Conscious_Clothing_Studio.jpg",
+              "heading": "Le Théâtre des Réparations Humaines",
+              "body": "<p>Il existe, au cœur de Paris, un lieu où le vacarme du monde s’interrompt comme par élégance pour laisser parler les mains.<br/>Cet endroit, c’est notre atelier M/SA.<br/>Un sanctuaire modeste, presque secret, où l’aiguille a davantage d’autorité que les discours et où chaque couture possède la dignité d’une phrase juste.<br/><br/>Ici, fabriquer un vêtement n’est jamais un acte neutre.<br/>C’est un engagement, un serment cousu droit.<br/>Dans cet espace que d’aucuns appelleraient “atelier” mais que nous nommons sans hésiter théâtre de réparations humaines, nous recueillons des femmes et des hommes que la société avait pris l’habitude de regarder de côté.<br/>Nous les regardons, nous, de face.<br/>Nous les appelons par leur nom.<br/>Et ils nous le rendent : en fabriquant le luxe autrement, avec cette intensité que seules les secondes chances possèdent.<br/><br/>Nos pièces naissent de ces trajectoires-là :<br/>des vies qui reprennent souffle,<br/>des gestes qui retrouvent de la vigueur,<br/>des tissus qui renaissent eux aussi, parce que chez M/SA rien ne meurt, tout se transforme.<br/>C’est peut-être cela, la vraie définition du made in France : pas seulement un territoire, mais une manière d’être au monde — exigeante, précise, presque insolente de sincérité.</p>",
+              "image_position": "left"
+            }
+          },
+          "split_pMPh8g": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/IMGP0309_LR___atelier_de_couture_d_Alfredo_Rodrigues_taille.jpg",
+              "heading": "",
+              "body": "<p>Nous n’avons jamais cru au luxe triste.<br/>Nous lui préférons le luxe solidaire, celui qui fait du bien au vêtement et encore plus à la personne qui le réalise.<br/>Chaque couture est un lien.<br/>Chaque finition est un pas vers la réinsertion, un apprentissage retrouvé, un salaire qui redonne son autonomie à quelqu’un.<br/>À l’intérieur de nos vêtements, il y a des kilomètres de fil, certes, mais surtout des kilomètres de dignité recousue.<br/><br/>On dit parfois que nos pièces ont “une âme”.<br/>C’est incorrect : elles en ont plusieurs.<br/>Celles des couturières et couturiers en insertion, qui arrivent chaque matin avec la gravité joyeuse de ceux qui savent que leur travail n’est pas seulement du travail, mais une rédemption.<br/>Et les âmes, lorsqu’elles se rassemblent autour d’une même table de coupe, produisent des miracles : un manteau qui tient debout tout seul, une veste qui vous regarde avant de vous choisir, un pantalon qui porte en lui une minuscule victoire humaine.<br/><br/>Chez M/SA, nous n’avons jamais voulu sauver le monde.<br/>Nous faisons quelque chose de plus humble et de plus essentiel :<br/>nous le recousons, morceau par morceau, vêtement après vêtement, personne après personne.<br/><br/>C’est notre manière d’être utiles.<br/>C’est notre manière d’être belles et beaux.<br/>C’est notre manière, aussi, de dire que le luxe n’est jamais aussi pur que lorsqu’il est profondément solidaire.</p>",
+              "image_position": "right"
+            }
+          }
+        },
+        "block_order": [
+          "split_FAcfD6",
+          "split_pMPh8g"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": []
