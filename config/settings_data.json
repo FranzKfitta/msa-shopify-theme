@@ -395,7 +395,15 @@
           },
           "gallery_image_rmf4dm": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/jupe-plisee-patchwork-jane-4215532.jpg"
+            }
+          },
+          "gallery_image_mrCcGj": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/chemise-homme-upcyclee-cedric-4242648.jpg"
+            }
           }
         },
         "block_order": [
@@ -439,7 +447,8 @@
           "gallery_image_b7aQRF",
           "gallery_image_MqqNM9",
           "gallery_image_qcwGAr",
-          "gallery_image_rmf4dm"
+          "gallery_image_rmf4dm",
+          "gallery_image_mrCcGj"
         ],
         "settings": {
           "image_count": 4
