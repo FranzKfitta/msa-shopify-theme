@@ -320,6 +320,24 @@
             "settings": {
               "image": "shopify://shop_images/top-tiga-blanc-3733607.jpg"
             }
+          },
+          "gallery_image_Qp9bcg": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/jupe-crayon-juliette-tissu-chevrons-5197287.jpg"
+            }
+          },
+          "gallery_image_pgMMLb": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/jupe-crayon-julietta-6619514.jpg"
+            }
+          },
+          "gallery_image_gDyc8w": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-longue-ramatua-2317406.jpg"
+            }
           }
         },
         "block_order": [
@@ -350,7 +368,10 @@
           "gallery_image_HPi3Fz",
           "gallery_image_Ti3qhT",
           "gallery_image_qG86wq",
-          "gallery_image_iXThed"
+          "gallery_image_iXThed",
+          "gallery_image_Qp9bcg",
+          "gallery_image_pgMMLb",
+          "gallery_image_gDyc8w"
         ],
         "settings": {
           "image_count": 4
