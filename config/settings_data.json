@@ -275,7 +275,33 @@
           },
           "gallery_image_36Q4hJ": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/crista-turquoise-8665818.jpg"
+            }
+          },
+          "gallery_image_LqMPAm": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/crista-stripes-2855507.png"
+            }
+          },
+          "gallery_image_PjyppU": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/body-hoodie-3495869.png"
+            }
+          },
+          "gallery_image_64wrz3": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/raissa-8460034.png"
+            }
+          },
+          "gallery_image_HPi3Fz": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-trench-rafaella-print-chiromani-signature-7012065.jpg"
+            }
           }
         },
         "block_order": [
@@ -299,7 +325,11 @@
           "gallery_image_HefDkk",
           "gallery_image_88bjjK",
           "gallery_image_F8CYRg",
-          "gallery_image_36Q4hJ"
+          "gallery_image_36Q4hJ",
+          "gallery_image_LqMPAm",
+          "gallery_image_PjyppU",
+          "gallery_image_64wrz3",
+          "gallery_image_HPi3Fz"
         ],
         "settings": {
           "image_count": 4
