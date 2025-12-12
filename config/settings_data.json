@@ -379,7 +379,7 @@
             "type": "preorder_step",
             "settings": {
               "image": "shopify://shop_images/coeur_orange_page-0001.jpg",
-              "panel_bg_color": "#e5f3f7",
+              "panel_bg_color": "#c05837",
               "text_color": "#ffffff",
               "title": "Et si la magie n’opère pas ?",
               "text": "<p>Nous acceptons les échanges.<br/>Gratuitement.<br/>Il vous suffit d’écrire à <a href=\"mailto:hello@sakinamsa.com\" target=\"_blank\">hello@sakinamsa.com</a>.<br/>Parce que le luxe, le vrai, n’abandonne jamais quelqu’un sur le bord du chemin.</p>",
