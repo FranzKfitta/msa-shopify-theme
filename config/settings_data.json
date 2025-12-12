@@ -318,8 +318,9 @@
           "preorder_step_MaqNLz": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/joan-2941997.jpg",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "L’atelier entre en scène",
               "text": "<p>Toutes les commandes sont données à Rachida, notre cheffe d’atelier – celle qui parle aux tissus comme d’autres parlent aux fleurs.<br/>Elle analyse, répartit, orchestre.<br/>Nous ajoutons un léger pourcentage pour anticiper d’éventuels échanges de taille, par élégance autant que par prudence.</p>",
               "link_label": "Discover the next step",
