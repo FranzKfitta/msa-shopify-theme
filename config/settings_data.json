@@ -267,6 +267,16 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
+          "preorder_step_yfPd3j": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Le rituel du colis.",
+              "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants — rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
           "preorder_step_aaPjnD": {
             "type": "preorder_step",
             "settings": {
@@ -329,6 +339,7 @@
           }
         },
         "block_order": [
+          "preorder_step_yfPd3j",
           "preorder_step_aaPjnD",
           "preorder_step_MaqNLz",
           "preorder_step_eawgbV",
