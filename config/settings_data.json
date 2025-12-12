@@ -338,6 +338,42 @@
             "settings": {
               "image": "shopify://shop_images/robe-longue-ramatua-2317406.jpg"
             }
+          },
+          "gallery_image_iPxejh": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-droite-romane-print-chiromani-signature-1571687.jpg"
+            }
+          },
+          "gallery_image_MeN8hd": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-taille-apparente-renata-5781063.jpg"
+            }
+          },
+          "gallery_image_kfLNGD": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-droite-patchwork-rebecca-9836344.jpg"
+            }
+          },
+          "gallery_image_aQMYPr": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-oversize-manches-caftan-rosalia-7644676.jpg"
+            }
+          },
+          "gallery_image_dCmhcN": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/top-en-jersey-oversize-carla-7285859.jpg"
+            }
+          },
+          "gallery_image_Lif8CA": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/robe-taille-apparente-renata-5781063.jpg"
+            }
           }
         },
         "block_order": [
@@ -371,7 +407,13 @@
           "gallery_image_iXThed",
           "gallery_image_Qp9bcg",
           "gallery_image_pgMMLb",
-          "gallery_image_gDyc8w"
+          "gallery_image_gDyc8w",
+          "gallery_image_iPxejh",
+          "gallery_image_MeN8hd",
+          "gallery_image_kfLNGD",
+          "gallery_image_aQMYPr",
+          "gallery_image_dCmhcN",
+          "gallery_image_Lif8CA"
         ],
         "settings": {
           "image_count": 4
