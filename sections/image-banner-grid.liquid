@@ -3,6 +3,16 @@
   "name": "Image Banner Grid",
   "settings": [
     {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout",
+      "default": "two",
+      "options": [
+        { "value": "two", "label": "Two images" },
+        { "value": "single", "label": "Single full-width image" }
+      ]
+    },
+    {
       "type": "header",
       "content": "Block 1"
     },
@@ -147,170 +157,255 @@
 {%- liquid
   assign padding_top = section.settings.padding_top | default: 40
   assign padding_bottom = section.settings.padding_bottom | default: 40
+  assign layout_mode = section.settings.layout_mode | default: 'two'
 -%}
 
 <section class="w-full" style="padding-top: {{ padding_top }}px; padding-bottom: {{ padding_bottom }}px;" data-section-id="{{ section.id }}">
-  <div class="flex flex-col md:flex-row gap-4 px-4 md:px-6">
-    <!-- Block 1 -->
-    {%- if section.settings.image_1 != blank or section.settings.heading_1 != blank -%}
-      <div class="flex-1 relative">
-        {%- if section.settings.link_1 != blank -%}
-          <a href="{{ section.settings.link_1 }}" class="block w-full">
-        {%- else -%}
-          <div class="block w-full">
-        {%- endif -%}
-          <div class="relative w-full overflow-hidden" style="aspect-ratio: 0.6666666666666666;">
-            {%- if section.settings.image_1 != blank -%}
-              <img
-                src="{{ section.settings.image_1 | image_url: width: 1200 }}"
-                srcset="{{ section.settings.image_1 | image_url: width: 600 }} 600w,
-                        {{ section.settings.image_1 | image_url: width: 900 }} 900w,
-                        {{ section.settings.image_1 | image_url: width: 1200 }} 1200w"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                alt="{{ section.settings.heading_1 | escape }}"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                width="{{ section.settings.image_1.width }}"
-                height="{{ section.settings.image_1.height }}"
-              >
-            {%- else -%}
-              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span class="text-gray-400 text-sm">Image 1</span>
-              </div>
-            {%- endif -%}
-            
-            <!-- Heading -->
-            {%- if section.settings.heading_1 != blank -%}
-              {%- liquid
-                assign h1_position = section.settings.heading_1_position | default: 'center_center'
-
-                case h1_position
-                  when 'top_left'
-                    assign h1_items = 'items-start'
-                    assign h1_justify = 'justify-start'
-                  when 'top_center'
-                    assign h1_items = 'items-start'
-                    assign h1_justify = 'justify-center'
-                  when 'top_right'
-                    assign h1_items = 'items-start'
-                    assign h1_justify = 'justify-end'
-                  when 'middle_left'
-                    assign h1_items = 'items-center'
-                    assign h1_justify = 'justify-start'
-                  when 'center_center'
-                    assign h1_items = 'items-center'
-                    assign h1_justify = 'justify-center'
-                  when 'middle_right'
-                    assign h1_items = 'items-center'
-                    assign h1_justify = 'justify-end'
-                  when 'bottom_left'
-                    assign h1_items = 'items-end'
-                    assign h1_justify = 'justify-start'
-                  when 'bottom_center'
-                    assign h1_items = 'items-end'
-                    assign h1_justify = 'justify-center'
-                  when 'bottom_right'
-                    assign h1_items = 'items-end'
-                    assign h1_justify = 'justify-end'
-                endcase
-              -%}
-              <div class="absolute inset-0 flex pointer-events-none {{ h1_items }} {{ h1_justify }}">
-                <h2
-                  class="image-banner-heading"
-                  style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_1_color | default: '#ffffff' }};"
+  {% if layout_mode == 'single' %}
+    <div class="px-4 md:px-6">
+      {%- if section.settings.image_1 != blank or section.settings.heading_1 != blank -%}
+        <div class="w-full relative">
+          {%- if section.settings.link_1 != blank -%}
+            <a href="{{ section.settings.link_1 }}" class="block w-full">
+          {%- else -%}
+            <div class="block w-full">
+          {%- endif -%}
+            <div class="relative w-full overflow-hidden" style="aspect-ratio: 1.7777777777777777; background-color: #ffffff;">
+              {%- if section.settings.image_1 != blank -%}
+                <img
+                  src="{{ section.settings.image_1 | image_url: width: 2000 }}"
+                  srcset="{{ section.settings.image_1 | image_url: width: 800 }} 800w,
+                          {{ section.settings.image_1 | image_url: width: 1200 }} 1200w,
+                          {{ section.settings.image_1 | image_url: width: 1600 }} 1600w,
+                          {{ section.settings.image_1 | image_url: width: 2000 }} 2000w"
+                  sizes="100vw"
+                  alt="{{ section.settings.heading_1 | escape }}"
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                  width="{{ section.settings.image_1.width }}"
+                  height="{{ section.settings.image_1.height }}"
                 >
-                  {{ section.settings.heading_1 }}
-                </h2>
-              </div>
-            {%- endif -%}
-          </div>
-        {%- if section.settings.link_1 != blank -%}
-          </a>
-        {%- else -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+              {%- else -%}
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400 text-sm">Image 1</span>
+                </div>
+              {%- endif -%}
 
-    <!-- Block 2 -->
-    {%- if section.settings.image_2 != blank or section.settings.heading_2 != blank -%}
-      <div class="flex-1 relative">
-        {%- if section.settings.link_2 != blank -%}
-          <a href="{{ section.settings.link_2 }}" class="block w-full">
-        {%- else -%}
-          <div class="block w-full">
-        {%- endif -%}
-          <div class="relative w-full overflow-hidden" style="aspect-ratio: 0.6629392971246006;">
-            {%- if section.settings.image_2 != blank -%}
-              <img
-                src="{{ section.settings.image_2 | image_url: width: 1200 }}"
-                srcset="{{ section.settings.image_2 | image_url: width: 600 }} 600w,
-                        {{ section.settings.image_2 | image_url: width: 900 }} 900w,
-                        {{ section.settings.image_2 | image_url: width: 1200 }} 1200w"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                alt="{{ section.settings.heading_2 | escape }}"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                width="{{ section.settings.image_2.width }}"
-                height="{{ section.settings.image_2.height }}"
-              >
-            {%- else -%}
-              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span class="text-gray-400 text-sm">Image 2</span>
-              </div>
-            {%- endif -%}
-            
-            <!-- Heading -->
-            {%- if section.settings.heading_2 != blank -%}
-              {%- liquid
-                assign h2_position = section.settings.heading_2_position | default: 'center_center'
+              {%- if section.settings.heading_1 != blank -%}
+                {%- liquid
+                  assign h1_position = section.settings.heading_1_position | default: 'center_center'
 
-                case h2_position
-                  when 'top_left'
-                    assign h2_items = 'items-start'
-                    assign h2_justify = 'justify-start'
-                  when 'top_center'
-                    assign h2_items = 'items-start'
-                    assign h2_justify = 'justify-center'
-                  when 'top_right'
-                    assign h2_items = 'items-start'
-                    assign h2_justify = 'justify-end'
-                  when 'middle_left'
-                    assign h2_items = 'items-center'
-                    assign h2_justify = 'justify-start'
-                  when 'center_center'
-                    assign h2_items = 'items-center'
-                    assign h2_justify = 'justify-center'
-                  when 'middle_right'
-                    assign h2_items = 'items-center'
-                    assign h2_justify = 'justify-end'
-                  when 'bottom_left'
-                    assign h2_items = 'items-end'
-                    assign h2_justify = 'justify-start'
-                  when 'bottom_center'
-                    assign h2_items = 'items-end'
-                    assign h2_justify = 'justify-center'
-                  when 'bottom_right'
-                    assign h2_items = 'items-end'
-                    assign h2_justify = 'justify-end'
-                endcase
-              -%}
-              <div class="absolute inset-0 flex pointer-events-none {{ h2_items }} {{ h2_justify }}">
-                <h2
-                  class="image-banner-heading"
-                  style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_2_color | default: '#ffffff' }};"
+                  case h1_position
+                    when 'top_left'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-start'
+                    when 'top_center'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-center'
+                    when 'top_right'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-end'
+                    when 'middle_left'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-start'
+                    when 'center_center'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-center'
+                    when 'middle_right'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-end'
+                    when 'bottom_left'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-start'
+                    when 'bottom_center'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-center'
+                    when 'bottom_right'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-end'
+                  endcase
+                -%}
+                <div class="absolute inset-0 flex pointer-events-none {{ h1_items }} {{ h1_justify }}">
+                  <h2
+                    class="image-banner-heading"
+                    style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_1_color | default: '#ffffff' }};"
+                  >
+                    {{ section.settings.heading_1 }}
+                  </h2>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- if section.settings.link_1 != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {% else %}
+    <div class="flex flex-col md:flex-row gap-4 px-4 md:px-6">
+      <!-- Block 1 -->
+      {%- if section.settings.image_1 != blank or section.settings.heading_1 != blank -%}
+        <div class="flex-1 relative">
+          {%- if section.settings.link_1 != blank -%}
+            <a href="{{ section.settings.link_1 }}" class="block w-full">
+          {%- else -%}
+            <div class="block w-full">
+          {%- endif -%}
+            <div class="relative w-full overflow-hidden" style="aspect-ratio: 0.6666666666666666;">
+              {%- if section.settings.image_1 != blank -%}
+                <img
+                  src="{{ section.settings.image_1 | image_url: width: 1200 }}"
+                  srcset="{{ section.settings.image_1 | image_url: width: 600 }} 600w,
+                          {{ section.settings.image_1 | image_url: width: 900 }} 900w,
+                          {{ section.settings.image_1 | image_url: width: 1200 }} 1200w"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  alt="{{ section.settings.heading_1 | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  width="{{ section.settings.image_1.width }}"
+                  height="{{ section.settings.image_1.height }}"
                 >
-                  {{ section.settings.heading_2 }}
-                </h2>
-              </div>
-            {%- endif -%}
-          </div>
-        {%- if section.settings.link_2 != blank -%}
-          </a>
-        {%- else -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-  </div>
+              {%- else -%}
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400 text-sm">Image 1</span>
+                </div>
+              {%- endif -%}
+              
+              <!-- Heading -->
+              {%- if section.settings.heading_1 != blank -%}
+                {%- liquid
+                  assign h1_position = section.settings.heading_1_position | default: 'center_center'
+
+                  case h1_position
+                    when 'top_left'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-start'
+                    when 'top_center'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-center'
+                    when 'top_right'
+                      assign h1_items = 'items-start'
+                      assign h1_justify = 'justify-end'
+                    when 'middle_left'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-start'
+                    when 'center_center'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-center'
+                    when 'middle_right'
+                      assign h1_items = 'items-center'
+                      assign h1_justify = 'justify-end'
+                    when 'bottom_left'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-start'
+                    when 'bottom_center'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-center'
+                    when 'bottom_right'
+                      assign h1_items = 'items-end'
+                      assign h1_justify = 'justify-end'
+                  endcase
+                -%}
+                <div class="absolute inset-0 flex pointer-events-none {{ h1_items }} {{ h1_justify }}">
+                  <h2
+                    class="image-banner-heading"
+                    style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_1_color | default: '#ffffff' }};"
+                  >
+                    {{ section.settings.heading_1 }}
+                  </h2>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- if section.settings.link_1 != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <!-- Block 2 -->
+      {%- if section.settings.image_2 != blank or section.settings.heading_2 != blank -%}
+        <div class="flex-1 relative">
+          {%- if section.settings.link_2 != blank -%}
+            <a href="{{ section.settings.link_2 }}" class="block w-full">
+          {%- else -%}
+            <div class="block w-full">
+          {%- endif -%}
+            <div class="relative w-full overflow-hidden" style="aspect-ratio: 0.6629392971246006;">
+              {%- if section.settings.image_2 != blank -%}
+                <img
+                  src="{{ section.settings.image_2 | image_url: width: 1200 }}"
+                  srcset="{{ section.settings.image_2 | image_url: width: 600 }} 600w,
+                          {{ section.settings.image_2 | image_url: width: 900 }} 900w,
+                          {{ section.settings.image_2 | image_url: width: 1200 }} 1200w"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  alt="{{ section.settings.heading_2 | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  width="{{ section.settings.image_2.width }}"
+                  height="{{ section.settings.image_2.height }}"
+                >
+              {%- else -%}
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400 text-sm">Image 2</span>
+                </div>
+              {%- endif -%}
+              
+              <!-- Heading -->
+              {%- if section.settings.heading_2 != blank -%}
+                {%- liquid
+                  assign h2_position = section.settings.heading_2_position | default: 'center_center'
+
+                  case h2_position
+                    when 'top_left'
+                      assign h2_items = 'items-start'
+                      assign h2_justify = 'justify-start'
+                    when 'top_center'
+                      assign h2_items = 'items-start'
+                      assign h2_justify = 'justify-center'
+                    when 'top_right'
+                      assign h2_items = 'items-start'
+                      assign h2_justify = 'justify-end'
+                    when 'middle_left'
+                      assign h2_items = 'items-center'
+                      assign h2_justify = 'justify-start'
+                    when 'center_center'
+                      assign h2_items = 'items-center'
+                      assign h2_justify = 'justify-center'
+                    when 'middle_right'
+                      assign h2_items = 'items-center'
+                      assign h2_justify = 'justify-end'
+                    when 'bottom_left'
+                      assign h2_items = 'items-end'
+                      assign h2_justify = 'justify-start'
+                    when 'bottom_center'
+                      assign h2_items = 'items-end'
+                      assign h2_justify = 'justify-center'
+                    when 'bottom_right'
+                      assign h2_items = 'items-end'
+                      assign h2_justify = 'justify-end'
+                  endcase
+                -%}
+                <div class="absolute inset-0 flex pointer-events-none {{ h2_items }} {{ h2_justify }}">
+                  <h2
+                    class="image-banner-heading"
+                    style="font-size: {{ section.settings.heading_font_size | default: 32 }}px; font-weight: {{ section.settings.heading_font_weight | default: 700 }}; color: {{ section.settings.heading_2_color | default: '#ffffff' }};"
+                  >
+                    {{ section.settings.heading_2 }}
+                  </h2>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- if section.settings.link_2 != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {% endif %}
 </section>
