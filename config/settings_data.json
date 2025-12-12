@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "favicon": "shopify://shop_images/android-chrome-192x192.png",
+    "favicon": "shopify://shop_images/coeur_orange_page-0001.jpg",
     "footer_description": "",
     "show_sold_out_badge": false,
     "sections": {
@@ -72,7 +72,7 @@
         "type": "image-banner-grid",
         "settings": {
           "image_1": "shopify://shop_images/msa10_23_02.png",
-          "heading_1": "Collaborations",
+          "heading_1": "SS26 COLLECTION",
           "link_1": "shopify://collections/chemises-et-tops",
           "image_2": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png",
           "heading_2": "Lookbook",
