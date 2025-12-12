@@ -1329,6 +1329,47 @@
       }
     }
 
+    let pendingQuickAdd = null;
+    let preorderConfirmHandler = null;
+
+    function openPreorderModalForQuickAdd(variantId, x, y) {
+      const modal = document.getElementById('preorder-modal');
+      if (!modal) {
+        // Fallback: behave like original quick-add if modal is not present
+        createFlyDot(x, y);
+        addToCart(variantId);
+        return;
+      }
+
+      pendingQuickAdd = { variantId, x, y };
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      const confirmBtn = modal.querySelector('[data-preorder-confirm]');
+      if (!confirmBtn) return;
+
+      if (preorderConfirmHandler) {
+        confirmBtn.removeEventListener('click', preorderConfirmHandler);
+      }
+
+      preorderConfirmHandler = function() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        const data = pendingQuickAdd;
+        pendingQuickAdd = null;
+        if (!data) return;
+
+        createFlyDot(data.x, data.y);
+        addToCart(data.variantId);
+      };
+
+      confirmBtn.addEventListener('click', preorderConfirmHandler, { once: true });
+    }
+
     document.addEventListener('click', function(event) {
       const btn = event.target.closest('.product-quick-add');
       if (!btn) return;
@@ -1341,8 +1382,7 @@
       const x = rect.left + rect.width - 8;
       const y = rect.top + rect.height - 8;
 
-      createFlyDot(x, y);
-      addToCart(variantId);
+      openPreorderModalForQuickAdd(variantId, x, y);
     });
   })();
 

@@ -12,6 +12,27 @@
   const cartIconBubble = document.getElementById('cart-icon-bubble');
   const cartDrawerClose = document.getElementById('cart-drawer-close');
 
+  // Pre-order modal on product page
+  const preorderModal = document.getElementById('preorder-modal');
+  const preorderModalOverlay = preorderModal ? preorderModal.querySelector('[data-preorder-modal-overlay]') : null;
+  const preorderModalClose = preorderModal ? preorderModal.querySelector('[data-preorder-modal-close]') : null;
+  const preorderConfirmButton = preorderModal ? preorderModal.querySelector('[data-preorder-confirm]') : null;
+  let preorderConfirmed = false;
+
+  function openPreorderModal() {
+    if (!preorderModal) return;
+    preorderModal.classList.add('is-open');
+    preorderModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePreorderModal() {
+    if (!preorderModal) return;
+    preorderModal.classList.remove('is-open');
+    preorderModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
   function openCartDrawer() {
     if (cartDrawer && cartDrawerOverlay) {
       cartDrawer.classList.remove('translate-x-full');
@@ -47,6 +68,31 @@
   if (cartDrawerOverlay) {
     cartDrawerOverlay.addEventListener('click', closeCartDrawer);
   }
+
+  if (preorderModalOverlay) {
+    preorderModalOverlay.addEventListener('click', closePreorderModal);
+  }
+
+  if (preorderModalClose) {
+    preorderModalClose.addEventListener('click', closePreorderModal);
+  }
+
+  if (preorderConfirmButton) {
+    preorderConfirmButton.addEventListener('click', function() {
+      preorderConfirmed = true;
+      closePreorderModal();
+      const productForm = document.getElementById('product-form');
+      if (productForm) {
+        productForm.requestSubmit();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && preorderModal && preorderModal.classList.contains('is-open')) {
+      closePreorderModal();
+    }
+  });
 
   // Update Cart Count
   function updateCartCount() {
@@ -222,6 +268,13 @@
   const productForm = document.getElementById('product-form');
   if (productForm) {
     productForm.addEventListener('submit', function(e) {
+      // First submit: show pre-order info modal instead of adding directly to cart
+      if (!preorderConfirmed) {
+        e.preventDefault();
+        openPreorderModal();
+        return;
+      }
+
       e.preventDefault();
       
       const formData = new FormData(this);
@@ -258,6 +311,9 @@
           addButton.disabled = false;
           addButton.textContent = window.variantStrings.addToCart;
         }
+
+        // Reset confirmation so the modal can be shown again on a fresh visit
+        preorderConfirmed = false;
       });
     });
   }

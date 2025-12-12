@@ -223,4 +223,22 @@
 
     </div>
   </div>
+
+  <div id="preorder-modal" class="preorder-modal" aria-hidden="true">
+    <div class="preorder-modal-overlay" data-preorder-modal-overlay></div>
+    <div class="preorder-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="preorder-modal-title">
+      <button type="button" class="preorder-modal-close" data-preorder-modal-close aria-label="Close">
+        &times;
+      </button>
+      <div class="preorder-modal-body">
+        {% section 'preorder-info' %}
+        <div class="preorder-modal-actions">
+          <button type="button" class="btn btn-default w-full" data-preorder-confirm>
+            I understand, continue to pre-order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
