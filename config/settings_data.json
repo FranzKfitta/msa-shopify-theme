@@ -342,8 +342,9 @@
           "preorder_step_yfPd3j": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/regina-2181306.png",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "Le rituel du colis.",
               "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants — rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
               "link_label": "Discover the next step",
