@@ -430,6 +430,15 @@
               "image": "shopify://shop_images/atelier1.png",
               "heading": "Ce que signifie M/SA",
               "body": "<p>(une identité, une vision, une insurrection douce)<br/><br/>M/SA est plus qu’un nom.<br/>C’est un acronyme qui tient dans un souffle et qui contient pourtant un monde entier :<br/>Makers of Sustainable Aesthetics — celles et ceux qui fabriquent une esthétique durable.<br/>Mais c’est aussi l’initiale d’une femme : Sakina M’Sa, sa fondatrice, pionnière de la mode durable en France, qui a eu l’audace d’énoncer très tôt ce que d’autres découvrent aujourd’hui :<br/>que le beau n’a de valeur que s’il élève.<br/><br/>Sakina M’Sa n’a pas construit une marque, mais une conviction :<br/>que la mode pouvait devenir une forme de résistance poétique,<br/>une économie réparatrice,<br/>un acte politique profondément humain.</p>",
+              "image_position": "left"
+            }
+          },
+          "split_DJ4q8y": {
+            "type": "split",
+            "settings": {
+              "image": "shopify://shop_images/the-devil-wears-boring-fast-fashion-8849465.png",
+              "heading": "La pensée qui soutient le geste",
+              "body": "<p>La philosophie qui irrigue M/SA a deux phares : Joseph Beuys et Jean Baudrillard.<br/><br/>Joseph Beuys, d’abord, qui affirmait :<br/><br/>« Tout homme est un artiste. »<br/>Non pas une flatterie, mais une responsabilité :<br/>chacun a le pouvoir de transformer le monde par ses gestes.<br/>Cette phrase est devenue le cœur battant de notre atelier, où chaque personne, quelle que soit son histoire, retrouve sa capacité créatrice.<br/><br/>Et Jean Baudrillard, ensuite, qui écrivait :<br/><br/>« La valeur n’est jamais dans l’objet, mais dans le sens que nous lui accordons. »<br/>Dans nos vêtements, la valeur n’est donc pas seulement dans la coupe impeccable :<br/>elle est dans le parcours humain qu’ils contiennent,<br/>dans la pensée qui les guide,<br/>dans la réinvention joyeuse du luxe que nous produisons ici, en France, chaque jour.</p>",
               "image_position": "right"
             }
           }
@@ -437,7 +446,8 @@
         "block_order": [
           "split_FAcfD6",
           "split_pMPh8g",
-          "split_eGezYE"
+          "split_eGezYE",
+          "split_DJ4q8y"
         ],
         "settings": {}
       }
