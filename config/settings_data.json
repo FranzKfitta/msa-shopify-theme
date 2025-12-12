@@ -372,8 +372,30 @@
           "gallery_image_Lif8CA": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/robe-taille-apparente-renata-5781063.jpg"
+              "image": "shopify://shop_images/chemise-oversize-clementine-beige-4043178.jpg"
             }
+          },
+          "gallery_image_b7aQRF": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/manteau-mathilde-print-exclusif-en-chevrons-signature-2570090.jpg"
+            }
+          },
+          "gallery_image_MqqNM9": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/manteau-maou-noir-8180678.jpg"
+            }
+          },
+          "gallery_image_qcwGAr": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/veste-tailleur-valentina-en-feutrine-orange-7347453.jpg"
+            }
+          },
+          "gallery_image_rmf4dm": {
+            "type": "gallery_image",
+            "settings": {}
           }
         },
         "block_order": [
@@ -413,7 +435,11 @@
           "gallery_image_kfLNGD",
           "gallery_image_aQMYPr",
           "gallery_image_dCmhcN",
-          "gallery_image_Lif8CA"
+          "gallery_image_Lif8CA",
+          "gallery_image_b7aQRF",
+          "gallery_image_MqqNM9",
+          "gallery_image_qcwGAr",
+          "gallery_image_rmf4dm"
         ],
         "settings": {
           "image_count": 4
