@@ -6,7 +6,7 @@
 <section class="preorder-info" data-preorder-section>
   <div class="preorder-info-inner">
     <header class="preorder-info-header">
-      <h1 class="preorder-title">HOW DOES PRE-ORDERING WORK?</h1>
+      <h1 class="preorder-title" id="preorder-modal-title">{{ section.settings.heading }}</h1>
       {% if section.settings.show_intro and section.settings.intro_text != blank %}
         <p class="preorder-intro">{{ section.settings.intro_text }}</p>
       {% endif %}
@@ -39,7 +39,7 @@
                 </div>
                 <div class="preorder-step-panel"{% if block.settings.panel_bg_color != blank %} style="background-color: {{ block.settings.panel_bg_color }};"{% endif %}>
                   <div class="preorder-step-number-pill">{{ forloop.index }}</div>
-                  <div class="preorder-step-panel-content">
+                  <div class="preorder-step-panel-content"{% if block.settings.text_color != blank %} style="color: {{ block.settings.text_color }};"{% endif %}>
                     {% if block.settings.title != blank %}
                       <h3 class="preorder-step-title">{{ block.settings.title }}</h3>
                     {% endif %}
@@ -77,6 +77,12 @@
 {
   "name": "How pre-orders work",
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "HOW DOES PRE-ORDERING WORK?"
+    },
     {
       "type": "checkbox",
       "id": "show_intro",
@@ -129,6 +135,12 @@
           "id": "panel_bg_color",
           "label": "Panel background color",
           "default": "#e5f3f7"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#111111"
         },
         {
           "type": "text",
