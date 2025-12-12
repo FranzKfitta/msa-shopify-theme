@@ -37,9 +37,10 @@
                     </div>
                   {% endif %}
                 </div>
-                <div class="preorder-step-panel"{% if block.settings.panel_bg_color != blank %} style="background-color: {{ block.settings.panel_bg_color }};"{% endif %}>
+                {% assign panel_size = block.settings.panel_size | default: 'medium' %}
+                <div class="preorder-step-panel preorder-step-panel--{{ panel_size }}"{% if block.settings.panel_bg_color != blank %} style="background-color: {{ block.settings.panel_bg_color }};"{% endif %}>
                   <div class="preorder-step-number-pill">{{ forloop.index }}</div>
-                  <div class="preorder-step-panel-content"{% if block.settings.text_color != blank %} style="color: {{ block.settings.text_color }};"{% endif %}>
+                  <div class="preorder-step-panel-content preorder-step-panel-content--{{ panel_size }}"{% if block.settings.text_color != blank %} style="color: {{ block.settings.text_color }};"{% endif %}>
                     {% if block.settings.title != blank %}
                       <h3 class="preorder-step-title">{{ block.settings.title }}</h3>
                     {% endif %}
@@ -141,6 +142,26 @@
           "id": "text_color",
           "label": "Text color",
           "default": "#111111"
+        },
+        {
+          "type": "select",
+          "id": "panel_size",
+          "label": "Panel size",
+          "default": "medium",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ]
         },
         {
           "type": "text",
