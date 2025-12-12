@@ -270,6 +270,7 @@
           "preorder_step_XmHaBk": {
             "type": "preorder_step",
             "settings": {
+              "image": "shopify://shop_images/coeur_orange_page-0001.jpg",
               "panel_bg_color": "#e5f3f7",
               "title": "LA PRÉCOMMANDE – VERSION M/SA NOTHOMB",
               "text": "<p>La précommande, chez M/SA, n’est pas une option logistique.<br/>C’est un serment.<br/>Un pacte silencieux entre vous et nous : vous promettez le désir, nous promettons la justesse.</p>",
@@ -350,6 +351,7 @@
           "preorder_step_AiAMFz": {
             "type": "preorder_step",
             "settings": {
+              "image": "shopify://shop_images/coeur_orange_page-0001.jpg",
               "panel_bg_color": "#e5f3f7",
               "title": "Et si la magie n’opère pas ?",
               "text": "<p>Nous acceptons les échanges.<br/>Gratuitement.<br/>Il vous suffit d’écrire à <a href=\"mailto:hello@sakinamsa.com\" target=\"_blank\">hello@sakinamsa.com</a>.<br/>Parce que le luxe, le vrai, n’abandonne jamais quelqu’un sur le bord du chemin.</p>",
