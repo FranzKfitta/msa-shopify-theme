@@ -153,10 +153,6 @@
       "lookbook-gallery": {
         "type": "lookbook-gallery",
         "blocks": {
-          "gallery_image_rhte6P": {
-            "type": "gallery_image",
-            "settings": {}
-          },
           "gallery_image_CxwVHp": {
             "type": "gallery_image",
             "settings": {
@@ -178,7 +174,7 @@
           "gallery_image_9feypw": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/jeanne-pink-5500964.jpg"
+              "image": "shopify://shop_images/sonia-stripes-7682713.png"
             }
           },
           "gallery_image_YeDwHi": {
@@ -216,10 +212,37 @@
             "settings": {
               "image": "shopify://shop_images/liga-chiromani-9441643.png"
             }
+          },
+          "gallery_image_rhte6P": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/joda-6605300.png"
+            }
+          },
+          "gallery_image_nLd7HN": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/serena-9868614.png"
+            }
+          },
+          "gallery_image_TUicyK": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/jeanne-pink-5500964.jpg"
+            }
+          },
+          "gallery_image_mm4thc": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/serena-chiromani-5796675.png"
+            }
+          },
+          "gallery_image_P4Wxqh": {
+            "type": "gallery_image",
+            "settings": {}
           }
         },
         "block_order": [
-          "gallery_image_rhte6P",
           "gallery_image_CxwVHp",
           "gallery_image_MF64bM",
           "gallery_image_fWEkzm",
@@ -229,7 +252,12 @@
           "gallery_image_dwLtFw",
           "gallery_image_wUDQBi",
           "gallery_image_wVtERi",
-          "gallery_image_XzeFVA"
+          "gallery_image_XzeFVA",
+          "gallery_image_rhte6P",
+          "gallery_image_nLd7HN",
+          "gallery_image_TUicyK",
+          "gallery_image_mm4thc",
+          "gallery_image_P4Wxqh"
         ],
         "settings": {
           "image_count": 4
