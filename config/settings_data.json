@@ -260,6 +260,22 @@
             "settings": {
               "image": "shopify://shop_images/rona-chiromani-9693576.png"
             }
+          },
+          "gallery_image_88bjjK": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/romane-chiromani-2468151.png"
+            }
+          },
+          "gallery_image_F8CYRg": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/regina-2181306.png"
+            }
+          },
+          "gallery_image_36Q4hJ": {
+            "type": "gallery_image",
+            "settings": {}
           }
         },
         "block_order": [
@@ -280,7 +296,10 @@
           "gallery_image_P4Wxqh",
           "gallery_image_6ddj3C",
           "gallery_image_93KhK7",
-          "gallery_image_HefDkk"
+          "gallery_image_HefDkk",
+          "gallery_image_88bjjK",
+          "gallery_image_F8CYRg",
+          "gallery_image_36Q4hJ"
         ],
         "settings": {
           "image_count": 4
