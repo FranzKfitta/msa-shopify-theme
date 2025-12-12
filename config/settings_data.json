@@ -153,52 +153,73 @@
       "lookbook-gallery": {
         "type": "lookbook-gallery",
         "blocks": {
+          "gallery_image_rhte6P": {
+            "type": "gallery_image",
+            "settings": {}
+          },
           "gallery_image_CxwVHp": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/VALENTINA_TIGA_FLEURS_MULET_PARIS.png"
+              "image": "shopify://shop_images/the-devil-wears-boring-fast-fashion-8849465.png"
             }
           },
           "gallery_image_MF64bM": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/msa10_23_02.png"
+              "image": "shopify://shop_images/404-fast-fashion-not-found-5152926.png"
             }
           },
           "gallery_image_fWEkzm": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/JODA-VODA.png"
+              "image": "shopify://shop_images/joyful-circular-couture-1616826.png"
             }
           },
           "gallery_image_9feypw": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/CEDRIC_MONDRIAN.png"
+              "image": "shopify://shop_images/jeanne-pink-5500964.jpg"
             }
           },
           "gallery_image_YeDwHi": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png"
+              "image": "shopify://shop_images/rasta-chevron-shaped-cut-4556537.jpg"
             }
           },
           "gallery_image_PmQPn7": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/SONIA_STRIPES.png"
+              "image": "shopify://shop_images/cagole-6088794.png"
             }
           },
           "gallery_image_dwLtFw": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/VANESSA_CAGOLE.png"
+            }
           },
           "gallery_image_wUDQBi": {
             "type": "gallery_image",
-            "settings": {}
+            "settings": {
+              "image": "shopify://shop_images/ROMYETLIGA817384.png"
+            }
+          },
+          "gallery_image_wVtERi": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/liga-chiromani-4295065.png"
+            }
+          },
+          "gallery_image_XzeFVA": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/liga-chiromani-9441643.png"
+            }
           }
         },
         "block_order": [
+          "gallery_image_rhte6P",
           "gallery_image_CxwVHp",
           "gallery_image_MF64bM",
           "gallery_image_fWEkzm",
@@ -206,7 +227,9 @@
           "gallery_image_YeDwHi",
           "gallery_image_PmQPn7",
           "gallery_image_dwLtFw",
-          "gallery_image_wUDQBi"
+          "gallery_image_wUDQBi",
+          "gallery_image_wVtERi",
+          "gallery_image_XzeFVA"
         ],
         "settings": {
           "image_count": 4
