@@ -330,8 +330,9 @@
           "preorder_step_aaPjnD": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/rona-chiromani-9693576.png",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "Les matières choisissent leur destin.",
               "text": "<p>Rachida sélectionne dans notre tissu thèque les étoffes dormantes issues des maisons de couture prestigieuses.<br/>Puis viennent la gradation, la coupe, le montage, le repassage, le contrôle qualité.<br/>Chaque pièce transite entre des mains expertes, souvent celles de salarié·es en insertion qui redonnent au mot “travail” sa dignité première : créer.</p>",
               "link_label": "Discover the next step",
