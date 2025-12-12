@@ -267,6 +267,16 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
+          "preorder_step_AiAMFz": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Et si la magie n’opère pas ?",
+              "text": "<p>Nous acceptons les échanges.<br/>Gratuitement.<br/>Il vous suffit d’écrire à <a href=\"mailto:hello@sakinamsa.com\" target=\"_blank\">hello@sakinamsa.com</a>.<br/>Parce que le luxe, le vrai, n’abandonne jamais quelqu’un sur le bord du chemin.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
           "preorder_step_Dz7eT8": {
             "type": "preorder_step",
             "settings": {
@@ -349,6 +359,7 @@
           }
         },
         "block_order": [
+          "preorder_step_AiAMFz",
           "preorder_step_Dz7eT8",
           "preorder_step_yfPd3j",
           "preorder_step_aaPjnD",
