@@ -267,72 +267,12 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
-          "preorder_step_AiAMFz": {
+          "preorder_step_XmHaBk": {
             "type": "preorder_step",
             "settings": {
               "panel_bg_color": "#e5f3f7",
-              "title": "Et si la magie n’opère pas ?",
-              "text": "<p>Nous acceptons les échanges.<br/>Gratuitement.<br/>Il vous suffit d’écrire à <a href=\"mailto:hello@sakinamsa.com\" target=\"_blank\">hello@sakinamsa.com</a>.<br/>Parce que le luxe, le vrai, n’abandonne jamais quelqu’un sur le bord du chemin.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_Dz7eT8": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "Le message que l’on attend.",
-              "text": "<p>Votre colis s’envole. Vous êtes prévenu·e.<br/>Quelques jours plus tard, votre dressing devient une fête.<br/>Votre miroir applaudit. Votre peau sourit.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_yfPd3j": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "Le rituel du colis.",
-              "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants — rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_aaPjnD": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "Les matières choisissent leur destin.",
-              "text": "<p>Rachida sélectionne dans notre tissu thèque les étoffes dormantes issues des maisons de couture prestigieuses.<br/>Puis viennent la gradation, la coupe, le montage, le repassage, le contrôle qualité.<br/>Chaque pièce transite entre des mains expertes, souvent celles de salarié·es en insertion qui redonnent au mot “travail” sa dignité première : créer.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_MaqNLz": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "L’atelier entre en scène",
-              "text": "<p>Toutes les commandes sont données à Rachida, notre cheffe d’atelier – celle qui parle aux tissus comme d’autres parlent aux fleurs.<br/>Elle analyse, répartit, orchestre.<br/>Nous ajoutons un léger pourcentage pour anticiper d’éventuels échanges de taille, par élégance autant que par prudence.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_eawgbV": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "COMMENT ÇA MARCHE ?",
-              "text": "<p>Tout commence par vous.<br/>Vous commandez. Vous choisissez. Vous faites naître l’idée.</p>",
-              "link_label": "Discover the next step",
-              "link_url": ""
-            }
-          },
-          "preorder_step_BUbp6t": {
-            "type": "preorder_step",
-            "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "title": "POURQUOI LA PRÉCOMMANDE ?",
-              "text": "<p>Parce qu’il n’y a rien de plus obscène que de fabriquer des vêtements qui ne seront jamais portés.<br/>Parce que la planète mérite autre chose que des stocks en exil, et que vous méritez mieux qu’un vêtement produit “au cas où”.<br/>Parce que renoncer aux soldes, aux invendus, aux entrepôts saturés, nous permet d’accéder au plus beau des fils, aux matières dormantes des maisons couture, et à un atelier italien qui a fait de la perfection sa religion.<br/>Et parce que la précommande nous ramène à ce temps long, noble et rare : celui du désir. Un désir conscient, grandissant, qui n’a pas besoin d’être pressé pour exister.</p>",
+              "title": "LA PRÉCOMMANDE – VERSION M/SA NOTHOMB",
+              "text": "<p>La précommande, chez M/SA, n’est pas une option logistique.<br/>C’est un serment.<br/>Un pacte silencieux entre vous et nous : vous promettez le désir, nous promettons la justesse.</p>",
               "link_label": "Discover the next step",
               "link_url": ""
             }
@@ -347,27 +287,87 @@
               "link_url": ""
             }
           },
-          "preorder_step_XmHaBk": {
+          "preorder_step_BUbp6t": {
             "type": "preorder_step",
             "settings": {
               "panel_bg_color": "#e5f3f7",
-              "title": "LA PRÉCOMMANDE – VERSION M/SA NOTHOMB",
-              "text": "<p>La précommande, chez M/SA, n’est pas une option logistique.<br/>C’est un serment.<br/>Un pacte silencieux entre vous et nous : vous promettez le désir, nous promettons la justesse.</p>",
+              "title": "POURQUOI LA PRÉCOMMANDE ?",
+              "text": "<p>Parce qu’il n’y a rien de plus obscène que de fabriquer des vêtements qui ne seront jamais portés.<br/>Parce que la planète mérite autre chose que des stocks en exil, et que vous méritez mieux qu’un vêtement produit “au cas où”.<br/>Parce que renoncer aux soldes, aux invendus, aux entrepôts saturés, nous permet d’accéder au plus beau des fils, aux matières dormantes des maisons couture, et à un atelier italien qui a fait de la perfection sa religion.<br/>Et parce que la précommande nous ramène à ce temps long, noble et rare : celui du désir. Un désir conscient, grandissant, qui n’a pas besoin d’être pressé pour exister.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_eawgbV": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "COMMENT ÇA MARCHE ?",
+              "text": "<p>Tout commence par vous.<br/>Vous commandez. Vous choisissez. Vous faites naître l’idée.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_MaqNLz": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "L’atelier entre en scène",
+              "text": "<p>Toutes les commandes sont données à Rachida, notre cheffe d’atelier – celle qui parle aux tissus comme d’autres parlent aux fleurs.<br/>Elle analyse, répartit, orchestre.<br/>Nous ajoutons un léger pourcentage pour anticiper d’éventuels échanges de taille, par élégance autant que par prudence.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_aaPjnD": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Les matières choisissent leur destin.",
+              "text": "<p>Rachida sélectionne dans notre tissu thèque les étoffes dormantes issues des maisons de couture prestigieuses.<br/>Puis viennent la gradation, la coupe, le montage, le repassage, le contrôle qualité.<br/>Chaque pièce transite entre des mains expertes, souvent celles de salarié·es en insertion qui redonnent au mot “travail” sa dignité première : créer.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_yfPd3j": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Le rituel du colis.",
+              "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants — rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_Dz7eT8": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Le message que l’on attend.",
+              "text": "<p>Votre colis s’envole. Vous êtes prévenu·e.<br/>Quelques jours plus tard, votre dressing devient une fête.<br/>Votre miroir applaudit. Votre peau sourit.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_AiAMFz": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Et si la magie n’opère pas ?",
+              "text": "<p>Nous acceptons les échanges.<br/>Gratuitement.<br/>Il vous suffit d’écrire à <a href=\"mailto:hello@sakinamsa.com\" target=\"_blank\">hello@sakinamsa.com</a>.<br/>Parce que le luxe, le vrai, n’abandonne jamais quelqu’un sur le bord du chemin.</p>",
               "link_label": "Discover the next step",
               "link_url": ""
             }
           }
         },
         "block_order": [
-          "preorder_step_AiAMFz",
-          "preorder_step_Dz7eT8",
-          "preorder_step_yfPd3j",
-          "preorder_step_aaPjnD",
-          "preorder_step_MaqNLz",
-          "preorder_step_eawgbV",
-          "preorder_step_BUbp6t",
+          "preorder_step_XmHaBk",
           "preorder_step_b9mQaz",
-          "preorder_step_XmHaBk"
+          "preorder_step_BUbp6t",
+          "preorder_step_eawgbV",
+          "preorder_step_MaqNLz",
+          "preorder_step_aaPjnD",
+          "preorder_step_yfPd3j",
+          "preorder_step_Dz7eT8",
+          "preorder_step_AiAMFz"
         ],
         "settings": {
           "show_intro": true,
