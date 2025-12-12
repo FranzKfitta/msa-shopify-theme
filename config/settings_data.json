@@ -366,8 +366,9 @@
           "preorder_step_rnwRwB": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/body-hoodie-3495869.png",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "You place your pre-order",
               "text": "<p>You choose your piece and size during a limited pre-order window.</p>",
               "link_label": "Discover the next step",
