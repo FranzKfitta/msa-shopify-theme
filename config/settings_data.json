@@ -267,6 +267,16 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
+          "preorder_step_aaPjnD": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "Les matières choisissent leur destin.",
+              "text": "<p>Rachida sélectionne dans notre tissu thèque les étoffes dormantes issues des maisons de couture prestigieuses.<br/>Puis viennent la gradation, la coupe, le montage, le repassage, le contrôle qualité.<br/>Chaque pièce transite entre des mains expertes, souvent celles de salarié·es en insertion qui redonnent au mot “travail” sa dignité première : créer.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
           "preorder_step_MaqNLz": {
             "type": "preorder_step",
             "settings": {
@@ -319,6 +329,7 @@
           }
         },
         "block_order": [
+          "preorder_step_aaPjnD",
           "preorder_step_MaqNLz",
           "preorder_step_eawgbV",
           "preorder_step_BUbp6t",
