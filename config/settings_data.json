@@ -282,8 +282,9 @@
           "preorder_step_b9mQaz": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/serena-9868614.png",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "QU’EST-CE QUE LA PRÉCOMMANDE ?",
               "text": "<p>Lorsque vous achetez en précommande, le vêtement n’existe pas encore. Il flotte, comme une idée lumineuse, suspendue entre vos mains et notre atelier.<br/>À la fin de la période, nous refermons le sablier, rassemblons toutes vos envies, et la création peut enfin commencer : concrète, textile, presque alchimique.</p>",
               "link_label": "Discover the next step",
