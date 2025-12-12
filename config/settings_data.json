@@ -267,6 +267,16 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
+          "preorder_step_MaqNLz": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "L’atelier entre en scène",
+              "text": "<p>Toutes les commandes sont données à Rachida, notre cheffe d’atelier – celle qui parle aux tissus comme d’autres parlent aux fleurs.<br/>Elle analyse, répartit, orchestre.<br/>Nous ajoutons un léger pourcentage pour anticiper d’éventuels échanges de taille, par élégance autant que par prudence.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
           "preorder_step_eawgbV": {
             "type": "preorder_step",
             "settings": {
@@ -309,6 +319,7 @@
           }
         },
         "block_order": [
+          "preorder_step_MaqNLz",
           "preorder_step_eawgbV",
           "preorder_step_BUbp6t",
           "preorder_step_b9mQaz",
