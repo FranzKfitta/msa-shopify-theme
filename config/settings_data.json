@@ -267,6 +267,26 @@
       "preorder-info": {
         "type": "preorder-info",
         "blocks": {
+          "preorder_step_eawgbV": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "COMMENT ÇA MARCHE ?",
+              "text": "<p>Tout commence par vous.<br/>Vous commandez. Vous choisissez. Vous faites naître l’idée.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_BUbp6t": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "POURQUOI LA PRÉCOMMANDE ?",
+              "text": "<p>Parce qu’il n’y a rien de plus obscène que de fabriquer des vêtements qui ne seront jamais portés.<br/>Parce que la planète mérite autre chose que des stocks en exil, et que vous méritez mieux qu’un vêtement produit “au cas où”.<br/>Parce que renoncer aux soldes, aux invendus, aux entrepôts saturés, nous permet d’accéder au plus beau des fils, aux matières dormantes des maisons couture, et à un atelier italien qui a fait de la perfection sa religion.<br/>Et parce que la précommande nous ramène à ce temps long, noble et rare : celui du désir. Un désir conscient, grandissant, qui n’a pas besoin d’être pressé pour exister.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
           "preorder_step_b9mQaz": {
             "type": "preorder_step",
             "settings": {
@@ -289,6 +309,8 @@
           }
         },
         "block_order": [
+          "preorder_step_eawgbV",
+          "preorder_step_BUbp6t",
           "preorder_step_b9mQaz",
           "preorder_step_XmHaBk"
         ],
