@@ -354,8 +354,9 @@
           "preorder_step_Dz7eT8": {
             "type": "preorder_step",
             "settings": {
-              "panel_bg_color": "#e5f3f7",
-              "text_color": "#111111",
+              "image": "shopify://shop_images/crista-turquoise-8665818.jpg",
+              "panel_bg_color": "#c05837",
+              "text_color": "#ffffff",
               "title": "Le message que l’on attend.",
               "text": "<p>Votre colis s’envole. Vous êtes prévenu·e.<br/>Quelques jours plus tard, votre dressing devient une fête.<br/>Votre miroir applaudit. Votre peau sourit.</p>",
               "link_label": "Discover the next step",
