@@ -263,6 +263,32 @@
       "main-collection": {
         "type": "main-collection",
         "settings": {}
+      },
+      "preorder-info": {
+        "type": "preorder-info",
+        "blocks": {
+          "preorder_step_XmHaBk": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "title": "LA PRÉCOMMANDE – VERSION M/SA NOTHOMB",
+              "text": "<p>La précommande, chez M/SA, n’est pas une option logistique.<br/>C’est un serment.<br/>Un pacte silencieux entre vous et nous : vous promettez le désir, nous promettons la justesse.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "preorder_step_XmHaBk"
+        ],
+        "settings": {
+          "show_intro": true,
+          "intro_text": "We produce each pre-order especially for you, in limited runs, to slow fashion down and focus on quality.",
+          "why_title": "Why pre-order?",
+          "why_text": "<p>Pre-ordering allows us to create pieces only when they are truly desired, instead of overproducing and holding unnecessary stock.</p>",
+          "benefits_title": "What it makes possible",
+          "benefits_text": "<ul><li>Reduces overproduction and leftover stock.</li><li>Helps us choose better materials and work with small, expert workshops.</li><li>Supports a slower rhythm where each piece is made with care just for you.</li></ul>"
+        }
       }
     },
     "content_for_index": []
