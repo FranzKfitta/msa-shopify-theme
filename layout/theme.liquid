@@ -67,6 +67,72 @@
 
     {% section 'footer' %}
 
+    <div id="search-overlay" class="overlay" aria-hidden="true" hidden>
+      <div class="overlay-backdrop" data-overlay-close></div>
+      <div class="overlay-panel" role="dialog" aria-modal="true" aria-label="Recherche">
+        <button type="button" class="overlay-close btn btn-ghost btn-icon" data-overlay-close aria-label="Fermer">
+          &times;
+        </button>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="overlay-search-form">
+          <label class="block text-sm font-medium mb-2" for="overlay-search-input">Rechercher</label>
+          <div class="flex gap-2">
+            <input id="overlay-search-input" type="search" name="q" class="input bg-background flex-1" placeholder="Rechercher…" autocomplete="off">
+            <input type="hidden" name="type" value="product">
+            <button type="submit" class="btn btn-default">Rechercher</button>
+          </div>
+        </form>
+
+        <div class="predictive-search" id="predictive-search" aria-live="polite" aria-label="Résultats de recherche">
+          <div class="predictive-search-inner" data-predictive-search-results hidden></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="newsletter-popup" class="overlay" aria-hidden="true" hidden>
+      <div class="overlay-backdrop" data-newsletter-close></div>
+      <div class="overlay-panel" role="dialog" aria-modal="true" aria-label="Newsletter">
+        <button type="button" class="overlay-close btn btn-ghost btn-icon" data-newsletter-close aria-label="Fermer">
+          &times;
+        </button>
+        <div class="newsletter-popup-inner">
+          <div class="newsletter-popup-media">
+            <div class="newsletter-popup-media-inner">
+              <img src="{{ 'newsletter-popup.jpg' | asset_url }}" alt="M/SA" loading="lazy">
+            </div>
+          </div>
+          <div class="newsletter-popup-content">
+            <p class="text-sm uppercase tracking-wide mb-2">welcome on the Pure club .</p>
+            <p class="text-sm text-muted-foreground mb-6">
+              Inscrivez-vous pour recevoir les informations sur nos collections, nos offres exclusives, notre newsletter, nos événements SLOW MUST GO ON!. En vous abonnant, vous acceptez notre Politique de confidentialité.
+            </p>
+
+            {% form 'customer', class: 'newsletter-popup-form' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="flex gap-2">
+                <input type="email" name="contact[email]" class="input bg-background flex-1" placeholder="Votre email" required>
+                <button type="submit" class="btn btn-default">S’inscrire</button>
+              </div>
+              {% if form.posted_successfully? %}
+                <p class="text-xs mt-3">Merci ! Votre inscription est confirmée.</p>
+              {% endif %}
+              {% if form.errors %}
+                <p class="text-xs mt-3 text-red-600">{{ form.errors | default_errors }}</p>
+              {% endif %}
+            {% endform %}
+
+            <div class="text-xs text-muted-foreground mt-4">
+              <a href="{{ routes.root_url }}/policies/privacy-policy" class="underline">Politique de confidentialité</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-newsletter-config
+        data-newsletter-delay-ms="2000"
+        data-newsletter-cookie-days="30"
+      ></div>
+    </div>
+
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>

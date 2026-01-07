@@ -11,6 +11,12 @@
     <h1 class="collection-title">
       {{ collection.title }}
     </h1>
+
+    {%- if collection.handle == 'precommande' -%}
+      <p class="preorder-leadtime text-sm text-muted-foreground mt-3">
+        Date de livraison précommande : 6 semaines de fabrication.
+      </p>
+    {%- endif -%}
   </div>
 
   <!-- Filters and Toolbar Row -->

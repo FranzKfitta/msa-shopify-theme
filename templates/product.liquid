@@ -79,6 +79,12 @@
         {%- endif -%}
       </p>
 
+      {%- if product.tags contains 'preorder' or product.tags contains 'precommande' -%}
+        <p class="preorder-leadtime text-sm text-muted-foreground mb-6">
+          Date de livraison précommande : 6 semaines de fabrication.
+        </p>
+      {%- endif -%}
+
       <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" id="product-form">
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="product-variant-id">
 

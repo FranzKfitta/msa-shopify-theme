@@ -1,0 +1,116 @@
+{% comment %}
+  Search template
+{% endcomment %}
+
+<main class="search-page container mx-auto px-4 py-10">
+  <h1 class="font-serif text-3xl mb-6">Recherche</h1>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-form mb-10">
+    <div class="flex gap-2">
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Rechercher…"
+        class="input bg-background flex-1"
+      >
+      <input type="hidden" name="type" value="product">
+      <button type="submit" class="btn btn-default">Rechercher</button>
+    </div>
+  </form>
+
+  {% if search.performed %}
+    {% if search.results_count > 0 %}
+      <p class="text-sm text-muted-foreground mb-6">
+        {{ search.results_count }} résultat(s) pour “{{ search.terms | escape }}”
+      </p>
+
+      {% paginate search.results by 24 %}
+        <div class="products-grid">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% assign product = item %}
+              <div class="collection-product-card" data-product-id="{{ product.id }}">
+                <div class="product-image-wrapper">
+                  <a href="{{ product.url }}" class="product-link">
+                    {%- if product.images.size > 0 -%}
+                      {%- for image in product.images -%}
+                        <img
+                          src="{{ image | image_url: width: 600 }}"
+                          srcset="{{ image | image_url: width: 400 }} 400w,
+                                  {{ image | image_url: width: 600 }} 600w,
+                                  {{ image | image_url: width: 800 }} 800w"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          alt="{{ image.alt | escape | default: product.title }}"
+                          class="product-image {% if forloop.first %}product-image-active{% else %}product-image-hidden{% endif %}"
+                          data-image-index="{{ forloop.index0 }}"
+                          loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                        >
+                      {%- endfor -%}
+                      {%- if product.images.size > 1 -%}
+                        <button type="button" class="product-carousel-arrow product-carousel-prev" aria-label="Previous image">
+                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button type="button" class="product-carousel-arrow product-carousel-next" aria-label="Next image">
+                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      {%- endif -%}
+                    {%- else -%}
+                      <div class="product-image-placeholder">
+                        <span>No image</span>
+                      </div>
+                    {%- endif -%}
+                  </a>
+
+                  {%- if product.available == false and settings.show_sold_out_badge -%}
+                    <div class="product-sold-out">Sold out</div>
+                  {%- elsif product.compare_at_price_max > product.price -%}
+                    <div class="product-sale">Sale</div>
+                  {%- endif -%}
+
+                  {%- if product.available -%}
+                    <button
+                      type="button"
+                      class="product-quick-add"
+                      aria-label="Ajouter"
+                      data-variant-id="{{ product.first_available_variant.id }}"
+                    >
+                      <span class="product-quick-add-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M6 6h15l-1.2 7.2a1.5 1.5 0 0 1-1.5 1.3H9.7a1.5 1.5 0 0 1-1.5-1.3L7 4.5A1.5 1.5 0 0 0 5.5 3H3" />
+                          <circle cx="10" cy="20" r="1.3" />
+                          <circle cx="17" cy="20" r="1.3" />
+                          <path d="M18.5 5v-2" />
+                          <path d="M17.5 4h2" />
+                        </svg>
+                      </span>
+                      <span class="product-quick-add-label">Ajouter</span>
+                    </button>
+                  {%- endif -%}
+                </div>
+
+                <div class="product-info">
+                  <a href="{{ product.url }}" class="product-link">
+                    <h3 class="product-name">{{ product.title }}</h3>
+                    <p class="product-price">
+                      {{ product.price | money }}
+                      {%- if product.compare_at_price_max > product.price -%}
+                        <span class="product-price-compare">{{ product.compare_at_price_max | money }}</span>
+                      {%- endif -%}
+                    </p>
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endpaginate %}
+    {% else %}
+      <p class="text-sm text-muted-foreground">Aucun résultat.</p>
+    {% endif %}
+  {% endif %}
+</main>

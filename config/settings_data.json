@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "favicon": "shopify://shop_images/coeur_orange_page-0001.jpg",
@@ -36,7 +27,7 @@
           "hero_video": "",
           "hero_video_file": "shopify://files/videos/74586718e32e439d81f7f30ca61134af_trim.mp4",
           "heading": "The Pure",
-          "subheading": "SS26",
+          "subheading": "The Pure",
           "button_text": "DISCOVER MORE",
           "button_link": "",
           "heading_color": "#f9e1ea",
@@ -72,7 +63,7 @@
         "type": "image-banner-grid",
         "settings": {
           "image_1": "shopify://shop_images/msa10_23_02.png",
-          "heading_1": "SS26 COLLECTION",
+          "heading_1": "THE PURE",
           "link_1": "shopify://collections/chemises-et-tops",
           "image_2": "shopify://shop_images/0E8CC2F7-7E72-402D-AF8E-B9C8E42FA84A.png",
           "heading_2": "Lookbook",

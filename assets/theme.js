@@ -6,6 +6,30 @@
 (function() {
   'use strict';
 
+  function setCookie(name, value, days) {
+    try {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+    } catch (e) {
+      // no-op
+    }
+  }
+
+  function getCookie(name) {
+    try {
+      const target = `${encodeURIComponent(name)}=`;
+      const parts = document.cookie.split(';');
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i].trim();
+        if (part.indexOf(target) === 0) return decodeURIComponent(part.substring(target.length));
+      }
+    } catch (e) {
+      // no-op
+    }
+    return null;
+  }
+
   // Cart Drawer Functionality
   const cartDrawer = document.getElementById('cart-drawer');
   const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
@@ -449,6 +473,232 @@
   } else {
     updateCartCount();
   }
+
+  // Search overlay (loupe)
+  const searchToggle = document.getElementById('search-toggle');
+  const searchOverlay = document.getElementById('search-overlay');
+
+  function openOverlay(overlayEl, toggleEl, focusSelector) {
+    if (!overlayEl) return;
+    overlayEl.hidden = false;
+    overlayEl.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (toggleEl) toggleEl.setAttribute('aria-expanded', 'true');
+    window.setTimeout(() => {
+      if (focusSelector) {
+        const input = overlayEl.querySelector(focusSelector);
+        if (input) input.focus();
+      }
+    }, 50);
+  }
+
+  function closeOverlay(overlayEl, toggleEl) {
+    if (!overlayEl) return;
+    overlayEl.hidden = true;
+    overlayEl.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (toggleEl) toggleEl.setAttribute('aria-expanded', 'false');
+  }
+
+  if (searchToggle && searchOverlay) {
+    searchToggle.addEventListener('click', function() {
+      const isOpen = searchOverlay.getAttribute('aria-hidden') === 'false';
+      if (isOpen) {
+        closeOverlay(searchOverlay, searchToggle);
+      } else {
+        openOverlay(searchOverlay, searchToggle, '#overlay-search-input');
+      }
+    });
+
+    searchOverlay.querySelectorAll('[data-overlay-close]').forEach(el => {
+      el.addEventListener('click', function() {
+        closeOverlay(searchOverlay, searchToggle);
+      });
+    });
+  }
+
+  // Predictive search results inside the search overlay
+  const overlaySearchInput = document.getElementById('overlay-search-input');
+  const predictiveResultsRoot = document.querySelector('[data-predictive-search-results]');
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function renderPredictiveProducts(products) {
+    if (!predictiveResultsRoot) return;
+
+    if (!products || products.length === 0) {
+      predictiveResultsRoot.innerHTML = '';
+      predictiveResultsRoot.hidden = true;
+      return;
+    }
+
+    const html = products.map(p => {
+      const url = p.url || '#';
+      const title = escapeHtml(p.title);
+      const img = p.featured_image && p.featured_image.url ? p.featured_image.url : null;
+
+      return `
+        <a class="predictive-search-item" href="${url}">
+          <span class="predictive-search-thumb">${img ? `<img src="${img}" alt="${title}" loading="lazy">` : ''}</span>
+          <span class="predictive-search-title">${title}</span>
+        </a>
+      `;
+    }).join('');
+
+    predictiveResultsRoot.innerHTML = html;
+    predictiveResultsRoot.hidden = false;
+  }
+
+  let predictiveTimer = null;
+  let predictiveAbort = null;
+
+  function clearPredictive() {
+    if (!predictiveResultsRoot) return;
+    predictiveResultsRoot.innerHTML = '';
+    predictiveResultsRoot.hidden = true;
+  }
+
+  function fetchPredictive(term) {
+    if (!window.routes || !window.routes.predictive_search_url) return;
+    if (!predictiveResultsRoot) return;
+
+    if (predictiveAbort) {
+      try { predictiveAbort.abort(); } catch (e) { /* no-op */ }
+    }
+    predictiveAbort = new AbortController();
+
+    const url = new URL(window.routes.predictive_search_url, window.location.origin);
+    url.searchParams.set('q', term);
+    url.searchParams.set('resources[type]', 'product');
+    url.searchParams.set('resources[limit]', '6');
+    url.searchParams.set('resources[options][unavailable_products]', 'hide');
+
+    fetch(url.toString(), {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
+      signal: predictiveAbort.signal
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Predictive search failed');
+        return res.json();
+      })
+      .then(data => {
+        const products = data && data.resources && data.resources.results && data.resources.results.products
+          ? data.resources.results.products
+          : [];
+        renderPredictiveProducts(products);
+      })
+      .catch(err => {
+        if (err && err.name === 'AbortError') return;
+        clearPredictive();
+      });
+  }
+
+  if (overlaySearchInput && predictiveResultsRoot) {
+    overlaySearchInput.addEventListener('input', function() {
+      const term = String(this.value || '').trim();
+      if (predictiveTimer) window.clearTimeout(predictiveTimer);
+
+      if (term.length < 2) {
+        clearPredictive();
+        return;
+      }
+
+      predictiveTimer = window.setTimeout(() => {
+        fetchPredictive(term);
+      }, 180);
+    });
+
+    overlaySearchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        clearPredictive();
+      }
+    });
+  }
+
+  // Newsletter popup
+  const newsletterOverlay = document.getElementById('newsletter-popup');
+  const newsletterConfig = newsletterOverlay ? newsletterOverlay.querySelector('[data-newsletter-config]') : null;
+
+  if (newsletterOverlay && newsletterConfig) {
+    const cookieName = 'msa_newsletter_dismissed';
+    const delayMs = parseInt(newsletterConfig.getAttribute('data-newsletter-delay-ms') || '2000', 10);
+    const cookieDays = parseInt(newsletterConfig.getAttribute('data-newsletter-cookie-days') || '30', 10);
+
+    const dismissed = getCookie(cookieName);
+    if (!dismissed) {
+      window.setTimeout(() => {
+        openOverlay(newsletterOverlay, null, 'input[type="email"]');
+      }, delayMs);
+    }
+
+    function dismissNewsletter() {
+      setCookie(cookieName, '1', cookieDays);
+      closeOverlay(newsletterOverlay, null);
+    }
+
+    newsletterOverlay.querySelectorAll('[data-newsletter-close]').forEach(el => {
+      el.addEventListener('click', dismissNewsletter);
+    });
+
+    const newsletterForm = newsletterOverlay.querySelector('form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function() {
+        setCookie(cookieName, '1', cookieDays);
+      });
+    }
+  }
+
+  // BUYERS ONLY access gate (code)
+  const buyersOnlyRoot = document.querySelector('[data-buyers-only]');
+  const buyersOnlyForm = document.querySelector('[data-buyers-only-form]');
+  const buyersOnlyConfig = document.querySelector('[data-buyers-only-config]');
+  const buyersOnlyError = document.querySelector('[data-buyers-only-error]');
+
+  if (buyersOnlyRoot && buyersOnlyForm && buyersOnlyConfig) {
+    const accessCode = buyersOnlyConfig.getAttribute('data-buyers-only-code') || '';
+    const redirectUrl = buyersOnlyConfig.getAttribute('data-buyers-only-redirect-url') || '/';
+
+    buyersOnlyForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = buyersOnlyForm.querySelector('input[name="buyers-only-code"]');
+      const value = input ? String(input.value || '') : '';
+      const ok = value === accessCode;
+
+      if (!ok) {
+        if (buyersOnlyError) buyersOnlyError.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        window.sessionStorage.setItem('msa_buyers_only_ok', '1');
+      } catch (err) {
+        // no-op
+      }
+
+      window.location.href = redirectUrl;
+    });
+  }
+
+  // Close overlays on ESC
+  document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Escape') return;
+    if (searchOverlay && searchOverlay.getAttribute('aria-hidden') === 'false') {
+      closeOverlay(searchOverlay, searchToggle);
+    }
+    if (newsletterOverlay && newsletterOverlay.getAttribute('aria-hidden') === 'false') {
+      closeOverlay(newsletterOverlay, null);
+    }
+  });
 
   // Expose cart count updater globally so other scripts (e.g. collection quick-add)
   // can trigger a unified cart refresh and drawer update
