@@ -689,6 +689,22 @@
     });
   }
 
+  // BUYERS ONLY collection guard (basic anti-bypass)
+  const buyersOnlyGuard = document.querySelector('[data-buyers-only-collection-guard]');
+  if (buyersOnlyGuard) {
+    let ok = false;
+    try {
+      ok = window.sessionStorage.getItem('msa_buyers_only_ok') === '1';
+    } catch (err) {
+      ok = false;
+    }
+
+    if (!ok) {
+      const gateUrl = buyersOnlyGuard.getAttribute('data-buyers-only-gate-url') || '/pages/buyers-only';
+      window.location.replace(gateUrl);
+    }
+  }
+
   // Close overlays on ESC
   document.addEventListener('keydown', function(event) {
     if (event.key !== 'Escape') return;

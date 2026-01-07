@@ -12,6 +12,14 @@
       {{ collection.title }}
     </h1>
 
+    {%- if collection.handle == 'buyers-only' -%}
+      <div
+        data-buyers-only-collection-guard
+        data-buyers-only-gate-url="/pages/buyers-only"
+        hidden
+      ></div>
+    {%- endif -%}
+
     {%- if collection.handle == 'precommande' -%}
       <p class="preorder-leadtime text-sm text-muted-foreground mt-3">
         Date de livraison précommande : 6 semaines de fabrication.

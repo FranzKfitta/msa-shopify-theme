@@ -35,7 +35,7 @@
 
         <div
           data-buyers-only-config
-          data-buyers-only-redirect-url="{{ section.settings.redirect_url | default: routes.root_url }}"
+          data-buyers-only-redirect-url="{{ section.settings.redirect_url | default: '/collections/buyers-only' }}"
           data-buyers-only-code="{{ section.settings.access_code }}"
         ></div>
       </div>
