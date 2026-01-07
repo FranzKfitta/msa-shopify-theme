@@ -1,0 +1,68 @@
+{% comment %}
+  Section: BUYERS ONLY access gate (code entry)
+{% endcomment %}
+
+<section class="buyers-only-access" data-buyers-only>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-md mx-auto">
+      <h1 class="font-serif text-3xl mb-4">BUYERS ONLY</h1>
+      <p class="text-sm text-muted-foreground mb-6">
+        Cette section est réservée. Entrez votre code d’accès pour continuer.
+      </p>
+
+      <form class="buyers-only-access-form" data-buyers-only-form>
+        <label class="block text-sm font-medium mb-2" for="buyers-only-code">Code d’accès</label>
+        <input
+          id="buyers-only-code"
+          name="buyers-only-code"
+          type="password"
+          class="input bg-background w-full"
+          autocomplete="one-time-code"
+          required
+        >
+        <p class="text-xs text-red-600 mt-2 hidden" data-buyers-only-error>
+          Code incorrect. Veuillez réessayer.
+        </p>
+
+        <button type="submit" class="btn btn-default w-full h-12 mt-4">
+          Accéder
+        </button>
+      </form>
+
+      <div class="text-xs text-muted-foreground mt-6">
+        <a href="{{ routes.root_url }}" class="underline">Retour à l’accueil</a>
+      </div>
+
+      <div
+        data-buyers-only-config
+        data-buyers-only-redirect-url="{{ section.settings.redirect_url | default: routes.root_url }}"
+        data-buyers-only-code="{{ section.settings.access_code }}"
+      ></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BUYERS ONLY Access",
+  "settings": [
+    {
+      "type": "text",
+      "id": "access_code",
+      "label": "Code d’accès",
+      "default": "Buyer4Slow11-5!"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "URL de redirection après succès"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BUYERS ONLY Access",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
