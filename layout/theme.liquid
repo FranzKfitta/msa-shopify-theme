@@ -97,7 +97,11 @@
         <div class="newsletter-popup-inner">
           <div class="newsletter-popup-media">
             <div class="newsletter-popup-media-inner">
-              <img src="{{ 'newsletter-popup.jpg' | asset_url }}" alt="M/SA" loading="lazy">
+              {%- if settings.newsletter_popup_image != blank -%}
+                <img src="{{ settings.newsletter_popup_image | image_url: width: 1200 }}" alt="M/SA" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'newsletter-popup.jpg' | asset_url }}" alt="M/SA" loading="lazy">
+              {%- endif -%}
             </div>
           </div>
           <div class="newsletter-popup-content">

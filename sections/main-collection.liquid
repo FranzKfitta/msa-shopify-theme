@@ -233,8 +233,18 @@
 
     <!-- Toolbar: Items count and Sort (Right) -->
     <div class="collection-toolbar">
+      {%- assign filtered_products_count = collection.products_count -%}
+      {%- if collection.handle != 'buyers-only' and section.settings.precommande_required_tag != blank -%}
+        {%- assign filtered_products_count = 0 -%}
+        {%- assign _precommande_tag = section.settings.precommande_required_tag | strip -%}
+        {%- for product in collection.products -%}
+          {%- if product.tags contains _precommande_tag -%}
+            {%- assign filtered_products_count = filtered_products_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
       <span class="collection-count">
-        {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
+        {{ filtered_products_count }} {{ filtered_products_count | pluralize: 'item', 'items' }}
       </span>
       <div class="collection-sort">
         <form method="get" action="{{ collection.url }}" class="sort-form" id="sort-form">
@@ -304,12 +314,27 @@
       {% paginate collection.products by 24 %}
       <!-- Products Grid -->
       {%- if collection.products_count > 0 -%}
+        {%- assign precommande_required_tag = '' -%}
+        {%- if collection.handle != 'buyers-only' and section.settings.precommande_required_tag != blank -%}
+          {%- assign precommande_required_tag = section.settings.precommande_required_tag | strip -%}
+        {%- endif -%}
+        {%- assign rendered_products_count = 0 -%}
+
         <div
           class="products-grid"
           data-infinite-scroll-grid="true"
           data-next-page-url="{% if paginate.next %}{{ paginate.next.url | escape }}{% endif %}"
         >
           {%- for product in collection.products -%}
+            {%- assign should_render_product = true -%}
+            {%- if precommande_required_tag != blank -%}
+              {%- unless product.tags contains precommande_required_tag -%}
+                {%- assign should_render_product = false -%}
+              {%- endunless -%}
+            {%- endif -%}
+
+            {%- if should_render_product -%}
+            {%- assign rendered_products_count = rendered_products_count | plus: 1 -%}
             <div class="collection-product-card" data-product-id="{{ product.id }}">
               <div class="product-image-wrapper">
                 <a href="{{ product.url }}" class="product-link">
@@ -383,6 +408,7 @@
                 </a>
               </div>
             </div>
+            {%- endif -%}
           {%- endfor -%}
         </div>
 
@@ -390,6 +416,12 @@
         <div class="collection-infinite-loader" data-infinite-scroll-loader="true">
           <span>Loading more products...</span>
         </div>
+
+        {%- if rendered_products_count == 0 -%}
+          <div class="collection-empty-state">
+            <p>No products found in this collection.</p>
+          </div>
+        {%- endif -%}
 
         <noscript class="collection-pagination-fallback">
           {%- if paginate.pages > 1 -%}
@@ -1461,7 +1493,15 @@
 {% schema %}
 {
   "name": "Main collection",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "precommande_required_tag",
+      "label": "PRECOMMANDE: tag requis",
+      "info": "Si renseigné, la collection PRECOMMANDE n’affichera que les produits ayant ce tag.",
+      "default": "precommande"
+    }
+  ],
   "blocks": [
     {
       "type": "filter_group",

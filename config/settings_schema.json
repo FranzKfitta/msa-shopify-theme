@@ -152,6 +152,16 @@
         "default": "New Collection Available - 15% OFF with code NEWSEASON"
       }
     ]
+  },
+  {
+    "name": "Newsletter Popup",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "newsletter_popup_image",
+        "label": "Newsletter popup image"
+      }
+    ]
   }
 ]
 
