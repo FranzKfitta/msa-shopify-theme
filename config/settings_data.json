@@ -12,6 +12,7 @@
     "favicon": "shopify://shop_images/coeur_orange_page-0001.jpg",
     "footer_description": "",
     "show_sold_out_badge": false,
+    "newsletter_popup_image": "shopify://shop_images/veste-courte-vania-bi-matiere-6146652.jpg",
     "sections": {
       "header": {
         "type": "header",
