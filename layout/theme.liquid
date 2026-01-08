@@ -125,7 +125,7 @@
             {% endform %}
 
             <div class="text-xs text-muted-foreground mt-4">
-              <a href="{{ routes.root_url }}/policies/privacy-policy" class="underline">Politique de confidentialité</a>
+              <a href="{% if shop.policies.privacy_policy and shop.policies.privacy_policy.url != blank %}{{ shop.policies.privacy_policy.url }}{% else %}{{ routes.root_url }}/policies/privacy-policy{% endif %}" class="underline">Politique de confidentialité</a>
             </div>
           </div>
         </div>
