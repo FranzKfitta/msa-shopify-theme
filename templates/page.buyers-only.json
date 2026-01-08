@@ -1,9 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "BUYERS ONLY",
   "sections": {
     "main": {
       "type": "buyers-only-access",
-      "settings": {}
+      "settings": {
+        "background_image": "shopify://shop_images/520ab912-9019-4ab9-bdd8-ff6ae74e0e83.png",
+        "overlay_opacity": 55,
+        "heading": "BUYERS ONLY",
+        "description": "Cette section est réservée. Entrez votre code d’accès pour continuer.",
+        "access_code": "Buyer4Slow11-5!",
+        "redirect_url": ""
+      }
     }
   },
   "order": [
