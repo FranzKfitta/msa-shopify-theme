@@ -1,0 +1,433 @@
+<section class="buyers-only-hub" data-buyers-only-page-guard data-buyers-only-gate-url="{{ section.settings.gate_url | default: '/pages/buyers-only' }}">
+  <div class="buyers-only-hub__hero"{% if section.settings.hero_background != blank %} style="background-image: url('{{ section.settings.hero_background | image_url: width: 2400 }}');"{% endif %}>
+    <div class="buyers-only-hub__hero-overlay" style="opacity: {{ section.settings.hero_overlay_opacity | divided_by: 100.0 }};"></div>
+
+    <div class="buyers-only-hub__hero-inner container mx-auto px-4">
+      <div class="buyers-only-hub__hero-content">
+        {%- if section.settings.hero_kicker != blank -%}
+          <p class="buyers-only-hub__kicker">{{ section.settings.hero_kicker }}</p>
+        {%- endif -%}
+        <h1 class="buyers-only-hub__title font-serif">{{ section.settings.hero_title }}</h1>
+        {%- if section.settings.hero_subtitle != blank -%}
+          <p class="buyers-only-hub__subtitle">{{ section.settings.hero_subtitle }}</p>
+        {%- endif -%}
+
+        <div class="buyers-only-hub__hero-ctas">
+          {%- if section.settings.primary_cta_label != blank and section.settings.primary_cta_url != blank -%}
+            <a class="btn btn-default h-12 buyers-only-hub__cta" href="{{ section.settings.primary_cta_url }}">
+              {{ section.settings.primary_cta_label }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.secondary_cta_label != blank -%}
+            <a class="btn btn-outline h-12 buyers-only-hub__cta" href="{{ section.settings.secondary_cta_url | default: '#buyers-only-meeting' }}">
+              {{ section.settings.secondary_cta_label }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.top_note != blank -%}
+          <p class="buyers-only-hub__top-note">{{ section.settings.top_note }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="buyers-only-hub__content container mx-auto px-4">
+    <div class="buyers-only-hub__intro">
+      {%- if section.settings.intro_heading != blank -%}
+        <h2 class="buyers-only-hub__section-title font-serif">{{ section.settings.intro_heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.intro_text != blank -%}
+        <div class="buyers-only-hub__intro-text rte">{{ section.settings.intro_text }}</div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="buyers-only-hub__bullets">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'bullet' -%}
+              <li class="buyers-only-hub__bullet" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="buyers-only-hub__lookbook">
+      <h2 class="buyers-only-hub__section-title font-serif">{{ section.settings.lookbook_heading }}</h2>
+
+      <div class="buyers-only-hub__gallery" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'lookbook_image' -%}
+            <div class="buyers-only-hub__gallery-item" role="listitem" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  srcset="{{ block.settings.image | image_url: width: 600 }} 600w,
+                          {{ block.settings.image | image_url: width: 900 }} 900w,
+                          {{ block.settings.image | image_url: width: 1200 }} 1200w"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 45vw, 80vw"
+                  alt="{{ block.settings.image.alt | default: section.settings.lookbook_heading | escape }}"
+                  loading="lazy"
+                  class="buyers-only-hub__gallery-img"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.lookbook_note != blank -%}
+        <p class="buyers-only-hub__note">{{ section.settings.lookbook_note }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="buyers-only-hub__linesheet">
+      <h2 class="buyers-only-hub__section-title font-serif">{{ section.settings.linesheet_heading }}</h2>
+
+      <div class="buyers-only-hub__linesheet-ctas">
+        {%- if section.settings.linesheet_download_label != blank and section.settings.linesheet_pdf != blank -%}
+          <a class="btn btn-default h-12 buyers-only-hub__cta" href="{{ section.settings.linesheet_pdf }}" target="_blank" rel="noopener">
+            {{ section.settings.linesheet_download_label }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.linesheet_view_label != blank and section.settings.linesheet_view_url != blank -%}
+          <a class="btn btn-outline h-12 buyers-only-hub__cta" href="{{ section.settings.linesheet_view_url }}">
+            {{ section.settings.linesheet_view_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="buyers-only-hub__keyinfo">
+        {%- if section.settings.keyinfo_rrp != blank -%}
+          <div class="buyers-only-hub__keyinfo-item"><span class="buyers-only-hub__keyinfo-label">RRP / Wholesale</span><span class="buyers-only-hub__keyinfo-value">{{ section.settings.keyinfo_rrp }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.keyinfo_moq != blank -%}
+          <div class="buyers-only-hub__keyinfo-item"><span class="buyers-only-hub__keyinfo-label">MOQ</span><span class="buyers-only-hub__keyinfo-value">{{ section.settings.keyinfo_moq }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.keyinfo_delivery != blank -%}
+          <div class="buyers-only-hub__keyinfo-item"><span class="buyers-only-hub__keyinfo-label">Delivery windows</span><span class="buyers-only-hub__keyinfo-value">{{ section.settings.keyinfo_delivery }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.keyinfo_origin != blank -%}
+          <div class="buyers-only-hub__keyinfo-item"><span class="buyers-only-hub__keyinfo-label">Made in</span><span class="buyers-only-hub__keyinfo-value">{{ section.settings.keyinfo_origin }}</span></div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="buyers-only-hub__meeting" id="buyers-only-meeting">
+      <h2 class="buyers-only-hub__section-title font-serif">{{ section.settings.meeting_heading }}</h2>
+
+      {%- if section.settings.meeting_lead != blank -%}
+        <p class="buyers-only-hub__lead">{{ section.settings.meeting_lead }}</p>
+      {%- endif -%}
+
+      <div class="buyers-only-hub__form-card">
+        {%- form 'contact', id: 'buyers-only-contact' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="buyers-only-hub__success">{{ section.settings.success_message }}</p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="buyers-only-hub__errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[subject]" value="{{ section.settings.email_subject }}">
+
+          <div class="buyers-only-hub__form-grid">
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-name">Name</label>
+              <input id="buyers-only-name" class="input bg-background" type="text" name="contact[name]" autocomplete="name" required>
+            </div>
+
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-company">Company</label>
+              <input id="buyers-only-company" class="input bg-background" type="text" name="contact[company]" autocomplete="organization" required>
+            </div>
+
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-role">Role</label>
+              <select id="buyers-only-role" class="input bg-background" name="contact[role]" required>
+                <option value="Buyer">Buyer</option>
+                <option value="Agent">Agent</option>
+                <option value="Press">Press</option>
+              </select>
+            </div>
+
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-country">Country</label>
+              <input id="buyers-only-country" class="input bg-background" type="text" name="contact[country]" autocomplete="country-name" required>
+            </div>
+
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-email">Email</label>
+              <input id="buyers-only-email" class="input bg-background" type="email" name="contact[email]" autocomplete="email" required>
+            </div>
+
+            <div class="buyers-only-hub__field">
+              <label for="buyers-only-interest">Interest</label>
+              <select id="buyers-only-interest" class="input bg-background" name="contact[interest]" required>
+                <option value="Order">Order</option>
+                <option value="Representation">Representation</option>
+                <option value="Press">Press</option>
+              </select>
+            </div>
+
+            <div class="buyers-only-hub__field buyers-only-hub__field--full">
+              <label for="buyers-only-message">Message</label>
+              <textarea id="buyers-only-message" class="input bg-background" name="contact[body]" rows="5"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-default h-12 buyers-only-hub__submit">{{ section.settings.meeting_button_label }}</button>
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="buyers-only-hub__signature">
+      <p class="buyers-only-hub__signature-text">{{ section.settings.signature_text }}</p>
+    </div>
+
+    {%- if section.settings.tranoi_note != blank -%}
+      <div class="buyers-only-hub__tranoi">
+        <p class="buyers-only-hub__tranoi-text">{{ section.settings.tranoi_note }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BUYERS ONLY Hub",
+  "settings": [
+    {
+      "type": "text",
+      "id": "gate_url",
+      "label": "Gate page URL",
+      "default": "/pages/buyers-only"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_background",
+      "label": "Hero background image"
+    },
+    {
+      "type": "range",
+      "id": "hero_overlay_opacity",
+      "label": "Hero overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "Hero kicker",
+      "default": "Wholesale access — Tranoï Paris"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero title",
+      "default": "M\/SA — Joyful Circular Couture"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Hero subtitle",
+      "default": "SS26 Collection"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary CTA label",
+      "default": "View collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary CTA URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary CTA label",
+      "default": "Book an appointment"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary CTA URL"
+    },
+    {
+      "type": "textarea",
+      "id": "top_note",
+      "label": "Top note",
+      "default": "Access reserved for buyers, agents & press met during Tranoï Paris."
+    },
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Intro heading",
+      "default": "CE QUE L’ACHETEUR TROUVE ICI"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Inside this access:</p>"
+    },
+    {
+      "type": "text",
+      "id": "lookbook_heading",
+      "label": "Lookbook heading",
+      "default": "LOOKBOOK"
+    },
+    {
+      "type": "textarea",
+      "id": "lookbook_note",
+      "label": "Lookbook note",
+      "default": "Designed and produced in Paris. Circular materials."
+    },
+    {
+      "type": "text",
+      "id": "linesheet_heading",
+      "label": "Line sheet heading",
+      "default": "LINE SHEET"
+    },
+    {
+      "type": "text",
+      "id": "linesheet_download_label",
+      "label": "Line sheet download label",
+      "default": "DOWNLOAD LINE SHEET (PDF)"
+    },
+    {
+      "type": "url",
+      "id": "linesheet_pdf",
+      "label": "Line sheet PDF URL"
+    },
+    {
+      "type": "text",
+      "id": "linesheet_view_label",
+      "label": "Line sheet view label",
+      "default": "VIEW LINE SHEET"
+    },
+    {
+      "type": "url",
+      "id": "linesheet_view_url",
+      "label": "Line sheet view URL"
+    },
+    {
+      "type": "text",
+      "id": "keyinfo_rrp",
+      "label": "Key info: RRP / Wholesale"
+    },
+    {
+      "type": "text",
+      "id": "keyinfo_moq",
+      "label": "Key info: MOQ"
+    },
+    {
+      "type": "text",
+      "id": "keyinfo_delivery",
+      "label": "Key info: Delivery windows"
+    },
+    {
+      "type": "text",
+      "id": "keyinfo_origin",
+      "label": "Key info: Made in"
+    },
+    {
+      "type": "text",
+      "id": "meeting_heading",
+      "label": "Meeting heading",
+      "default": "Book an appointment / Request prices"
+    },
+    {
+      "type": "textarea",
+      "id": "meeting_lead",
+      "label": "Meeting lead",
+      "default": "Please share a few details so we can get back to you quickly."
+    },
+    {
+      "type": "text",
+      "id": "meeting_button_label",
+      "label": "Meeting button label",
+      "default": "BOOK A MEETING"
+    },
+    {
+      "type": "text",
+      "id": "email_subject",
+      "label": "Email subject",
+      "default": "BUYERS ONLY — SS26"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you. We will get back to you shortly."
+    },
+    {
+      "type": "textarea",
+      "id": "signature_text",
+      "label": "Signature text",
+      "default": "M\/SA — Makers of Sustainable Aesthetics. Circular couture. Paris-based. Social impact atelier."
+    },
+    {
+      "type": "textarea",
+      "id": "tranoi_note",
+      "label": "Tranoï note",
+      "default": "Meet us at Tranoï Paris — Stand [XX]"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Full SS26 Lookbook"
+        }
+      ]
+    },
+    {
+      "type": "lookbook_image",
+      "name": "Lookbook image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BUYERS ONLY Hub",
+      "category": "Text",
+      "blocks": [
+        { "type": "bullet" },
+        { "type": "bullet" },
+        { "type": "bullet" },
+        { "type": "bullet" },
+        { "type": "lookbook_image" },
+        { "type": "lookbook_image" },
+        { "type": "lookbook_image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
