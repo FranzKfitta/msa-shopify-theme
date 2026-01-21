@@ -705,6 +705,22 @@
     }
   }
 
+  // BUYERS ONLY page guard (basic anti-bypass)
+  const buyersOnlyPageGuard = document.querySelector('[data-buyers-only-page-guard]');
+  if (buyersOnlyPageGuard) {
+    let ok = false;
+    try {
+      ok = window.sessionStorage.getItem('msa_buyers_only_ok') === '1';
+    } catch (err) {
+      ok = false;
+    }
+
+    if (!ok) {
+      const gateUrl = buyersOnlyPageGuard.getAttribute('data-buyers-only-gate-url') || '/pages/buyers-only';
+      window.location.replace(gateUrl);
+    }
+  }
+
   // Close overlays on ESC
   document.addEventListener('keydown', function(event) {
     if (event.key !== 'Escape') return;
