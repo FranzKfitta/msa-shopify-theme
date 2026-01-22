@@ -3002,6 +3002,41 @@ img {
   transform: translateX(0);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .buyers-only-hub {
+    overflow: visible;
+  }
+
+  .buyers-only-hub__container {
+    height: auto;
+  }
+
+  .buyers-only-hub__card {
+    flex: none;
+    min-height: 70vh;
+    height: 70vh;
+  }
+
+  .buyers-only-hub__card-bg {
+    filter: none;
+  }
+
+  .buyers-only-hub__card-heading,
+  .buyers-only-hub__card-btn {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .buyers-only-hub__container:hover .buyers-only-hub__card {
+    flex: none;
+  }
+
+  .buyers-only-hub__container:hover .buyers-only-hub__card:hover {
+    flex: none;
+  }
+}
+
 /* Button size variants */
 .buyers-only-hub__card-btn--small {
   font-size: 0.875rem;
