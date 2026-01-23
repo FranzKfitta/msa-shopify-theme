@@ -71,44 +71,47 @@
           {%- endif -%}
           <input type="hidden" name="contact[subject]" value="{{ section.settings.form_subject | default: 'BUYERS ONLY Contact' }}">
           <div class="buyers-only-hub__form-grid">
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-name">Name *</label>
-              <input id="contact-name" type="text" name="contact[name]" required>
-            </div>
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-company">Company *</label>
-              <input id="contact-company" type="text" name="contact[company]" required>
-            </div>
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-role">Role *</label>
-              <select id="contact-role" name="contact[role]" required>
-                <option value="">Select role</option>
-                <option value="Buyer">Buyer</option>
-                <option value="Agent">Agent</option>
-                <option value="Press">Press</option>
-              </select>
-            </div>
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-country">Country *</label>
-              <input id="contact-country" type="text" name="contact[country]" required>
-            </div>
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-email">Email *</label>
-              <input id="contact-email" type="email" name="contact[email]" required>
-            </div>
-            <div class="buyers-only-hub__form-field">
-              <label for="contact-interest">Interest *</label>
-              <select id="contact-interest" name="contact[interest]" required>
-                <option value="">Select interest</option>
-                <option value="Order">Order</option>
-                <option value="Representation">Representation</option>
-                <option value="Press">Press</option>
-              </select>
-            </div>
-            <div class="buyers-only-hub__form-field buyers-only-hub__form-field--full">
-              <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="contact[body]" rows="5"></textarea>
-            </div>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'form_field' -%}
+                {%- assign field_id = block.settings.field_name | handleize | prepend: 'contact-' -%}
+                {%- assign field_name = block.settings.field_name | handleize -%}
+                {%- assign is_required = block.settings.required -%}
+                {%- assign field_width = block.settings.field_width | default: 'half' -%}
+                
+                <div class="buyers-only-hub__form-field{% if field_width == 'full' %} buyers-only-hub__form-field--full{% endif %}" {{ block.shopify_attributes }}>
+                  <label for="{{ field_id }}">{{ block.settings.label }}{% if is_required %} *{% endif %}</label>
+                  
+                  {%- case block.settings.field_type -%}
+                    {%- when 'text' -%}
+                      <input id="{{ field_id }}" type="text" name="contact[{{ field_name }}]"{% if is_required %} required{% endif %}>
+                    
+                    {%- when 'email' -%}
+                      <input id="{{ field_id }}" type="email" name="contact[{{ field_name }}]"{% if is_required %} required{% endif %}>
+                    
+                    {%- when 'tel' -%}
+                      <input id="{{ field_id }}" type="tel" name="contact[{{ field_name }}]"{% if is_required %} required{% endif %}>
+                    
+                    {%- when 'number' -%}
+                      <input id="{{ field_id }}" type="number" name="contact[{{ field_name }}]"{% if is_required %} required{% endif %}>
+                    
+                    {%- when 'select' -%}
+                      <select id="{{ field_id }}" name="contact[{{ field_name }}]"{% if is_required %} required{% endif %}>
+                        <option value="">{{ block.settings.placeholder | default: 'Select an option' }}</option>
+                        {%- assign options = block.settings.select_options | newline_to_br | strip_newlines | split: '<br />' -%}
+                        {%- for option in options -%}
+                          {%- assign option_trimmed = option | strip -%}
+                          {%- if option_trimmed != blank -%}
+                            <option value="{{ option_trimmed }}">{{ option_trimmed }}</option>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </select>
+                    
+                    {%- when 'textarea' -%}
+                      <textarea id="{{ field_id }}" name="contact[{{ field_name }}]" rows="{{ block.settings.textarea_rows | default: 5 }}"{% if is_required %} required{% endif %}></textarea>
+                  {%- endcase -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
           </div>
           <button type="submit" class="btn btn-default buyers-only-hub__form-submit">{{ section.settings.form_button_text | default: 'Send Message' }}</button>
         {%- endform -%}
@@ -249,6 +252,78 @@
           "info": "Only used when action is 'View PDF'. Upload PDF to Files and paste URL here"
         }
       ]
+    },
+    {
+      "type": "form_field",
+      "name": "Form Field",
+      "settings": [
+        {
+          "type": "select",
+          "id": "field_type",
+          "label": "Field type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "email", "label": "Email" },
+            { "value": "tel", "label": "Phone" },
+            { "value": "number", "label": "Number" },
+            { "value": "select", "label": "Dropdown" },
+            { "value": "textarea", "label": "Textarea" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Field label",
+          "default": "Field Label"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field name",
+          "info": "Used in form submission. Use lowercase letters, numbers, and underscores only.",
+          "default": "field_name"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required field",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "field_width",
+          "label": "Field width",
+          "options": [
+            { "value": "half", "label": "Half width" },
+            { "value": "full", "label": "Full width" }
+          ],
+          "default": "half"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder text",
+          "info": "Only for dropdown fields"
+        },
+        {
+          "type": "textarea",
+          "id": "select_options",
+          "label": "Dropdown options",
+          "info": "Only for dropdown fields. Enter one option per line.",
+          "placeholder": "Option 1\nOption 2\nOption 3"
+        },
+        {
+          "type": "range",
+          "id": "textarea_rows",
+          "label": "Textarea rows",
+          "info": "Only for textarea fields",
+          "min": 3,
+          "max": 10,
+          "step": 1,
+          "default": 5
+        }
+      ]
     }
   ],
   "presets": [
@@ -259,7 +334,82 @@
         { "type": "card" },
         { "type": "card" },
         { "type": "card" },
-        { "type": "card" }
+        { "type": "card" },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "text",
+            "label": "Name",
+            "field_name": "name",
+            "required": true,
+            "field_width": "half"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "text",
+            "label": "Company",
+            "field_name": "company",
+            "required": true,
+            "field_width": "half"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "select",
+            "label": "Role",
+            "field_name": "role",
+            "required": true,
+            "field_width": "half",
+            "placeholder": "Select role",
+            "select_options": "Buyer\nAgent\nPress"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "text",
+            "label": "Country",
+            "field_name": "country",
+            "required": true,
+            "field_width": "half"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "email",
+            "label": "Email",
+            "field_name": "email",
+            "required": true,
+            "field_width": "half"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "select",
+            "label": "Interest",
+            "field_name": "interest",
+            "required": true,
+            "field_width": "half",
+            "placeholder": "Select interest",
+            "select_options": "Order\nRepresentation\nPress"
+          }
+        },
+        {
+          "type": "form_field",
+          "settings": {
+            "field_type": "textarea",
+            "label": "Message",
+            "field_name": "body",
+            "required": false,
+            "field_width": "full",
+            "textarea_rows": 5
+          }
+        }
       ]
     }
   ]
