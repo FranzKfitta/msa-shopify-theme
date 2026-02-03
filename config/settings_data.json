@@ -73,17 +73,17 @@
         "type": "image-banner-grid",
         "settings": {
           "layout_mode": "two",
-          "image_1": "shopify://shop_images/msa10_23_02.png",
+          "image_1": "shopify://shop_images/Image_03-02-2026_a_15.15.jpg",
           "heading_1": "THE PURE",
           "link_1": "shopify://collections/chemises-et-tops",
-          "image_2": "shopify://shop_images/Image_03-02-2026_a_15.09.jpg",
+          "image_2": "shopify://shop_images/Image_03-02-2026_a_15.14.jpg",
           "heading_2": "Lookbook",
           "link_2": "shopify://pages/lookbook",
           "padding_top": 40,
           "padding_bottom": 40,
           "heading_font_size": 40,
           "heading_font_weight": "700",
-          "heading_1_color": "#ffffff",
+          "heading_1_color": "#000000",
           "heading_2_color": "#000000",
           "heading_1_position": "bottom_right",
           "heading_2_position": "bottom_right"
@@ -492,7 +492,9 @@
       },
       "main-collection": {
         "type": "main-collection",
-        "settings": {}
+        "settings": {
+          "precommande_required_tag": "precommande"
+        }
       },
       "preorder-info": {
         "type": "preorder-info",
