@@ -149,7 +149,7 @@
         "type": "lookbook-split-hero",
         "settings": {
           "image_left": "shopify://shop_images/The_Pure_ecee900a-b187-47bc-983f-4ed2e53635f5.png",
-          "image_right": "shopify://shop_images/RENATA_CUIR_EVASEE.png"
+          "image_right": "shopify://shop_images/Image_03-02-2026_a_14.41.jpg"
         }
       },
       "lookbook-gallery": {
@@ -158,25 +158,19 @@
           "gallery_image_CxwVHp": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/the-devil-wears-boring-fast-fashion-8849465.png"
+              "image": "shopify://shop_images/joyful-circular-couture-8748047.jpg"
             }
           },
-          "gallery_image_MF64bM": {
+          "gallery_image_rmf4dm": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/404-fast-fashion-not-found-5152926.png"
-            }
-          },
-          "gallery_image_fWEkzm": {
-            "type": "gallery_image",
-            "settings": {
-              "image": "shopify://shop_images/joyful-circular-couture-1616826.png"
+              "image": "shopify://shop_images/jupe-plisee-patchwork-jane-4215532.jpg"
             }
           },
           "gallery_image_9feypw": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/sonia-stripes-7682713.png"
+              "image": "shopify://shop_images/Image_03-02-2026_a_14.46.jpg"
             }
           },
           "gallery_image_YeDwHi": {
@@ -185,22 +179,28 @@
               "image": "shopify://shop_images/rasta-chevron-shaped-cut-4556537.jpg"
             }
           },
-          "gallery_image_PmQPn7": {
-            "type": "gallery_image",
-            "settings": {
-              "image": "shopify://shop_images/cagole-6088794.png"
-            }
-          },
           "gallery_image_dwLtFw": {
             "type": "gallery_image",
             "settings": {
               "image": "shopify://shop_images/VANESSA_CAGOLE.png"
             }
           },
+          "gallery_image_PmQPn7": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/cagole-6088794.png"
+            }
+          },
           "gallery_image_wUDQBi": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/ROMYETLIGA817384.png"
+              "image": "shopify://shop_images/Image_03-02-2026_a_14.50.jpg"
+            }
+          },
+          "gallery_image_P4Wxqh": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/joan-2941997.jpg"
             }
           },
           "gallery_image_wVtERi": {
@@ -212,7 +212,7 @@
           "gallery_image_XzeFVA": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/liga-chiromani-9441643.png"
+              "image": "shopify://shop_images/Image_03-02-2026_a_14.55.jpg"
             }
           },
           "gallery_image_rhte6P": {
@@ -239,12 +239,6 @@
               "image": "shopify://shop_images/serena-chiromani-5796675.png"
             }
           },
-          "gallery_image_P4Wxqh": {
-            "type": "gallery_image",
-            "settings": {
-              "image": "shopify://shop_images/joan-2941997.jpg"
-            }
-          },
           "gallery_image_6ddj3C": {
             "type": "gallery_image",
             "settings": {
@@ -260,7 +254,7 @@
           "gallery_image_HefDkk": {
             "type": "gallery_image",
             "settings": {
-              "image": "shopify://shop_images/rona-chiromani-9693576.png"
+              "image": "shopify://shop_images/Image_03-02-2026_a_15.01.jpg"
             }
           },
           "gallery_image_88bjjK": {
@@ -269,16 +263,16 @@
               "image": "shopify://shop_images/romane-chiromani-2468151.png"
             }
           },
-          "gallery_image_F8CYRg": {
-            "type": "gallery_image",
-            "settings": {
-              "image": "shopify://shop_images/regina-2181306.png"
-            }
-          },
           "gallery_image_36Q4hJ": {
             "type": "gallery_image",
             "settings": {
               "image": "shopify://shop_images/crista-turquoise-8665818.jpg"
+            }
+          },
+          "gallery_image_F8CYRg": {
+            "type": "gallery_image",
+            "settings": {
+              "image": "shopify://shop_images/regina-2181306.png"
             }
           },
           "gallery_image_LqMPAm": {
@@ -395,12 +389,6 @@
               "image": "shopify://shop_images/veste-tailleur-valentina-en-feutrine-orange-7347453.jpg"
             }
           },
-          "gallery_image_rmf4dm": {
-            "type": "gallery_image",
-            "settings": {
-              "image": "shopify://shop_images/jupe-plisee-patchwork-jane-4215532.jpg"
-            }
-          },
           "gallery_image_mrCcGj": {
             "type": "gallery_image",
             "settings": {
@@ -410,26 +398,25 @@
         },
         "block_order": [
           "gallery_image_CxwVHp",
-          "gallery_image_MF64bM",
-          "gallery_image_fWEkzm",
+          "gallery_image_rmf4dm",
           "gallery_image_9feypw",
           "gallery_image_YeDwHi",
-          "gallery_image_PmQPn7",
           "gallery_image_dwLtFw",
+          "gallery_image_PmQPn7",
           "gallery_image_wUDQBi",
+          "gallery_image_P4Wxqh",
           "gallery_image_wVtERi",
           "gallery_image_XzeFVA",
           "gallery_image_rhte6P",
           "gallery_image_nLd7HN",
           "gallery_image_TUicyK",
           "gallery_image_mm4thc",
-          "gallery_image_P4Wxqh",
           "gallery_image_6ddj3C",
           "gallery_image_93KhK7",
           "gallery_image_HefDkk",
           "gallery_image_88bjjK",
-          "gallery_image_F8CYRg",
           "gallery_image_36Q4hJ",
+          "gallery_image_F8CYRg",
           "gallery_image_LqMPAm",
           "gallery_image_PjyppU",
           "gallery_image_64wrz3",
@@ -449,7 +436,6 @@
           "gallery_image_b7aQRF",
           "gallery_image_MqqNM9",
           "gallery_image_qcwGAr",
-          "gallery_image_rmf4dm",
           "gallery_image_mrCcGj"
         ],
         "settings": {
