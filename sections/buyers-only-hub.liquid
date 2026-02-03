@@ -10,7 +10,7 @@
           {%- endif -%}
           <div class="buyers-only-hub__card-overlay" style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
           <div class="buyers-only-hub__card-content">
-            <h2 class="buyers-only-hub__card-heading font-serif" style="font-size: {{ block.settings.heading_font_size | default: 3.5 }}rem;">{{ block.settings.heading | default: 'Card ' | append: forloop.index }}</h2>
+            <h2 class="buyers-only-hub__card-heading font-serif" style="font-size: {{ block.settings.heading_font_size | default: 3.5 }}rem;">{% if block.settings.heading != blank %}{{ block.settings.heading }}{% else %}Card {{ forloop.index }}{% endif %}</h2>
             {%- if block.settings.button_text != blank -%}
               {%- assign action_type = block.settings.button_action | default: 'url' -%}
               {%- if action_type == 'url' and block.settings.button_url != blank -%}

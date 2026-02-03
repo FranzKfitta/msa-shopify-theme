@@ -722,50 +722,69 @@
   }
 
   // BUYERS ONLY Hub - Modal functionality
-  const buyersOnlyModals = document.querySelectorAll('.buyers-only-hub__modal');
-  const modalTriggers = document.querySelectorAll('[data-modal-trigger]');
-  
-  function openBuyersModal(modalType, pdfUrl = null) {
-    const modal = document.querySelector(`[data-modal="${modalType}"]`);
-    if (!modal) return;
+  function initBuyersOnlyModals() {
+    const buyersOnlyModals = document.querySelectorAll('.buyers-only-hub__modal');
+    const modalTriggers = document.querySelectorAll('[data-modal-trigger]');
+    
+    function openBuyersModal(modalType, pdfUrl = null) {
+      const modal = document.querySelector(`[data-modal="${modalType}"]`);
+      if (!modal) return;
 
-    if (modalType === 'pdf-viewer' && pdfUrl) {
-      const iframe = document.getElementById('buyers-only-pdf-iframe');
-      const downloadLink = document.getElementById('buyers-only-pdf-download');
-      if (iframe) iframe.src = pdfUrl;
-      if (downloadLink) downloadLink.href = pdfUrl;
+      if (modalType === 'pdf-viewer' && pdfUrl) {
+        const iframe = document.getElementById('buyers-only-pdf-iframe');
+        const downloadLink = document.getElementById('buyers-only-pdf-download');
+        if (iframe) iframe.src = pdfUrl;
+        if (downloadLink) downloadLink.href = pdfUrl;
+      }
+
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
     }
 
-    modal.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-  }
+    function closeBuyersModal(modal) {
+      if (!modal) return;
+      modal.classList.remove('is-active');
+      document.body.style.overflow = '';
 
-  function closeBuyersModal(modal) {
-    if (!modal) return;
-    modal.classList.remove('is-active');
-    document.body.style.overflow = '';
-
-    const iframe = modal.querySelector('iframe');
-    if (iframe) {
-      setTimeout(() => { iframe.src = ''; }, 300);
+      const iframe = modal.querySelector('iframe');
+      if (iframe) {
+        setTimeout(() => { iframe.src = ''; }, 300);
+      }
     }
+
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const modalType = this.getAttribute('data-modal-trigger');
+        const pdfUrl = this.getAttribute('data-pdf-url');
+        openBuyersModal(modalType, pdfUrl);
+      });
+    });
+
+    buyersOnlyModals.forEach(modal => {
+      const closeButtons = modal.querySelectorAll('[data-modal-close]');
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => closeBuyersModal(modal));
+      });
+    });
+
+    // Close modals on ESC
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        buyersOnlyModals.forEach(modal => {
+          if (modal.classList.contains('is-active')) {
+            closeBuyersModal(modal);
+          }
+        });
+      }
+    });
   }
 
-  modalTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      const modalType = this.getAttribute('data-modal-trigger');
-      const pdfUrl = this.getAttribute('data-pdf-url');
-      openBuyersModal(modalType, pdfUrl);
-    });
-  });
-
-  buyersOnlyModals.forEach(modal => {
-    const closeButtons = modal.querySelectorAll('[data-modal-close]');
-    closeButtons.forEach(btn => {
-      btn.addEventListener('click', () => closeBuyersModal(modal));
-    });
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBuyersOnlyModals);
+  } else {
+    initBuyersOnlyModals();
+  }
 
   // Close overlays on ESC
   document.addEventListener('keydown', function(event) {
@@ -776,12 +795,6 @@
     if (newsletterOverlay && newsletterOverlay.getAttribute('aria-hidden') === 'false') {
       closeOverlay(newsletterOverlay, null);
     }
-    
-    buyersOnlyModals.forEach(modal => {
-      if (modal.classList.contains('is-active')) {
-        closeBuyersModal(modal);
-      }
-    });
   });
 
   // Expose cart count updater globally so other scripts (e.g. collection quick-add)
