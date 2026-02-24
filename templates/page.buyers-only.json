@@ -12,7 +12,7 @@
     "main": {
       "type": "buyers-only-access",
       "settings": {
-        "background_image": "shopify://shop_images/520ab912-9019-4ab9-bdd8-ff6ae74e0e83.png",
+        "background_image": "shopify://shop_images/M_SA_Edito-92.jpg",
         "overlay_opacity": 55,
         "heading": "BUYERS ONLY",
         "description": "Cette section est réservée. Entrez votre code d’accès pour continuer.",
