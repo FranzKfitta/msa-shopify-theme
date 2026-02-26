@@ -592,7 +592,7 @@
               "panel_size": "medium",
               "font_size_px": 22,
               "title": "Le rituel du colis.",
-              "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants — rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
+              "text": "<p>Un·e salarié·e emballe votre vêtement dans nos tissus dormants, rien n’est perdu, tout devient beauté.<br/>Puis : hop, direction chez vous, sans détour.</p>",
               "link_label": "Discover the next step",
               "link_url": ""
             }
@@ -607,6 +607,19 @@
               "font_size_px": 22,
               "title": "Le message que l’on attend.",
               "text": "<p>Votre colis s’envole. Vous êtes prévenu·e.<br/>Quelques jours plus tard, votre dressing devient une fête.<br/>Votre miroir applaudit. Votre peau sourit.</p>",
+              "link_label": "Discover the next step",
+              "link_url": ""
+            }
+          },
+          "preorder_step_m8r3dF": {
+            "type": "preorder_step",
+            "settings": {
+              "panel_bg_color": "#e5f3f7",
+              "text_color": "#111111",
+              "panel_size": "medium",
+              "font_size_px": 18,
+              "title": "You place your pre-order",
+              "text": "<p>You choose your piece and size during a limited pre-order window.</p>",
               "link_label": "Discover the next step",
               "link_url": ""
             }
@@ -649,6 +662,7 @@
           "preorder_step_aaPjnD",
           "preorder_step_yfPd3j",
           "preorder_step_Dz7eT8",
+          "preorder_step_m8r3dF",
           "preorder_step_rnwRwB",
           "preorder_step_AiAMFz"
         ],
