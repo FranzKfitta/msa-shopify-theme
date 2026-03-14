@@ -199,20 +199,22 @@
           <div class="locale-switcher relative" data-locale-switcher>
             <button
               type="button"
-              class="btn btn-ghost h-10 px-2 text-xs font-medium uppercase tracking-wide"
+              class="locale-toggle-btn"
               data-locale-toggle
               aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="{{ 'general.language' | t }}"
               style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
             >
-              {{ request.locale.iso_code | upcase }}
-              <svg class="inline-block w-3 h-3 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              <span>{{ request.locale.iso_code | upcase }}</span>
+              <svg class="locale-chevron inline-block w-3 h-3 ml-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
-            <div class="locale-dropdown hidden absolute right-0 top-full mt-1 bg-white border border-border shadow-md z-50 min-w-[80px]" data-locale-dropdown>
+            <div class="locale-dropdown hidden absolute right-0 top-full mt-2 z-50" data-locale-dropdown>
               {%- for locale in localization.available_locales -%}
                 <form method="post" action="{{ routes.root_url }}localization" class="locale-option-form">
                   <input type="hidden" name="_method" value="PUT">
                   <input type="hidden" name="locale_code" value="{{ locale.iso_code }}">
-                  <button type="submit" class="block w-full text-left px-4 py-2 text-xs font-medium uppercase tracking-wide hover:bg-gray-100 transition-colors {% if locale.iso_code == request.locale.iso_code %}font-bold{% endif %}">
+                  <button type="submit" class="{% if locale.iso_code == request.locale.iso_code %}font-semibold{% endif %}">
                     {{ locale.iso_code | upcase }}
                   </button>
                 </form>
@@ -333,13 +335,13 @@
 
         {%- if localization.available_locales.size > 1 -%}
           <div class="border-t border-border mt-4 pt-4 px-4">
-            <p class="text-xs uppercase tracking-wide text-muted-foreground mb-2">Language</p>
-            <div class="flex gap-2">
+            <p class="locale-mobile-label mb-2">{{ 'general.language' | t }}</p>
+            <div class="locale-mobile-options">
               {%- for locale in localization.available_locales -%}
                 <form method="post" action="{{ routes.root_url }}localization">
                   <input type="hidden" name="_method" value="PUT">
                   <input type="hidden" name="locale_code" value="{{ locale.iso_code }}">
-                  <button type="submit" class="px-3 py-1.5 text-xs font-medium uppercase tracking-wide border {% if locale.iso_code == request.locale.iso_code %}border-foreground bg-foreground text-background{% else %}border-border hover:border-foreground{% endif %} transition-colors">
+                  <button type="submit" {% if locale.iso_code == request.locale.iso_code %}data-active="true"{% endif %}>
                     {{ locale.iso_code | upcase }}
                   </button>
                 </form>
@@ -520,12 +522,14 @@
       const isOpen = !dropdown.classList.contains('hidden');
       dropdown.classList.toggle('hidden');
       toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      switcher.setAttribute('data-open', isOpen ? 'false' : 'true');
     });
 
     document.addEventListener('click', function(e) {
       if (!switcher.contains(e.target)) {
         dropdown.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
+        switcher.setAttribute('data-open', 'false');
       }
     });
   })();

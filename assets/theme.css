@@ -2189,6 +2189,111 @@ header#main-header .nav-dropdown:hover {
   margin: 0;
 }
 
+/* Locale switcher – brand-aligned language selection */
+.locale-switcher {
+  display: inline-flex;
+  align-items: center;
+}
+
+.locale-switcher [data-locale-toggle] {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.locale-switcher [data-locale-toggle]:hover {
+  opacity: 0.75;
+}
+
+.locale-switcher[data-open="true"] .locale-chevron {
+  transform: rotate(180deg);
+}
+
+.locale-switcher .locale-dropdown {
+  min-width: 6rem;
+  padding: 0.5rem 0;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-elegant);
+  border-radius: var(--radius);
+}
+
+.locale-switcher .locale-option-form {
+  margin: 0;
+}
+
+.locale-switcher .locale-option-form button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: hsl(var(--foreground));
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.locale-switcher .locale-option-form button:hover {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+}
+
+.locale-switcher .locale-option-form:not(:last-child) button {
+  border-bottom: none;
+}
+
+#mobile-menu .locale-mobile-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+#mobile-menu .locale-mobile-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#mobile-menu .locale-mobile-options form {
+  margin: 0;
+}
+
+#mobile-menu .locale-mobile-options button {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid hsl(var(--border));
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+#mobile-menu .locale-mobile-options button:hover {
+  border-color: hsl(var(--foreground));
+}
+
+#mobile-menu .locale-mobile-options button[data-active="true"] {
+  border-color: hsl(var(--foreground));
+  background: hsl(var(--foreground));
+  color: hsl(var(--primary-foreground));
+}
+
 /* Image Styles */
 img {
   max-width: 100%;

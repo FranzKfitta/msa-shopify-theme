@@ -1,5 +1,6 @@
 {
   "general": {
+    "language": "Langue",
     "meta": {
       "tags": "Tag\u00e9 \u00ab {{ tags }} \u00bb",
       "page": "Page {{ page }}"
