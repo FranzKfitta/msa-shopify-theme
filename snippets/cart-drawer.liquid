@@ -30,7 +30,7 @@
               {%- if item.variant.title != 'Default Title' -%}
                 <p class="text-xs text-muted-foreground mb-2">{{ item.variant.title }}</p>
               {%- endif -%}
-              <p class="font-medium text-sm mb-3 text-foreground">{{ item.line_price | money }}</p>
+              <p class="font-medium text-sm mb-3 text-foreground">{%- render 'price', amount: item.line_price -%}</p>
               <div class="flex items-center gap-2">
                 <button type="button" class="cart-item-decrease cart-btn-outline-icon h-8 w-8" data-item-key="{{ item.key }}" data-variant-id="{{ item.variant_id }}" aria-label="Decrease quantity">
                   <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@
       <div class="px-6 py-5">
         <div class="flex justify-between items-center mb-2">
           <span class="text-sm font-medium text-foreground">Estimated total</span>
-          <span class="font-bold text-lg tracking-tight text-foreground" id="cart-total">{{ cart.total_price | money }}</span>
+          <span class="font-bold text-lg tracking-tight text-foreground" id="cart-total">{%- render 'price', amount: cart.total_price -%}</span>
         </div>
         <p class="text-xs text-muted-foreground mb-5">Duties and taxes included. Shipping is calculated at checkout.</p>
 

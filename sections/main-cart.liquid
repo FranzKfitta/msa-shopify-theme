@@ -57,7 +57,7 @@
                     {%- if item.product.has_only_default_variant == false -%}
                       <p class="text-xs text-gray-500 mb-1">{{ item.variant.title }}</p>
                     {%- endif -%}
-                    <p class="text-xs text-gray-500">{{ item.final_line_price | money }}</p>
+                    <p class="text-xs text-gray-500">{%- render 'price', amount: item.final_line_price -%}</p>
                   </div>
 
                   <!-- Quantity & Remove -->
@@ -89,7 +89,7 @@
 
                   <!-- Total Price (Far Right) -->
                   <div class="text-right min-w-[80px]">
-                    <span class="text-sm font-medium">{{ item.final_line_price | money }}</span>
+                    <span class="text-sm font-medium">{%- render 'price', amount: item.final_line_price -%}</span>
                   </div>
 
                 </div>
@@ -120,7 +120,7 @@
             <div class="flex justify-between items-end mb-2">
               <span class="text-sm font-medium">Total estimé</span>
               <div class="text-right">
-                <span class="text-xl font-medium">{{ cart.total_price | money }} {{ cart.currency.iso_code }}</span>
+                <span class="text-xl font-medium">{%- render 'price', amount: cart.total_price -%}</span>
               </div>
             </div>
             

@@ -36,27 +36,6 @@
   const cartIconBubble = document.getElementById('cart-icon-bubble');
   const cartDrawerClose = document.getElementById('cart-drawer-close');
 
-  // Pre-order modal on product page
-  const preorderModal = document.getElementById('preorder-modal');
-  const preorderModalOverlay = preorderModal ? preorderModal.querySelector('[data-preorder-modal-overlay]') : null;
-  const preorderModalClose = preorderModal ? preorderModal.querySelector('[data-preorder-modal-close]') : null;
-  const preorderConfirmButton = preorderModal ? preorderModal.querySelector('[data-preorder-confirm]') : null;
-  let preorderConfirmed = false;
-
-  function openPreorderModal() {
-    if (!preorderModal) return;
-    preorderModal.classList.add('is-open');
-    preorderModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePreorderModal() {
-    if (!preorderModal) return;
-    preorderModal.classList.remove('is-open');
-    preorderModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
   function openCartDrawer() {
     if (cartDrawer && cartDrawerOverlay) {
       cartDrawer.classList.remove('translate-x-full');
@@ -92,31 +71,6 @@
   if (cartDrawerOverlay) {
     cartDrawerOverlay.addEventListener('click', closeCartDrawer);
   }
-
-  if (preorderModalOverlay) {
-    preorderModalOverlay.addEventListener('click', closePreorderModal);
-  }
-
-  if (preorderModalClose) {
-    preorderModalClose.addEventListener('click', closePreorderModal);
-  }
-
-  if (preorderConfirmButton) {
-    preorderConfirmButton.addEventListener('click', function() {
-      preorderConfirmed = true;
-      closePreorderModal();
-      const productForm = document.getElementById('product-form');
-      if (productForm) {
-        productForm.requestSubmit();
-      }
-    });
-  }
-
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && preorderModal && preorderModal.classList.contains('is-open')) {
-      closePreorderModal();
-    }
-  });
 
   // Update Cart Count
   function updateCartCount() {
@@ -158,7 +112,7 @@
     // Update cart total
     if (cartTotal) {
       const currency = cart.currency?.iso_code || 'USD';
-      cartTotal.textContent = `${formatMoney(cart.total_price, currency)} ${currency}`;
+      cartTotal.textContent = formatMoney(cart.total_price, currency);
     }
 
     if (cart.item_count === 0) {
@@ -220,10 +174,11 @@
     attachCartItemListeners();
   }
 
-  // Format Money
   function formatMoney(cents, currencyCode) {
-    const currency = currencyCode || window.Shopify?.currency?.active || 'USD';
-    return new Intl.NumberFormat(document.documentElement.lang || 'en', {
+    const currency = currencyCode || window.Shopify?.currency?.active || 'EUR';
+    const lang = document.documentElement.lang || 'fr';
+    const locale = lang.startsWith('fr') ? 'fr-FR' : lang;
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency
     }).format(cents / 100);
@@ -292,13 +247,6 @@
   const productForm = document.getElementById('product-form');
   if (productForm) {
     productForm.addEventListener('submit', function(e) {
-      // First submit: show pre-order info modal instead of adding directly to cart
-      if (!preorderConfirmed) {
-        e.preventDefault();
-        openPreorderModal();
-        return;
-      }
-
       e.preventDefault();
       
       const formData = new FormData(this);
@@ -322,7 +270,6 @@
         return response.json();
       })
       .then(data => {
-        // Successfully added to cart
         updateCartCount();
         openCartDrawer();
       })
@@ -335,9 +282,6 @@
           addButton.disabled = false;
           addButton.textContent = window.variantStrings.addToCart;
         }
-
-        // Reset confirmation so the modal can be shown again on a fresh visit
-        preorderConfirmed = false;
       });
     });
   }
@@ -940,78 +884,6 @@
     initProductSticky();
   }
 
-  // Pre-order steps carousel on the dedicated page
-  function initPreorderCarousel() {
-    const section = document.querySelector('[data-preorder-section]');
-    if (!section) return;
-
-    const carousel = section.querySelector('[data-preorder-carousel]');
-    if (!carousel) return;
-
-    const steps = Array.from(carousel.querySelectorAll('[data-preorder-step]'));
-    if (!steps.length) return;
-
-    const prevBtn = carousel.querySelector('[data-preorder-prev]');
-    const nextBtn = carousel.querySelector('[data-preorder-next]');
-    const dotsContainer = carousel.querySelector('[data-preorder-dots]');
-    const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('[data-step-dot]')) : [];
-
-    let currentIndex = 0;
-
-    function showStep(index) {
-      const maxIndex = steps.length - 1;
-      if (index < 0) index = maxIndex;
-      if (index > maxIndex) index = 0;
-      currentIndex = index;
-
-      steps.forEach((step, i) => {
-        if (i === currentIndex) {
-          step.classList.add('is-active');
-        } else {
-          step.classList.remove('is-active');
-        }
-      });
-
-      if (dots.length) {
-        dots.forEach((dot, i) => {
-          if (i === currentIndex) {
-            dot.classList.add('is-active');
-          } else {
-            dot.classList.remove('is-active');
-          }
-        });
-      }
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', function() {
-        showStep(currentIndex - 1);
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function() {
-        showStep(currentIndex + 1);
-      });
-    }
-
-    if (dots.length) {
-      dots.forEach(dot => {
-        dot.addEventListener('click', function() {
-          const index = parseInt(this.getAttribute('data-step-index'), 10) || 0;
-          showStep(index);
-        });
-      });
-    }
-
-    showStep(0);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPreorderCarousel);
-  } else {
-    initPreorderCarousel();
-  }
 
 })();
 

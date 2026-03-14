@@ -195,6 +195,31 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-2 flex-1 justify-end">
+        {%- if localization.available_locales.size > 1 -%}
+          <div class="locale-switcher relative" data-locale-switcher>
+            <button
+              type="button"
+              class="btn btn-ghost h-10 px-2 text-xs font-medium uppercase tracking-wide"
+              data-locale-toggle
+              aria-expanded="false"
+              style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+            >
+              {{ request.locale.iso_code | upcase }}
+              <svg class="inline-block w-3 h-3 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="locale-dropdown hidden absolute right-0 top-full mt-1 bg-white border border-border shadow-md z-50 min-w-[80px]" data-locale-dropdown>
+              {%- for locale in localization.available_locales -%}
+                <form method="post" action="{{ routes.root_url }}localization" class="locale-option-form">
+                  <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="locale_code" value="{{ locale.iso_code }}">
+                  <button type="submit" class="block w-full text-left px-4 py-2 text-xs font-medium uppercase tracking-wide hover:bg-gray-100 transition-colors {% if locale.iso_code == request.locale.iso_code %}font-bold{% endif %}">
+                    {{ locale.iso_code | upcase }}
+                  </button>
+                </form>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
         <button
           type="button"
           class="btn btn-ghost btn-icon h-10 w-10"
@@ -304,6 +329,23 @@
             <li><a href="{{ routes.root_url }}/pages/lookbooks" class="block px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">LOOKBOOKS</a></li>
             <li><a href="{{ routes.root_url }}/pages/about" class="block px-4 py-3 text-sm font-medium tracking-wide hover:bg-secondary hover:text-foreground transition-colors">ABOUT</a></li>
           </ul>
+        {%- endif -%}
+
+        {%- if localization.available_locales.size > 1 -%}
+          <div class="border-t border-border mt-4 pt-4 px-4">
+            <p class="text-xs uppercase tracking-wide text-muted-foreground mb-2">Language</p>
+            <div class="flex gap-2">
+              {%- for locale in localization.available_locales -%}
+                <form method="post" action="{{ routes.root_url }}localization">
+                  <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="locale_code" value="{{ locale.iso_code }}">
+                  <button type="submit" class="px-3 py-1.5 text-xs font-medium uppercase tracking-wide border {% if locale.iso_code == request.locale.iso_code %}border-foreground bg-foreground text-background{% else %}border-border hover:border-foreground{% endif %} transition-colors">
+                    {{ locale.iso_code | upcase }}
+                  </button>
+                </form>
+              {%- endfor -%}
+            </div>
+          </div>
         {%- endif -%}
       </div>
     </nav>
@@ -461,6 +503,30 @@
           this.textContent = '-';
         }
       });
+    });
+  })();
+
+  // Locale switcher dropdown
+  (function() {
+    const switcher = document.querySelector('[data-locale-switcher]');
+    if (!switcher) return;
+
+    const toggle = switcher.querySelector('[data-locale-toggle]');
+    const dropdown = switcher.querySelector('[data-locale-dropdown]');
+    if (!toggle || !dropdown) return;
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = !dropdown.classList.contains('hidden');
+      dropdown.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!switcher.contains(e.target)) {
+        dropdown.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
     });
   })();
 </script>

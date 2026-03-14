@@ -43,7 +43,13 @@
       "value_unavailable": "{{ value }} is not available",
       "quantity": "Quantity",
       "size": "Size",
-      "details": "Details"
+      "details": "Details",
+      "size_guide": "Size guide",
+      "description": "Description",
+      "composition": "Composition",
+      "care": "Care instructions",
+      "shipping": "Delivery & returns",
+      "made_in": "Made in"
     }
   },
   "collections": {
@@ -70,6 +76,14 @@
       "color": "Color",
       "size": "Size"
     }
+  },
+  "welcome": {
+    "heading": "Welcome to the Pure club.",
+    "preorder_message": "Pre-orders will open from March 20th. Thank you for your patience — every piece is designed and produced with the greatest care.",
+    "bestsellers_note": "Products available for pre-order are our best-sellers: t-shirts, hoodies, jeans, shirts, leggings and accessories.",
+    "email_placeholder": "Your email",
+    "subscribe": "Subscribe",
+    "success": "Thank you! Your subscription is confirmed.",
+    "privacy_policy": "Privacy Policy"
   }
 }
-

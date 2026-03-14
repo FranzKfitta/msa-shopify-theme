@@ -105,19 +105,22 @@
             </div>
           </div>
           <div class="newsletter-popup-content">
-            <p class="text-sm uppercase tracking-wide mb-2">welcome on the Pure club .</p>
-            <p class="text-sm text-muted-foreground mb-6">
-              Inscrivez-vous pour recevoir les informations sur nos collections, nos offres exclusives, notre newsletter, nos événements SLOW MUST GO ON!. En vous abonnant, vous acceptez notre Politique de confidentialité.
+            <p class="text-sm uppercase tracking-wide mb-2">{{ 'welcome.heading' | t }}</p>
+            <p class="text-sm font-medium mb-3">
+              {{ 'welcome.preorder_message' | t }}
+            </p>
+            <p class="text-xs text-muted-foreground mb-6">
+              {{ 'welcome.bestsellers_note' | t }}
             </p>
 
             {% form 'customer', class: 'newsletter-popup-form' %}
               <input type="hidden" name="contact[tags]" value="newsletter">
               <div class="flex gap-2">
-                <input type="email" name="contact[email]" class="input bg-background flex-1" placeholder="Votre email" required>
-                <button type="submit" class="btn btn-default">S’inscrire</button>
+                <input type="email" name="contact[email]" class="input bg-background flex-1" placeholder="{{ 'welcome.email_placeholder' | t }}" required>
+                <button type="submit" class="btn btn-default">{{ 'welcome.subscribe' | t }}</button>
               </div>
               {% if form.posted_successfully? %}
-                <p class="text-xs mt-3">Merci ! Votre inscription est confirmée.</p>
+                <p class="text-xs mt-3">{{ 'welcome.success' | t }}</p>
               {% endif %}
               {% if form.errors %}
                 <p class="text-xs mt-3 text-red-600">{{ form.errors | default_errors }}</p>
@@ -125,7 +128,7 @@
             {% endform %}
 
             <div class="text-xs text-muted-foreground mt-4">
-              <a href="{% if shop.policies.privacy_policy and shop.policies.privacy_policy.url != blank %}{{ shop.policies.privacy_policy.url }}{% else %}{{ routes.root_url }}/policies/privacy-policy{% endif %}" class="underline">Politique de confidentialité</a>
+              <a href="{% if shop.policies.privacy_policy and shop.policies.privacy_policy.url != blank %}{{ shop.policies.privacy_policy.url }}{% else %}{{ routes.root_url }}/policies/privacy-policy{% endif %}" class="underline">{{ 'welcome.privacy_policy' | t }}</a>
             </div>
           </div>
         </div>
@@ -169,4 +172,3 @@
     {{ 'theme.js' | asset_url | script_tag }}
   </body>
 </html>
-

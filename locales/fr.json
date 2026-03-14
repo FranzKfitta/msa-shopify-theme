@@ -1,0 +1,89 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tag\u00e9 \u00ab {{ tags }} \u00bb",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 Page introuvable",
+      "subtext": "La page que vous recherchez n\u2019existe pas.",
+      "link": "Continuer vos achats"
+    },
+    "search": {
+      "title": "Recherche",
+      "placeholder": "Rechercher",
+      "submit": "Rechercher"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Aller au contenu",
+    "refresh_page": "Vous \u00eates redirig\u00e9 vers cette page.",
+    "link_messages": {
+      "new_window": "S\u2019ouvre dans une nouvelle fen\u00eatre."
+    }
+  },
+  "sections": {
+    "header": {
+      "cart_count": {
+        "one": "{{ count }} article",
+        "other": "{{ count }} articles"
+      }
+    },
+    "cart": {
+      "title": "Panier",
+      "cart_error": "Une erreur s\u2019est produite lors de la mise \u00e0 jour de votre panier. Veuillez r\u00e9essayer.",
+      "cart_quantity_error_html": "Vous ne pouvez ajouter que [quantity] de cet article \u00e0 votre panier."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "\u00c9puis\u00e9",
+      "unavailable": "Indisponible",
+      "value_unavailable": "{{ value }} n\u2019est pas disponible",
+      "quantity": "Quantit\u00e9",
+      "size": "Taille",
+      "details": "D\u00e9tails",
+      "size_guide": "Guide des tailles",
+      "description": "Description",
+      "composition": "Composition",
+      "care": "Entretien",
+      "shipping": "Livraison & retours",
+      "made_in": "Fabriqu\u00e9 en"
+    }
+  },
+  "collections": {
+    "all_products": "Tous les produits",
+    "items_count": {
+      "one": "{{ count }} article",
+      "other": "{{ count }} articles"
+    },
+    "sort": {
+      "title": "Trier",
+      "featured": "En vedette",
+      "best_selling": "Meilleures ventes",
+      "a_z": "Alphab\u00e9tique, A-Z",
+      "z_a": "Alphab\u00e9tique, Z-A",
+      "price_low": "Prix croissant",
+      "price_high": "Prix d\u00e9croissant",
+      "date_old": "Date, ancien au r\u00e9cent",
+      "date_new": "Date, r\u00e9cent au ancien"
+    },
+    "filters": {
+      "title": "Filtres",
+      "clear_all": "Tout effacer",
+      "product_type": "Type de produit",
+      "color": "Couleur",
+      "size": "Taille"
+    }
+  },
+  "welcome": {
+    "heading": "Bienvenue sur le Pure club.",
+    "preorder_message": "Les pr\u00e9commandes ouvriront \u00e0 partir du 20 mars. Merci de votre patience, chaque pi\u00e8ce est pens\u00e9e et produite avec le plus grand soin.",
+    "bestsellers_note": "Les produits propos\u00e9s en pr\u00e9commande correspondent \u00e0 nos best-sellers : t-shirts, hoodies, jeans, chemises, leggings et accessoires.",
+    "email_placeholder": "Votre email",
+    "subscribe": "S\u2019inscrire",
+    "success": "Merci ! Votre inscription est confirm\u00e9e.",
+    "privacy_policy": "Politique de confidentialit\u00e9"
+  }
+}

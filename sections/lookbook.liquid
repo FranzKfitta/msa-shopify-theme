@@ -147,7 +147,7 @@
                 <div class="mb-4">
                   <p class="text-xs text-white/70 mb-1">Featured:</p>
                   <p class="text-sm font-medium">{{ block.settings.featured_product.title }}</p>
-                  <p class="text-sm text-white/90">{{ block.settings.featured_product.price | money }}</p>
+                  <p class="text-sm text-white/90">{%- render 'price', amount: block.settings.featured_product.price -%}</p>
                 </div>
               {%- endif -%}
 
@@ -208,9 +208,9 @@
                   </a>
                 </h3>
                 <p class="text-sm text-muted-foreground">
-                  {{ product.price | money }}
+                  {%- render 'price', amount: product.price -%}
                   {%- if product.compare_at_price > product.price -%}
-                    <span class="line-through ml-1 text-xs">{{ product.compare_at_price | money }}</span>
+                    <span class="line-through ml-1 text-xs">{%- render 'price', amount: product.compare_at_price -%}</span>
                   {%- endif -%}
                 </p>
               </div>

@@ -73,17 +73,11 @@
       <!-- Title & price -->
       <h1 class="product-title font-serif text-3xl md:text-4xl mb-2">{{ product.title }}</h1>
       <p class="product-price-main text-2xl mb-6">
-        {{ product.price | money }}
+        {%- render 'price', amount: product.price -%}
         {%- if product.compare_at_price > product.price -%}
-          <span class="line-through text-muted-foreground ml-2">{{ product.compare_at_price | money }}</span>
+          <span class="line-through text-muted-foreground ml-2">{%- render 'price', amount: product.compare_at_price -%}</span>
         {%- endif -%}
       </p>
-
-      {%- if product.tags contains 'preorder' or product.tags contains 'precommande' -%}
-        <p class="preorder-leadtime text-sm text-muted-foreground mb-6">
-          Date de livraison précommande : 6 semaines de fabrication.
-        </p>
-      {%- endif -%}
 
       <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" id="product-form">
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="product-variant-id">
@@ -217,23 +211,6 @@
         {%- endif -%}
       </div>
 
-    </div>
-  </div>
-
-  <div id="preorder-modal" class="preorder-modal" aria-hidden="true">
-    <div class="preorder-modal-overlay" data-preorder-modal-overlay></div>
-    <div class="preorder-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="preorder-modal-title">
-      <button type="button" class="preorder-modal-close" data-preorder-modal-close aria-label="Close">
-        &times;
-      </button>
-      <div class="preorder-modal-body">
-        {% section 'preorder-info' %}
-        <div class="preorder-modal-actions">
-          <button type="button" class="btn btn-default w-full" data-preorder-confirm>
-            I understand, continue to pre-order
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 

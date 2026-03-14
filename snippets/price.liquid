@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders a price in the correct locale format.
+  For French: "10,00 €" (symbol after amount, comma decimal).
+  For other locales: falls back to Shopify's | money filter.
+
+  Usage:
+    {% render 'price', amount: product.price %}
+    {% render 'price', amount: product.compare_at_price %}
+{%- endcomment -%}
+
+{%- liquid
+  assign _cents = amount | plus: 0
+  assign _locale = request.locale.iso_code | downcase
+
+  if _locale == 'fr' or _locale == 'fr-fr'
+    assign _units = _cents | divided_by: 100
+    assign _remainder = _cents | modulo: 100
+    if _remainder < 10
+      assign _decimal = '0' | append: _remainder
+    else
+      assign _decimal = _remainder
+    endif
+    echo _units | append: ',' | append: _decimal | append: ' €'
+  else
+    echo _cents | money
+  endif
+-%}

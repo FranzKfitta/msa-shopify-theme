@@ -97,9 +97,9 @@
                   <a href="{{ product.url }}" class="product-link">
                     <h3 class="product-name">{{ product.title }}</h3>
                     <p class="product-price">
-                      {{ product.price | money }}
+                      {%- render 'price', amount: product.price -%}
                       {%- if product.compare_at_price_max > product.price -%}
-                        <span class="product-price-compare">{{ product.compare_at_price_max | money }}</span>
+                        <span class="product-price-compare">{%- render 'price', amount: product.compare_at_price_max -%}</span>
                       {%- endif -%}
                     </p>
                   </a>
