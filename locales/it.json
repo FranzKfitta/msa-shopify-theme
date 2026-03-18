@@ -1,0 +1,99 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "cart_count": {
+        "one": "{{ count }} articolo",
+        "other": "{{ count }} elementi"
+      }
+    },
+    "cart": {
+      "title": "Carrello",
+      "cart_error": "Si è verificato un errore durante l'aggiornamento del carrello. Riprova.",
+      "cart_quantity_error_html": "È possibile aggiungere solo [quantity] di questo articolo al carrello."
+    }
+  },
+  "general": {
+    "language": "Linguaggio",
+    "meta": {
+      "tags": "Contrassegnato \"{{ tags }}\"",
+      "page": "Pagina {{ page }}"
+    },
+    "404": {
+      "title": "404 Pagina non trovata",
+      "subtext": "La pagina che stavi cercando non esiste.",
+      "link": "Continua lo shopping"
+    },
+    "search": {
+      "title": "Cerca",
+      "placeholder": "Cerca",
+      "submit": "Invia"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Vai al contenuto",
+    "refresh_page": "Si viene reindirizzati a questa pagina.",
+    "link_messages": {
+      "new_window": "Si apre in una nuova finestra."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Aggiungi al carrello",
+      "sold_out": "Esaurito",
+      "unavailable": "Non disponibile",
+      "value_unavailable": "{{ value }} non è disponibile",
+      "quantity": "Quantità",
+      "size": "Dimensioni",
+      "details": "Dettagli",
+      "size_guide": "Guida alle taglie",
+      "description": "Descrizione",
+      "composition": "Composizione",
+      "care": "Istruzioni per la cura",
+      "shipping": "Consegna e resi",
+      "made_in": "Prodotto in"
+    }
+  },
+  "collections": {
+    "all_products": "Tutti i prodotti",
+    "items_count": {
+      "one": "{{ count }} articolo",
+      "other": "{{ count }} articoli"
+    },
+    "sort": {
+      "title": "Ordina",
+      "featured": "In primo piano",
+      "best_selling": "Più venduto",
+      "a_z": "In ordine alfabetico, dalla A alla Z",
+      "z_a": "In ordine alfabetico, Z-A",
+      "price_low": "Prezzo, dal più basso al più alto",
+      "price_high": "Prezzo, dal più alto al più basso",
+      "date_old": "Data, dalla meno recente alla più recente",
+      "date_new": "Data, dalla più recente alla meno recente"
+    },
+    "filters": {
+      "title": "Filtri",
+      "clear_all": "Cancella tutto",
+      "product_type": "Tipo di prodotto",
+      "color": "Colore",
+      "size": "Dimensioni"
+    }
+  },
+  "welcome": {
+    "heading": "Benvenuti nel club Pure.",
+    "preorder_message": "I preordini saranno aperti a partire dal 20 marzo. Grazie per la pazienza: ogni pezzo è progettato e prodotto con la massima cura.",
+    "bestsellers_note": "I prodotti disponibili in pre-ordine sono i nostri best-seller: t-shirt, felpe con cappuccio, jeans, camicie, leggings e accessori.",
+    "email_placeholder": "La Sua email",
+    "subscribe": "Iscriviti",
+    "success": "Grazie! Il tuo abbonamento è confermato.",
+    "privacy_policy": "Informativa sulla privacy"
+  }
+}
