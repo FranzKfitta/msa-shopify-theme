@@ -668,7 +668,7 @@
         ],
         "name": "LA PRÉCOMMANDE – VERSION M/SA NOTHOMB",
         "settings": {
-          "hide_section": false,
+          "hide_section": true,
           "heading": "LA PRÉCOMMANDE – VERSION M/SA",
           "show_intro": false,
           "intro_text": "We produce each pre-order especially for you, in limited runs, to slow fashion down and focus on quality.",
