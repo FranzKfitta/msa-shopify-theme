@@ -3,6 +3,7 @@
   Use this section on a dedicated page template to explain the pre-order process.
 {% endcomment %}
 
+{% unless section.settings.hide_section %}
 <section class="preorder-info" data-preorder-section>
   <div class="preorder-info-inner">
     <header class="preorder-info-header">
@@ -80,11 +81,19 @@
     </div>
   </div>
 </section>
+{% endunless %}
 
 {% schema %}
 {
   "name": "How pre-orders work",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section",
+      "default": false,
+      "info": "When enabled, this section is hidden on the storefront. Your blocks and text stay saved in the theme editor."
+    },
     {
       "type": "text",
       "id": "heading",

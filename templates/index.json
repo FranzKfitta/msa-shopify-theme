@@ -16,12 +16,21 @@
     "home_collection_row": {
       "type": "home-collection-row",
       "settings": {}
+    },
+    "preorder-info": {
+      "type": "preorder-info",
+      "settings": {
+        "hide_section": false,
+        "heading": "LA PRÉCOMMANDE – VERSION M/SA",
+        "show_intro": false
+      }
     }
   },
   "order": [
     "hero",
     "featured_collection",
     "image_banner_grid",
-    "home_collection_row"
+    "home_collection_row",
+    "preorder-info"
   ]
 }

@@ -884,6 +884,78 @@
     initProductSticky();
   }
 
+  // Pre-order steps carousel (homepage / preorder-info section)
+  function initPreorderCarousel() {
+    const section = document.querySelector('[data-preorder-section]');
+    if (!section) return;
+
+    const carousel = section.querySelector('[data-preorder-carousel]');
+    if (!carousel) return;
+
+    const steps = Array.from(carousel.querySelectorAll('[data-preorder-step]'));
+    if (!steps.length) return;
+
+    const prevBtn = carousel.querySelector('[data-preorder-prev]');
+    const nextBtn = carousel.querySelector('[data-preorder-next]');
+    const dotsContainer = carousel.querySelector('[data-preorder-dots]');
+    const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('[data-step-dot]')) : [];
+
+    let currentIndex = 0;
+
+    function showStep(index) {
+      const maxIndex = steps.length - 1;
+      if (index < 0) index = maxIndex;
+      if (index > maxIndex) index = 0;
+      currentIndex = index;
+
+      steps.forEach((step, i) => {
+        if (i === currentIndex) {
+          step.classList.add('is-active');
+        } else {
+          step.classList.remove('is-active');
+        }
+      });
+
+      if (dots.length) {
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
+        });
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        showStep(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        showStep(currentIndex + 1);
+      });
+    }
+
+    if (dots.length) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          const index = parseInt(this.getAttribute('data-step-index'), 10) || 0;
+          showStep(index);
+        });
+      });
+    }
+
+    showStep(0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPreorderCarousel);
+  } else {
+    initPreorderCarousel();
+  }
 
 })();
 
