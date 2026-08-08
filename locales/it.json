@@ -91,15 +91,15 @@
     "heading": "Benvenuti nel club Pure.",
     "preorder_message": "I preordini saranno aperti a partire dal 20 marzo. Grazie per la pazienza: ogni pezzo è progettato e prodotto con la massima cura.",
     "bestsellers_note": "I prodotti disponibili in pre-ordine sono i nostri best-seller: t-shirt, felpe con cappuccio, jeans, camicie, leggings e accessori.",
-    "email_placeholder": "La tua e-mail",
+    "email_placeholder": "La sua e-mail",
     "subscribe": "Iscriviti",
     "success": "Grazie! Il tuo abbonamento è confermato.",
     "privacy_policy": "Informativa sulla privacy"
   },
   "footer": {
     "brand_tagline": "Trasformare l'esistente in desiderio.",
-    "newsletter_text": "Scoprite le novità, il dietro le quinte dell’atelier e le parole di Sakina.",
-    "email_placeholder": "La tua e-mail",
+    "newsletter_text": "Riceva le novità, il dietro le quinte dell’atelier e le parole di Sakina.",
+    "email_placeholder": "La sua e-mail",
     "all_rights_reserved": "Tutti i diritti riservati."
-}
+  }
 }
