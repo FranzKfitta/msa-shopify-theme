@@ -201,13 +201,13 @@
       <div class="footer-newsletter">
         <h4 class="font-serif text-lg font-semibold mb-4">Newsletter</h4>
         <p class="text-muted-foreground text-sm mb-4">
-          Recevez les nouveautés, les coulisses de l’atelier et les mots de Sakina.
+          {{ 'footer.newsletter_text' | t }}
         </p>
         <form action="{{ routes.cart_url }}" method="post" class="flex gap-2 mb-4">
           <input 
             type="email" 
             name="contact[email]"
-            placeholder="Votre e-mail" 
+            placeholder="{{ 'footer.email_placeholder' | t }}" 
             class="input bg-background"
             required
           />
@@ -238,7 +238,7 @@
 
     <div class="border-t border-border mt-12 pt-8 text-center">
       <p class="text-sm text-muted-foreground">
-        © {{ 'now' | date: '%Y' }} {{ section.settings.brand_text | default: shop.name }}. Tous droits réservés.
+        © {{ 'now' | date: '%Y' }} {{ section.settings.brand_text | default: shop.name }}. {{ 'footer.all_rights_reserved' | t }}
       </p>
     </div>
   </div>
