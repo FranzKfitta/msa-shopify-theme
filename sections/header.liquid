@@ -197,7 +197,6 @@
       <div class="flex items-center gap-2 flex-1 justify-end">
         {%- if localization.available_languages.size > 1 -%}
           <div class="locale-switcher relative" data-locale-switcher>
-
             <button
               type="button"
               data-locale-toggle
@@ -205,31 +204,29 @@
               aria-haspopup="true"
               aria-label="{{ 'general.language' | t }}"
               style="
-                all: unset;
-                box-sizing: border-box;
                 display: flex;
                 align-items: center;
                 gap: 4px;
-                padding: 8px 6px;
+                padding: 8px;
+                background: transparent;
+                border: 0;
                 cursor: pointer;
-                font-size: 13px;
+                font-size: 14px;
                 font-weight: 500;
-                letter-spacing: 0.04em;
                 color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};
               "
             >
               <span>{{ localization.language.iso_code | upcase }}</span>
-
               <svg
                 class="locale-chevron"
-                width="10"
-                height="10"
+                width="12"
+                height="12"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
 
@@ -237,50 +234,44 @@
               class="locale-dropdown hidden absolute right-0 top-full z-50"
               data-locale-dropdown
               style="
-                width: 58px;
-                margin-top: 2px;
+                min-width: 64px;
+                margin-top: 4px;
                 padding: 4px 0;
                 background: #ffffff;
-                border: 1px solid rgba(0,0,0,0.10);
-                box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+                border: 1px solid rgba(0,0,0,0.12);
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
               "
             >
               {%- assign preferred_language_codes = 'fr,en,it' | split: ',' -%}
 
               {%- for language_code in preferred_language_codes -%}
                 {%- for language in localization.available_languages -%}
-
-                  {%- if language.iso_code == language_code and language.iso_code != localization.language.iso_code -%}
-
-                    {% form 'localization', style: 'margin:0;' %}
+                  {%- if language.iso_code == language_code -%}
+                    {% form 'localization' %}
                       <input type="hidden" name="language_code" value="{{ language.iso_code }}">
-
                       <button
                         type="submit"
                         style="
-                          all: unset;
-                          box-sizing: border-box;
                           display: block;
                           width: 100%;
-                          padding: 8px 0;
+                          padding: 7px 14px;
+                          background: transparent;
+                          border: 0;
                           cursor: pointer;
                           text-align: center;
-                          font-size: 12px;
-                          font-weight: 400;
-                          letter-spacing: 0.06em;
+                          font-size: 13px;
                           color: #000000;
+                          {% if language.iso_code == localization.language.iso_code %}font-weight: 700;{% else %}font-weight: 400;{% endif %}
                         "
                       >
                         {{ language.iso_code | upcase }}
                       </button>
                     {% endform %}
-
                   {%- endif -%}
-
                 {%- endfor -%}
               {%- endfor -%}
             </div>
-
           </div>
         {%- endif -%}
         <button
