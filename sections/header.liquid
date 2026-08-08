@@ -199,7 +199,7 @@
           <div class="locale-switcher relative" data-locale-switcher>
             <button
               type="button"
-              class="locale-toggle-btn"
+              class="locale-toggle-btn flex items-center gap-1 px-2 py-2 text-sm font-medium bg-transparent border-0 cursor-pointer"
               data-locale-toggle
               aria-expanded="false"
               aria-haspopup="true"
@@ -207,19 +207,38 @@
               style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
             >
               <span>{{ localization.language.iso_code | upcase }}</span>
-              <svg class="locale-chevron inline-block w-3 h-3 ml-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg
+                class="locale-chevron w-3 h-3 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
 
-            <div class="locale-dropdown hidden absolute right-0 top-full mt-2 z-50" data-locale-dropdown>
-              {%- for language in localization.available_languages -%}
-                {% form 'localization' %}
-                  <input type="hidden" name="language_code" value="{{ language.iso_code }}">
-                  <button type="submit" class="{% if language.iso_code == localization.language.iso_code %}font-semibold{% endif %}">
-                    {{ language.iso_code | upcase }}
-                  </button>
-                {% endform %}
+            <div
+              class="locale-dropdown hidden absolute right-0 top-full z-50 bg-background border border-border shadow-lg py-1"
+              data-locale-dropdown
+              style="min-width: 70px; margin-top: 6px;"
+            >
+              {%- assign preferred_language_codes = 'fr,en,it' | split: ',' -%}
+
+              {%- for language_code in preferred_language_codes -%}
+                {%- for language in localization.available_languages -%}
+                  {%- if language.iso_code == language_code -%}
+                    {% form 'localization' %}
+                      <input type="hidden" name="language_code" value="{{ language.iso_code }}">
+                      <button
+                        type="submit"
+                        class="block w-full px-4 py-2 text-sm text-center bg-transparent border-0 cursor-pointer hover:bg-secondary {% if language.iso_code == localization.language.iso_code %}font-semibold{% endif %}"
+                      >
+                        {{ language.iso_code | upcase }}
+                      </button>
+                    {% endform %}
+                  {%- endif -%}
+                {%- endfor -%}
               {%- endfor -%}
             </div>
           </div>
