@@ -678,5 +678,9 @@
         }
       }
     }
+  },
+  "footer": {
+    "brand_tagline": "Transforming what already exists into desire.",
+    "all_rights_reserved": "All rights reserved."
   }
 }
