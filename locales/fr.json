@@ -91,13 +91,15 @@
     "heading": "Bienvenue sur le Pure club.",
     "preorder_message": "Les pr\u00e9commandes ouvriront \u00e0 partir du 20 mars. Merci de votre patience, chaque pi\u00e8ce est pens\u00e9e et produite avec le plus grand soin.",
     "bestsellers_note": "Les produits propos\u00e9s en pr\u00e9commande correspondent \u00e0 nos best-sellers : t-shirts, hoodies, jeans, chemises, leggings et accessoires.",
-    "email_placeholder": "Votre email",
+    "email_placeholder": "Votre e-mail",
     "subscribe": "S\u2019inscrire",
     "success": "Merci ! Votre inscription est confirm\u00e9e.",
     "privacy_policy": "Politique de confidentialit\u00e9"
   },
   "footer": {
-    "brand_tagline": "Transformer l\u2019existant en d\u00e9sir.",
+   "brand_tagline": "Transformer l\u2019existant en d\u00e9sir.",
+    "newsletter_text": "Recevez les nouveaut\u00e9s, les coulisses de l\u2019atelier et les mots de Sakina.",
+    "email_placeholder": "Votre e-mail",
     "all_rights_reserved": "Tous droits r\u00e9serv\u00e9s."
   }
 }
