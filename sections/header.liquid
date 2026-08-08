@@ -199,16 +199,28 @@
           <div class="locale-switcher relative" data-locale-switcher>
             <button
               type="button"
-              class="locale-toggle-btn flex items-center gap-1 px-2 py-2 text-sm font-medium bg-transparent border-0 cursor-pointer"
               data-locale-toggle
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="{{ 'general.language' | t }}"
-              style="color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 8px;
+                background: transparent;
+                border: 0;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                color: {{ section.settings.nav_icon_color | default: section.settings.nav_text_color | default: '#000000' }};
+              "
             >
               <span>{{ localization.language.iso_code | upcase }}</span>
               <svg
-                class="locale-chevron w-3 h-3 transition-transform"
+                class="locale-chevron"
+                width="12"
+                height="12"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -219,9 +231,17 @@
             </button>
 
             <div
-              class="locale-dropdown hidden absolute right-0 top-full z-50 bg-background border border-border shadow-lg py-1"
+              class="locale-dropdown hidden absolute right-0 top-full z-50"
               data-locale-dropdown
-              style="min-width: 70px; margin-top: 6px;"
+              style="
+                min-width: 64px;
+                margin-top: 4px;
+                padding: 4px 0;
+                background: #ffffff;
+                border: 1px solid rgba(0,0,0,0.12);
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+              "
             >
               {%- assign preferred_language_codes = 'fr,en,it' | split: ',' -%}
 
@@ -232,7 +252,18 @@
                       <input type="hidden" name="language_code" value="{{ language.iso_code }}">
                       <button
                         type="submit"
-                        class="block w-full px-4 py-2 text-sm text-center bg-transparent border-0 cursor-pointer hover:bg-secondary {% if language.iso_code == localization.language.iso_code %}font-semibold{% endif %}"
+                        style="
+                          display: block;
+                          width: 100%;
+                          padding: 7px 14px;
+                          background: transparent;
+                          border: 0;
+                          cursor: pointer;
+                          text-align: center;
+                          font-size: 13px;
+                          color: #000000;
+                          {% if language.iso_code == localization.language.iso_code %}font-weight: 700;{% else %}font-weight: 400;{% endif %}
+                        "
                       >
                         {{ language.iso_code | upcase }}
                       </button>
