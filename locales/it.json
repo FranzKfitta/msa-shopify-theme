@@ -98,6 +98,8 @@
   },
   "footer": {
     "brand_tagline": "Trasformare l'esistente in desiderio.",
+    "newsletter_text": "Scoprite le novità, il dietro le quinte dell’atelier e le parole di Sakina.",
+    "email_placeholder": "La tua e-mail",
     "all_rights_reserved": "Tutti i diritti riservati."
-  }
+}
 }

@@ -680,7 +680,9 @@
     }
   },
   "footer": {
-    "brand_tagline": "Transforming what already exists into desire.",
+    "brand_tagline": "Transforming what exists into desire.",
+    "newsletter_text": "Receive our latest news, behind-the-scenes stories from the atelier and words from Sakina.",
+    "email_placeholder": "Your email",
     "all_rights_reserved": "All rights reserved."
   }
 }
