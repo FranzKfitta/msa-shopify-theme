@@ -95,5 +95,9 @@
     "subscribe": "Iscriviti",
     "success": "Grazie! Il tuo abbonamento è confermato.",
     "privacy_policy": "Informativa sulla privacy"
+  },
+  "footer": {
+    "brand_tagline": "Trasformare l’esistente in desiderio.",
+    "all_rights_reserved": "Tutti i diritti riservati."
   }
 }
