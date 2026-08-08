@@ -335,18 +335,18 @@
           </ul>
         {%- endif -%}
 
-        {%- if localization.available_locales.size > 1 -%}
+        {%- if localization.available_languages.size > 1 -%}
           <div class="border-t border-border mt-4 pt-4 px-4">
             <p class="locale-mobile-label mb-2">{{ 'general.language' | t }}</p>
+
             <div class="locale-mobile-options">
-              {%- for locale in localization.available_locales -%}
-                <form method="post" action="{{ routes.root_url }}localization">
-                  <input type="hidden" name="_method" value="PUT">
-                  <input type="hidden" name="locale_code" value="{{ locale.iso_code }}">
-                  <button type="submit" {% if locale.iso_code == request.locale.iso_code %}data-active="true"{% endif %}>
-                    {{ locale.iso_code | upcase }}
+              {%- for language in localization.available_languages -%}
+                {% form 'localization' %}
+                  <input type="hidden" name="language_code" value="{{ language.iso_code }}">
+                  <button type="submit" {% if language.iso_code == localization.language.iso_code %}data-active="true"{% endif %}>
+                    {{ language.iso_code | upcase }}
                   </button>
-                </form>
+                {% endform %}
               {%- endfor -%}
             </div>
           </div>
