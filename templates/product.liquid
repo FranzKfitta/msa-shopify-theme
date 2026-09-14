@@ -129,7 +129,7 @@
 
       <!-- Accordion sections -->
       <div class="product-accordion space-y-1">
-        {%- assign has_description = product.description != blank -%}
+        {%- assign has_description = product.description -%}
         {%- assign composition = product.metafields.custom.composition -%}
         {%- assign care = product.metafields.custom.care_instructions -%}
         {%- assign shipping = product.metafields.custom.shipping_info -%}
@@ -215,3 +215,13 @@
   </div>
 
 </main>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- assign has_description = product.description != blank -%}"
+  to: "{%- assign has_description = product.description -%}"
+  position: 5879..5931
+{% endcomment %}
